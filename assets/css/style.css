@@ -107,7 +107,7 @@ table{border-collapse:collapse;width:100%}
   font-family:var(--font-head);font-weight:800;font-size:1rem;letter-spacing:.5px;
   box-shadow:var(--shadow-sm);text-align:center;line-height:1}
 .brand-logo{height:74px;width:auto;flex:0 0 auto}
-.footer-logo{height:88px;width:auto}
+.footer-logo{height:88px;width:auto;background:#fff;padding:8px 12px;border-radius:12px}
 .login-logo{height:78px;width:auto;margin:0 auto .9rem}
 .panel-logo{height:44px;width:auto}
 .brand-text b{display:block;font-family:var(--font-head);font-size:1.32rem;color:var(--blue-900);line-height:1.15;letter-spacing:.01em}

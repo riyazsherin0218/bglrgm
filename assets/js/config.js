@@ -22,8 +22,8 @@ const SITE = {
   logoText:      "BG",
   logoImage:     "assets/img/logo.png",
   logoFull:      "assets/img/logo-full.png",
-  logoFullWhite: "assets/img/logo-white.png",
-  logoMarkWhite: "assets/img/logo-mark-white.png",
+  logoFullWhite: "assets/img/logo.png",
+  logoMarkWhite: "assets/img/logo.png",
 
   /* ---------- Statutory / corporate ---------- */
   cin:         "U85306KA2025OPC197402",
