@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bachelor of Vocation – B.Voc.* | BGLRGM</title>
+<meta name="description" content="B.Voc. undergraduate vocational degree programmes in healthcare, hospitality, information technology, management and commerce.">
+<link rel="icon" href="../assets/img/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#0b3c8c">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="pagebanner">
+  <div class="wrap">
+    <div class="crumbs"><a href="../index.html">Home</a><span>›</span>B.Voc.</div>
+    <h1>Bachelor of Vocation – B.Voc.*</h1>
+    <p>Undergraduate vocational degree programmes offered through applicable recognised university arrangements.</p>
+  </div>
+</section>
+
+<section class="sec"><div class="wrap">
+  <div class="disclaimer" style="margin-top:0"><strong>Awarding institution:</strong> B.Voc. degrees are
+    awarded only by the respective legally authorised university or institution. BGLRGM participates through
+    an authorised academic, training or facilitation arrangement. The awarding institution, nature of the
+    collaboration and academic session for each programme are confirmed in writing before admission — see the
+    <a href="../legal/recognition-disclosure.html">Recognition &amp; Certification Disclosure</a>.</div>
+
+  <div class="grid g3" style="margin:2rem 0">
+    <div class="card"><div class="card-ico">⏳</div><h3>Duration</h3><p style="margin:0">Three years, ordinarily six semesters, with exit options where the awarding institution permits.</p></div>
+    <div class="card"><div class="card-ico">📋</div><h3>Eligibility</h3><p style="margin:0">12th pass or equivalent. ITI or diploma holders may be considered for lateral entry where permitted.</p></div>
+    <div class="card"><div class="card-ico">🏭</div><h3>Structure</h3><p style="margin:0">Skill components delivered with industry exposure alongside general education components.</p></div>
+  </div>
+
+  <div id="bvoc-list"></div>
+
+  <div class="grid g2" style="margin-top:2.4rem">
+    <div class="card"><h3>How to apply</h3>
+      <ol><li>Choose the specialisation and confirm eligibility</li>
+      <li>Submit the online application with your 12th mark sheet</li>
+      <li>Attend counselling and document verification at the centre</li>
+      <li>Pay the applicable fee; GST extra where applicable</li>
+      <li>Admission is confirmed by the awarding institution and enrollment details are issued</li></ol>
+      <a class="btn btn-primary btn-sm" href="apply.html">Apply Online</a></div>
+    <div class="card"><h3>What to ask us before you pay</h3>
+      <ul class="ticklist"><li>Which university or institution awards this degree?</li><li>What is BGLRGM’s role in the programme?</li><li>What is the academic session and mode of study?</li><li>What is the total fee, and what is payable each term?</li><li>Is this qualification suitable for the occupation I intend to enter?</li></ul>
+      <p class="small muted mb0">We answer all of these in writing before an admission is confirmed.</p></div>
+  </div>
+</div></section>
+
+<div id="site-footer"></div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/demo-data.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var h=document.getElementById('bvoc-list'); if(!h) return;
+  h.innerHTML = BVOC.map(function(g){
+    return '<h3 style="margin-top:1.8rem">'+g.group+'</h3><div class="grid g3">'+
+      g.items.map(function(i){return '<div class="card" style="padding:18px"><b style="color:var(--ink-900)">'+i+
+      '</b><p class="small muted" style="margin:.4rem 0 .8rem">3 years • 12th pass • Full time</p>'+
+      '<a class="more" href="apply.html?course='+encodeURIComponent(i)+'">Apply</a></div>';}).join('')+'</div>';
+  }).join('');
+});
+</script></body>
+</html>

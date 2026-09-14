@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>My Portal | BGLRGM Vocational College</title>
+<meta name="description" content="Role-based BGLRGM portal for students, staff, members, training partners, industry partners, branches, employers and administrators.">
+<link rel="icon" href="../assets/img/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#0b3c8c">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+
+<section class="pagebanner" style="padding:34px 0 30px"><div class="wrap">
+  <div class="crumbs"><a href="../index.html">Home</a><span>›</span><a href="login.html">Login</a><span>›</span><span id="pb-role">Portal</span></div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap">
+    <div><h1 id="pb-name" style="margin-bottom:.2rem">My Portal</h1>
+      <p id="pb-extra" style="margin:0"></p></div>
+    <a class="btn btn-white btn-sm" href="#" id="signout">Sign out</a>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap">
+  <div class="demo-banner"><b>Demonstration mode.</b> These portals run on sample records held
+  in <code>assets/js/demo-data.js</code> so the screens and flows can be seen. Connect a real backend and set
+  <code>SITE.demoMode = false</code> in <code>assets/js/config.js</code> to use live data.</div>
+  <div class="portal">
+    <aside class="portal-side">
+      <div class="portal-user">
+        <b id="side-name">—</b><small id="side-id"></small>
+      </div>
+      <ul class="portal-menu" id="side-menu"></ul>
+    </aside>
+    <div id="portal-body"></div>
+  </div>
+</div></section>
+
+<div id="site-footer"></div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/demo-data.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var role=new URLSearchParams(location.search).get('role')||'student';
+  var s=null; try{ s=JSON.parse(sessionStorage.getItem('bg_session')||'null'); }catch(e){}
+  if(!s){ s={role:role,user:DEMO_LOGINS[role]?DEMO_LOGINS[role].user:'—',
+             name:DEMO_LOGINS[role]?DEMO_LOGINS[role].name:'Guest',
+             extra:DEMO_LOGINS[role]?DEMO_LOGINS[role].extra:''}; }
+  role=s.role||role;
+
+  document.getElementById('pb-role').textContent=(ROLE_LABELS[role]||'Portal')+' Portal';
+  document.getElementById('pb-name').textContent=s.name;
+  document.getElementById('pb-extra').textContent=s.extra||'';
+  document.getElementById('side-name').textContent=s.name;
+  document.getElementById('side-id').textContent=(ROLE_LABELS[role]||'')+' · '+s.user;
+  document.getElementById('signout').addEventListener('click',function(e){
+    e.preventDefault(); try{sessionStorage.removeItem('bg_session');}catch(err){}
+    location.href='login.html?role='+role;
+  });
+
+  var money=function(n){ return '₹ '+Number(n).toLocaleString('en-IN'); };
+  var tbl=function(headers,rows){
+    return '<div class="table table-wrap"><table><thead><tr>'+headers.map(function(h){return '<th>'+h+'</th>';}).join('')+
+      '</tr></thead><tbody>'+rows.map(function(r){return '<tr>'+r.map(function(c){return '<td>'+c+'</td>';}).join('')+'</tr>';}).join('')+
+      '</tbody></table></div>';
+  };
+  var box=function(title,inner,note){
+    return '<div class="card" style="margin-bottom:20px"><h3>'+title+'</h3>'+
+      (note?'<p class="small muted">'+note+'</p>':'')+inner+'</div>';
+  };
+  var stats=function(items){
+    return '<div class="grid g4" style="margin-bottom:20px">'+items.map(function(i){
+      return '<div class="stat"><b>'+i[0]+'</b><span>'+i[1]+'</span></div>';}).join('')+'</div>';
+  };
+
+  var MENUS={
+    student:['Dashboard','Profile','Enrollment Details','Course Information','Attendance','Academic Records',
+             'Examination','Hall Ticket','Results','Fee / Payment','Certificates','Internship / OJT','Downloads','Support'],
+    staff:['Dashboard','Staff Profile','Student Management','Attendance','Academic Records','Internal Marks',
+           'Examination Information','Timetable','Study Materials','Practical Records','Internship / OJT Records',
+           'Reports','Notices & Circulars','Staff Documents'],
+    member:['Dashboard','Member Profile','Membership ID','Membership Status','Digital Member ID',
+            'Membership Certificate','Renewal','Payment History','Receipts','Downloads','Events','Support'],
+    partner:['Dashboard','Partner Profile','Partner ID','Student Enrollment','Student Records','Attendance',
+             'Programme Information','Training Progress','Examination Information','Results','Fee Records',
+             'Internship / OJT','Certificate Status','Downloads','Reports','Support'],
+    industry:['Dashboard','Organisation Profile','Partner Registration','Student Allocation','Trainee List',
+              'Attendance','Internship Records','OJT Records','Training Progress','Supervisor Assessment',
+              'Stipend Information','Completion Status','Experience Certificates','Placement Status','Reports'],
+    branch:['Dashboard','Centre Profile','Admissions','Student Records','Attendance','Fee Collection',
+            'Examination Coordination','Certificate Status','Staff','Reports'],
+    employer:['Dashboard','Organisation Profile','Post a Vacancy','Candidate Requests','Interview Schedule',
+              'Internship / OJT Offers','Verification','Placement Status','Reports'],
+    admin:['Dashboard','Master Data','Programmes','Branches','Students','Staff','Members','Partners',
+           'Admissions','Examinations','Results','Certificates','Payments','Verification Logs','Reports']
+  };
+
+  var st=DEMO_STUDENT;
+  var BODIES={
+    student:
+      stats([[st.attendance,'Attendance'],[st.semester.replace('Semester ','Sem '),'Current Term'],
+             ['6','Subjects This Term'],['₹ 885','Fee Outstanding']])+
+      box('Enrollment details',
+        '<dl class="kv"><dt>Name</dt><dd>'+st.name+'</dd><dt>Enrollment number</dt><dd>'+st.enrollment+'</dd>'+
+        '<dt>Programme</dt><dd>'+st.programme+'</dd><dt>Level / sector</dt><dd>'+st.level+' · '+st.sector+'</dd>'+
+        '<dt>Duration</dt><dd>'+st.duration+'</dd><dt>Centre</dt><dd>'+st.centre+'</dd>'+
+        '<dt>Session</dt><dd>'+st.session+'</dd><dt>Admission date</dt><dd>'+st.admissionDate+'</dd>'+
+        '<dt>Status</dt><dd><span class="pill pill-green">'+st.status+'</span></dd></dl>')+
+      box('Academic record — '+st.semester,
+        tbl(['Code','Subject','Internal','External','Total','Grade','Result'],
+          st.subjects.map(function(x){return [x.code,x.name,x.ia,x.ext,'<b>'+x.total+'</b>',x.grade,
+            '<span class="pill pill-green">'+x.res+'</span>'];})),
+        'Internal assessment is published before the external examination.')+
+      box('Examination &amp; hall ticket',
+        '<p class="small">Odd semester examinations begin 12 November 2026. Your hall ticket is available once '+
+        'the examination fee is cleared.</p><a class="btn btn-sm btn-primary" href="exams.html#hallticket">Download Hall Ticket</a> '+
+        '<a class="btn btn-sm btn-outline" href="results.html">View Results</a>')+
+      box('Fee / payment',
+        tbl(['Fee head','Amount','GST','Date','Receipt','Status'],
+          st.fees.map(function(f){return [f.head,money(f.amount),f.gst?('+ '+SITE.gstRate+'%'):'—',f.date,f.receipt,
+            f.status==='Paid'?'<span class="pill pill-green">Paid</span>':'<span class="pill pill-red">Pending</span>'];}))+
+        '<p style="margin-top:1rem"><a class="btn btn-sm btn-primary" href="payment.html">Pay Outstanding Fee</a> '+
+        '<a class="btn btn-sm btn-outline" href="verification.html#payment">Verify a Receipt</a></p>')+
+      box('Internship / OJT',
+        '<dl class="kv"><dt>Earn While You Learn</dt><dd><span class="pill pill-gold">Enrolled</span></dd>'+
+        '<dt>Organisation</dt><dd>'+st.ojt+'</dd><dt>Supervisor assessment</dt><dd>Satisfactory — reviewed monthly</dd>'+
+        '<dt>Experience certificate</dt><dd>Issued on completion of the prescribed training period</dd></dl>'),
+
+    staff:
+      stats([['142','Students Assigned'],['6','Subjects'],['3','Batches'],['12','Pending Mark Entries']])+
+      box('Staff profile',
+        '<dl class="kv"><dt>Name</dt><dd>R. Karthikeyan</dd><dt>Staff ID</dt><dd>STF1042</dd>'+
+        '<dt>Designation</dt><dd>Senior Faculty — Paramedical Sciences</dd>'+
+        '<dt>Centre</dt><dd>Chennai — Head Office</dd><dt>Joined</dt><dd>June 2025</dd>'+
+        '<dt>Status</dt><dd><span class="pill pill-green">Active</span></dd></dl>')+
+      box('Student management — MLT Semester 3',
+        tbl(['Enrollment','Student','Attendance','IA entered','Practical record'],
+          [['BG2026001','Priya Raman','91%','<span class="pill pill-green">Yes</span>','Complete'],
+           ['BG2026008','Divya Bharathi K','88%','<span class="pill pill-green">Yes</span>','Complete'],
+           ['BG2026019','Naveen Raj S','72%','<span class="pill pill-red">Pending</span>','Incomplete'],
+           ['BG2026031','Fathima Nasrin','95%','<span class="pill pill-green">Yes</span>','Complete']]))+
+      box('Timetable — this week',
+        tbl(['Day','Session','Subject','Batch','Room'],
+          [['Monday','09.30 – 11.00','Clinical Biochemistry','MLT S3','Lab 2'],
+           ['Tuesday','11.15 – 12.45','Clinical Pathology','MLT S3','Room 4'],
+           ['Wednesday','09.30 – 12.30','Laboratory Practical – III','MLT S3','Lab 1'],
+           ['Thursday','14.00 – 15.30','Microbiology','MLT S3','Room 4'],
+           ['Friday','09.30 – 11.00','Histotechnology','MLT S3','Lab 2']]))+
+      box('Notices &amp; circulars',
+        '<ul class="small"><li>Internal assessment entry closes 30 September 2026</li>'+
+        '<li>Practical record verification for Semester 3 — week of 6 October</li>'+
+        '<li>Faculty meeting on curriculum review — 12 October, 15.00</li></ul>'),
+
+    member:
+      stats([['Active','Membership Status'],['MEM20851','Membership ID'],['31 Mar 2027','Valid Until'],['4','Events Attended']])+
+      box('Member profile',
+        '<dl class="kv"><dt>Name</dt><dd>Dr. S. Anitha</dd><dt>Membership ID</dt><dd>MEM20851</dd>'+
+        '<dt>Category</dt><dd>Institutional Member</dd><dt>Member since</dt><dd>01 April 2025</dd>'+
+        '<dt>Valid until</dt><dd>31 March 2027</dd>'+
+        '<dt>Status</dt><dd><span class="pill pill-green">Active</span></dd></dl>')+
+      box('Digital member ID',
+        '<div style="display:flex;gap:1.4rem;align-items:center;flex-wrap:wrap">'+qrBlock('MEM20851')+
+        '<div><b>Dr. S. Anitha</b><br><span class="small muted">Institutional Member · MEM20851</span><br>'+
+        '<span class="small muted">Valid to 31 March 2027</span><br>'+
+        '<a class="btn btn-sm btn-outline" style="margin-top:.6rem" href="verification.html#member">Verify this ID</a></div></div>')+
+      box('Payment history',
+        tbl(['Date','Description','Amount','Receipt','Status'],
+          [['01 Apr 2025','Membership subscription 2025–26','₹ 2,000','RCPT/25/000041','<span class="pill pill-green">Paid</span>'],
+           ['02 Apr 2026','Membership renewal 2026–27','₹ 2,000','RCPT/26/000228','<span class="pill pill-green">Paid</span>']]))+
+      box('Upcoming events',
+        '<ul class="small"><li>Skill competition and career guidance camp — Villupuram</li>'+
+        '<li>Industry advisory meeting — Chennai</li><li>Certification event — Chengalpattu</li></ul>'),
+
+    partner:
+      stats([['86','Students Enrolled'],['9','Programmes Running'],['4','Batches'],['12','Certificates Pending']])+
+      box('Partner profile',
+        '<dl class="kv"><dt>Organisation</dt><dd>Dr. RG Academy — Villupuram</dd><dt>Partner ID</dt><dd>VTP0217</dd>'+
+        '<dt>Partner type</dt><dd>Vocational Training Partner</dd>'+
+        '<dt>Approved areas</dt><dd>Healthcare, Paramedical, Hospitality, Skill Development</dd>'+
+        '<dt>Valid until</dt><dd>31 March 2027</dd>'+
+        '<dt>Status</dt><dd><span class="pill pill-green">Approved</span></dd></dl>')+
+      box('Student enrollment — current session',
+        tbl(['Enrollment','Student','Programme','Batch','Attendance','Status'],
+          [['BG2026212','Sathish Kumar R','Certificate in Electrical Technician','B-04','86%','<span class="pill pill-green">Active</span>'],
+           ['BG2026216','Kavitha M','Certificate in General Duty Assistant','B-02','92%','<span class="pill pill-green">Active</span>'],
+           ['BG2026221','Ramesh P','Diploma in Retail Management','B-05','78%','<span class="pill pill-green">Active</span>'],
+           ['BG2026230','Anitha S','Certificate in Beauty Therapy','B-03','69%','<span class="pill pill-gold">Attendance short</span>']]))+
+      box('Certificate status',
+        tbl(['Batch','Programme','Completed','Certificates issued','Pending'],
+          [['B-01','Certificate in Food &amp; Beverage Service','18','18','0'],
+           ['B-02','Certificate in General Duty Assistant','22','14','8'],
+           ['B-03','Certificate in Beauty Therapy','16','12','4']]))+
+      box('Reports &amp; downloads',
+        '<p class="small">Enrollment register, attendance summary, examination nominal roll and certificate '+
+        'dispatch report are generated here.</p><a class="btn btn-sm btn-outline" href="downloads.html">Download Centre</a>'),
+
+    industry:
+      stats([['24','Trainees Placed'],['3','Departments'],['21','Active This Month'],['9','Certificates Issued']])+
+      box('Organisation profile',
+        '<dl class="kv"><dt>Organisation</dt><dd>Sree Multispeciality Hospital</dd><dt>Partner ID</dt><dd>ITP0093</dd>'+
+        '<dt>Partner type</dt><dd>Industry Training Partner</dd><dt>Location</dt><dd>Chengalpattu, Tamil Nadu</dd>'+
+        '<dt>Training areas</dt><dd>Internship, OJT, Earn While You Learn — Healthcare</dd>'+
+        '<dt>Status</dt><dd><span class="pill pill-green">Approved</span></dd></dl>')+
+      box('Trainee list',
+        tbl(['Enrollment','Trainee','Department','Job role','Attendance','Stipend','Status'],
+          [['BG2026001','Priya Raman','Laboratory','Laboratory Trainee','94%','Paid','<span class="pill pill-green">Active</span>'],
+           ['BG2025214','Lakshmi Devi S','General Ward','GDA Trainee','97%','Paid','<span class="pill pill-blue">Completed</span>'],
+           ['BG2026044','Suresh Babu N','Front Office','Front Office Trainee','89%','Paid','<span class="pill pill-green">Active</span>'],
+           ['BG2026052','Deepa R','General Ward','GDA Trainee','81%','Paid','<span class="pill pill-green">Active</span>']]),
+        'Stipend is paid directly by the organisation to the trainee, where the role provides for one.')+
+      box('Supervisor assessment — due this month',
+        tbl(['Trainee','Period','Punctuality','Skill','Conduct','Overall'],
+          [['Priya Raman','Aug 2026','Good','Good','Very good','Satisfactory'],
+           ['Suresh Babu N','Aug 2026','Very good','Satisfactory','Good','Satisfactory'],
+           ['Deepa R','Aug 2026','Satisfactory','Satisfactory','Good','Satisfactory']]))+
+      box('Experience certificates',
+        '<p class="small">Issued on completion of the prescribed training period; each carries a verifiable '+
+        'certificate number and QR code.</p><a class="btn btn-sm btn-primary" href="industry-experience.html">About the Certificate</a> '+
+        '<a class="btn btn-sm btn-outline" href="verification.html#experience">Verify One</a>'),
+
+    branch:
+      stats([['118','Students at Centre'],['11','Programmes'],['9','Staff'],['₹ 2.4 L','Collection This Month']])+
+      box('Centre profile',
+        '<dl class="kv"><dt>Centre</dt><dd>Tindivanam Branch</dd><dt>Branch code</dt><dd>BR006</dd>'+
+        '<dt>Address</dt><dd>No. 63, Perumal Kovil Street, Tindivanam – 604 001</dd>'+
+        '<dt>Phone</dt><dd>+91 95144 49243</dd>'+
+        '<dt>Status</dt><dd><span class="pill pill-green">Operational</span></dd></dl>')+
+      box('Admissions — current session',
+        tbl(['Application','Applicant','Programme','Stage','Status'],
+          [['APP/2026/005190','Sathish Kumar R','Certificate in Electrical Technician','Document verification','<span class="pill pill-gold">In process</span>'],
+           ['APP/2026/005204','Meena V','Certificate in Beauty Therapy','Fee pending','<span class="pill pill-gold">In process</span>'],
+           ['APP/2026/005219','Karthik R','Diploma in Automobile Service Technology','Confirmed','<span class="pill pill-green">Confirmed</span>']]))+
+      box('Fee collection summary',
+        tbl(['Fee head','Collected','Pending'],
+          [['Admission fee','₹ 65,000','₹ 5,000'],['Tuition fee','₹ 1,58,000','₹ 42,000'],
+           ['Examination fee','₹ 17,700 (incl. GST)','₹ 3,540']])),
+
+    employer:
+      stats([['5','Open Vacancies'],['38','Candidates Shared'],['12','Interviews Scheduled'],['7','Offers Made']])+
+      box('Organisation profile',
+        '<dl class="kv"><dt>Organisation</dt><dd>Southline Logistics Pvt Ltd</dd><dt>Employer ID</dt><dd>EMP0451</dd>'+
+        '<dt>Sector</dt><dd>Logistics &amp; Supply Chain</dd><dt>Location</dt><dd>Chennai, Tamil Nadu</dd>'+
+        '<dt>Status</dt><dd><span class="pill pill-green">Registered</span></dd></dl>')+
+      box('Vacancies',
+        tbl(['Role','Location','Positions','Posted','Status'],
+          [['Warehouse Assistant','Chennai','6','12 Aug 2026','<span class="pill pill-green">Open</span>'],
+           ['Logistics Coordinator','Chennai','2','18 Aug 2026','<span class="pill pill-green">Open</span>'],
+           ['Inventory Clerk','Chengalpattu','3','22 Aug 2026','<span class="pill pill-blue">Shortlisting</span>']]))+
+      box('Candidate shortlist',
+        tbl(['Enrollment','Candidate','Programme','Centre','Status'],
+          [['BG2025431','Arun Prasad','Certificate in Warehouse Operations','Chennai','Interview scheduled'],
+           ['BG2025448','Nithya S','Diploma in Retail Management','Villupuram','Shortlisted'],
+           ['BG2025462','Vimal Raj','Advanced Diploma in Logistics &amp; SCM','Chennai','Offer made']]))+
+      box('Verification',
+        '<p class="small">Confirm any certificate, student record or industry experience certificate before hiring.</p>'+
+        '<a class="btn btn-sm btn-primary" href="verification.html">Open Verification</a>'),
+
+    admin:
+      stats([['1,284','Total Students'],['46','Staff'],['12','Partners'],['3,918','Verifications This Year']])+
+      box('System overview',
+        tbl(['Module','Records','Status'],
+          [['Programmes',String(COURSES.length)+' courses + B.Voc. / M.Voc.','<span class="pill pill-green">Live</span>'],
+           ['Branches',String(BRANCHES.length)+' centres and offices','<span class="pill pill-green">Live</span>'],
+           ['Admissions','Current session open','<span class="pill pill-green">Live</span>'],
+           ['Examinations','Odd semester scheduled','<span class="pill pill-blue">Scheduled</span>'],
+           ['Certificates','Issue and verification','<span class="pill pill-green">Live</span>'],
+           ['Payments','Online and centre collection','<span class="pill pill-green">Live</span>']]))+
+      box('Pending approvals',
+        tbl(['Type','Reference','Submitted','Action'],
+          [['Training partner application','VTP-APP-0342','24 Aug 2026','Review'],
+           ['Industry partner application','ITP-APP-0128','26 Aug 2026','Review'],
+           ['Scholarship award','SCH/2026/0917','27 Aug 2026','Approve'],
+           ['Certificate issue batch','CERT-BATCH-0064','29 Aug 2026','Release']]))+
+      box('Notes for the development team',
+        '<p class="small">This screen is a front-end demonstration. A production admin module needs '+
+        'authenticated APIs, role-based permissions, an audit trail for every approval, and server-side '+
+        'validation of certificate and payment records.</p>')
+  };
+
+  var menu=MENUS[role]||MENUS.student;
+  document.getElementById('side-menu').innerHTML=menu.map(function(m,i){
+    return '<li><a href="#" class="'+(i?'':'on')+'">'+m+'</a></li>';}).join('');
+  document.getElementById('portal-body').innerHTML=BODIES[role]||BODIES.student;
+  document.getElementById('side-menu').addEventListener('click',function(e){
+    var a=e.target.closest('a'); if(!a) return; e.preventDefault();
+    Array.prototype.forEach.call(this.querySelectorAll('a'),function(x){x.classList.remove('on');});
+    a.classList.add('on');
+    window.scrollTo({top:document.querySelector('.portal').offsetTop-90,behavior:'smooth'});
+  });
+});
+</script></body>
+</html>

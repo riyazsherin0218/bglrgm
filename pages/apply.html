@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Apply Online | BGLRGM Vocational College Admission Application</title>
+<meta name="description" content="Apply online for BGLRGM certificate, diploma, advanced diploma, skill development, B.Voc. and M.Voc. programmes.">
+<link rel="icon" href="../assets/img/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#0b3c8c">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="pagebanner">
+  <div class="wrap">
+    <div class="crumbs"><a href="../index.html">Home</a><span>›</span>Apply Online</div>
+    <h1>Apply Online</h1>
+    <p>Complete the application below. Our admission team will contact you to verify documents and confirm your seat.</p>
+  </div>
+</section>
+
+<section class="sec"><div class="wrap split-3070">
+  <div>
+    <div class="card" style="border-top:4px solid var(--gold-500)">
+      <h3 style="font-size:1rem">Before you apply</h3>
+      <ul class="ticklist"><li>Keep your qualification certificates ready</li><li>Have a valid mobile number and email</li><li>Know your preferred centre</li><li>Check the scholarship page if you want to be considered</li></ul>
+      <a class="btn btn-outline btn-sm" href="scholarship.html">Scholarship</a>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <h3 style="font-size:1rem">Need help?</h3>
+      <p class="small">Call <b data-site-phone></b> or write to <b data-site-email></b>. Our counsellors can
+         help you choose the right programme and centre.</p>
+      <a class="btn btn-primary btn-sm" id="apply-wa" href="#" target="_blank" rel="noopener">Chat on WhatsApp</a>
+    </div>
+  </div>
+
+  <div class="form-box">
+    <h3>Admission Application Form</h3>
+    <form data-form="Online Admission Application">
+      <h4 style="margin-top:1.2rem;color:var(--blue-800)">1. Applicant details</h4>
+      <div class="form-grid">
+        <div class="field"><label>Full Name <span class="req">*</span></label><input name="name" required></div>
+        <div class="field"><label>Father's / Guardian's Name</label><input name="guardian"></div>
+        <div class="field"><label>Date of Birth</label><input type="date" name="dob"></div>
+        <div class="field"><label>Gender</label><select name="gender"><option value="">Select</option><option>Female</option><option>Male</option><option>Prefer not to say</option></select></div>
+        <div class="field"><label>Mobile Number <span class="req">*</span></label><input type="tel" name="mobile" required></div>
+        <div class="field"><label>WhatsApp Number</label><input type="tel" name="whatsapp"></div>
+        <div class="field"><label>Email <span class="req">*</span></label><input type="email" name="email" required></div>
+        <div class="field"><label>Aadhaar / ID Number (last 4 digits only)</label><input name="idlast4" maxlength="4" placeholder="XXXX"></div>
+      </div>
+
+      <h4 style="margin-top:1.2rem;color:var(--blue-800)">2. Address</h4>
+      <div class="field"><label>Address</label><textarea name="address" style="min-height:70px"></textarea></div>
+      <div class="form-grid">
+        <div class="field"><label>City / Town</label><input name="city"></div>
+        <div class="field"><label>District</label><input name="district"></div>
+        <div class="field"><label>State</label><select name="state"><option>Tamil Nadu</option><option>Karnataka</option><option>Other</option></select></div>
+        <div class="field"><label>PIN Code</label><input name="pin" maxlength="6"></div>
+      </div>
+
+      <h4 style="margin-top:1.2rem;color:var(--blue-800)">3. Qualification</h4>
+      <div class="form-grid">
+        <div class="field"><label>Highest Qualification <span class="req">*</span></label>
+          <select name="qualification" id="apply-qual" required></select></div>
+        <div class="field"><label>Year of Passing</label><input name="year" maxlength="4" placeholder="e.g. 2024"></div>
+        <div class="field"><label>Board / University</label><input name="board"></div>
+        <div class="field"><label>Marks / Percentage</label><input name="marks" placeholder="e.g. 78%"></div>
+      </div>
+
+      <h4 style="margin-top:1.2rem;color:var(--blue-800)">4. Programme</h4>
+      <div class="field"><label>Programme Applied For <span class="req">*</span></label>
+        <select name="programme" id="apply-prog" required></select></div>
+      <div class="form-grid">
+        <div class="field"><label>Preferred Centre <span class="req">*</span></label>
+          <select name="centre" id="apply-centre" required></select></div>
+        <div class="field"><label>Preferred Mode</label>
+          <select name="mode"><option>Offline</option><option>Hybrid</option><option>Online</option></select></div>
+      </div>
+      <div class="field"><label>Interested in Earn While You Learn?</label>
+        <select name="ewyl"><option>Yes — please consider me</option><option>No</option><option>Tell me more first</option></select></div>
+      <div class="field"><label>Applying for merit scholarship?</label>
+        <select name="scholarship"><option>Yes</option><option>No</option></select></div>
+      <div class="field"><label>Anything else we should know?</label><textarea name="message"></textarea></div>
+
+      <div class="field" style="display:flex;gap:.6rem;align-items:flex-start">
+        <input type="checkbox" name="declaration" value="I confirm the information given is true" required style="width:auto;margin-top:.3rem">
+        <label style="font-weight:500;font-size:.85rem">I confirm that the information given above is true, and I have
+          read the <a href="../legal/terms.html">terms</a>, <a href="../legal/fee-policy.html">fee policy</a> and
+          <a href="../legal/recognition-disclosure.html">certification disclosure</a>. <span class="req">*</span></label>
+      </div>
+
+      <div class="form-actions" style="display:flex;gap:.6rem;flex-wrap:wrap"></div>
+      <div class="formmsg"></div>
+      <p class="form-note">Submitting this form starts the application. Documents are verified at the centre
+        before admission is confirmed. No payment is collected on this page.</p>
+    </form>
+  </div>
+</div></section>
+
+<div id="site-footer"></div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/demo-data.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var q=document.getElementById('apply-qual');
+  if(q) q.innerHTML='<option value="">Select</option>'+ELIGIBILITY.map(function(e){return '<option>'+e+'</option>';}).join('');
+  var c=document.getElementById('apply-centre');
+  if(c) c.innerHTML='<option value="">Select a centre</option>'+BRANCHES.map(function(b){return '<option>'+b.name+'</option>';}).join('');
+  var p=document.getElementById('apply-prog');
+  if(p){
+    var groups={}; COURSES.forEach(function(x){(groups[x.sector]=groups[x.sector]||[]).push(x.name);});
+    var bv=[]; BVOC.forEach(function(g){g.items.forEach(function(i){bv.push(i);});});
+    p.innerHTML='<option value="">Select a programme</option>'+
+      Object.keys(groups).sort().map(function(g){return '<optgroup label="'+g+'">'+
+        groups[g].map(function(n){return '<option>'+n+'</option>';}).join('')+'</optgroup>';}).join('')+
+      '<optgroup label="B.Voc.*">'+bv.map(function(n){return '<option>'+n+'</option>';}).join('')+'</optgroup>'+
+      '<optgroup label="M.Voc.*">'+MVOC.map(function(n){return '<option>M.Voc. '+n+'</option>';}).join('')+'</optgroup>';
+    var pre=new URLSearchParams(location.search).get('course');
+    if(pre){
+      var found=Array.prototype.slice.call(p.options).some(function(o){ if(o.value===pre){p.value=pre;return true;} });
+      if(!found){var o=document.createElement('option');o.textContent=pre;p.appendChild(o);p.value=pre;}
+    }
+  }
+  var w=document.getElementById('apply-wa');
+  if(w) w.href='https://wa.me/'+SITE.whatsapp+'?text='+encodeURIComponent('Hello BGLRGM, I would like help with my admission application.');
+});
+</script></body>
+</html>

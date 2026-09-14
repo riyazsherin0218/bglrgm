@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Online Payment | Secure Fee Payment | BGLRGM</title>
+<meta name="description" content="Pay BGLRGM admission, tuition, semester, examination, certificate and other approved fees online. GST at the applicable rate, including 18% where legally applicable, is shown before payment.">
+<link rel="icon" href="../assets/img/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#0b3c8c">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="pagebanner">
+  <div class="wrap">
+    <div class="crumbs"><a href="../index.html">Home</a><span>›</span>Pay Online</div>
+    <h1>Online Payment</h1>
+    <p>Secure fee payment. Any applicable tax is shown before you pay and on your receipt.</p>
+  </div>
+</section>
+
+<section class="sec"><div class="wrap split-3070">
+  <div>
+    <div class="card"><h3 style="font-size:1rem">Before you pay</h3>
+      <ul class="ticklist"><li>Keep your enrollment number ready</li><li>Check the fee head and amount with your centre</li><li>Never pay into a personal account</li><li>Always keep the receipt number</li></ul>
+      <a class="btn btn-outline btn-sm" href="verification.html#payment">Verify a Past Payment</a></div>
+    <div class="card" style="margin-top:18px"><h3 style="font-size:1rem">Payment modes</h3>
+      <p class="small">UPI, net banking, debit card, credit card and centre collection. Online payment is
+        processed by the payment gateway; card and bank credentials are never stored by the institution.</p>
+      <a class="btn btn-outline btn-sm" href="../legal/fee-policy.html">Fee Policy</a>
+      <a class="btn btn-outline btn-sm" href="../legal/refund-policy.html" style="margin-left:.3rem">Refund Policy</a></div>
+  </div>
+
+  <div class="form-box">
+    <h3>Secure Fee Payment</h3>
+    <div class="demo-banner"><b>Demonstration only.</b> No payment gateway is connected to this page. In
+      production this form should post to a payment gateway server-side, and the receipt should be generated
+      by the backend, never by the browser.</div>
+    <form id="pay-form">
+      <div class="form-grid">
+        <div class="field"><label>Enrollment / Application Number <span class="req">*</span></label>
+          <input id="pay-en" required placeholder="e.g. BG2026001"></div>
+        <div class="field"><label>Student Name <span class="req">*</span></label><input id="pay-name" required></div>
+        <div class="field"><label>Mobile <span class="req">*</span></label><input type="tel" id="pay-mobile" required></div>
+        <div class="field"><label>Email</label><input type="email" id="pay-email"></div>
+      </div>
+      <div class="field"><label>Centre</label><select id="pay-centre"></select></div>
+      <div class="field"><label>Fee Head <span class="req">*</span></label>
+        <select id="pay-head" required>
+          <option value="Admission Fee|0">Admission Fee</option>
+          <option value="Course / Tuition Fee|0">Course / Tuition Fee</option>
+          <option value="Semester Fee|0">Semester Fee</option>
+          <option value="Examination Fee|1">Examination Fee</option>
+          <option value="Certificate Fee|1">Certificate Fee</option>
+          <option value="Practical / Laboratory Fee|1">Practical / Laboratory Fee</option>
+          <option value="Other Approved Fee|1">Other Approved Fee</option>
+        </select></div>
+      <div class="field"><label>Amount (₹) <span class="req">*</span></label>
+        <input type="number" id="pay-amt" required min="1" placeholder="e.g. 1500"></div>
+      <div class="field"><label>Payment Mode</label>
+        <select id="pay-mode"><option>UPI</option><option>Net Banking</option><option>Debit Card</option>
+        <option>Credit Card</option><option>Pay at Centre</option></select></div>
+
+      <div class="table" style="margin:1.2rem 0"><table>
+        <tbody>
+          <tr><td>Fee amount</td><td style="text-align:right" id="sum-base">₹ 0</td></tr>
+          <tr><td>GST <span id="sum-gstlabel">(not applicable)</span></td><td style="text-align:right" id="sum-gst">₹ 0</td></tr>
+          <tr style="background:var(--blue-050)"><td><b>Total payable</b></td>
+              <td style="text-align:right"><b id="sum-total">₹ 0</b></td></tr>
+        </tbody></table></div>
+
+      <div class="gst-note" style="margin-bottom:1rem">GST at the applicable rate, including
+        <strong data-gst>18%</strong> where legally applicable, may be charged on specified taxable
+        courses and services. Any applicable tax is displayed before payment and shown separately on the
+        invoice or receipt.</div>
+
+      <button class="btn btn-primary btn-block" type="submit">Proceed to Pay</button>
+      <div class="formmsg" id="pay-msg"></div>
+    </form>
+    <div id="pay-receipt" style="margin-top:1.6rem"></div>
+  </div>
+</div></section>
+
+<section class="sec sec-tint"><div class="wrap">
+  <div class="sec-head"><span class="tagline">Fee Heads</span><h2>What You Can Pay Here</h2></div>
+  <div class="grid g3">
+    <div class="card"><div class="card-ico">📝</div><h3>Admission Fee</h3><p style="margin:0">Payable on confirmation of admission.</p></div>
+    <div class="card"><div class="card-ico">📚</div><h3>Course / Tuition Fee</h3><p style="margin:0">Payable per term or as per your instalment schedule.</p></div>
+    <div class="card"><div class="card-ico">🗓️</div><h3>Semester Fee</h3><p style="margin:0">Where the programme is structured in semesters.</p></div>
+    <div class="card"><div class="card-ico">🖊️</div><h3>Examination Fee</h3><p style="margin:0">Payable at examination registration, per subject as notified.</p></div>
+    <div class="card"><div class="card-ico">🎖️</div><h3>Certificate Fee</h3><p style="margin:0">Payable before the certificate is issued.</p></div>
+    <div class="card"><div class="card-ico">➕</div><h3>Other Approved Fees</h3><p style="margin:0">Practical, laboratory, material and other notified heads.</p></div>
+  </div>
+</div></section>
+
+<div id="site-footer"></div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/demo-data.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var c=document.getElementById('pay-centre');
+  if(c) c.innerHTML=BRANCHES.map(function(b){return '<option>'+b.name+'</option>';}).join('');
+
+  var amt=document.getElementById('pay-amt'), headSel=document.getElementById('pay-head');
+  var money=function(n){return '₹ '+Number(n||0).toLocaleString('en-IN',{minimumFractionDigits:0,maximumFractionDigits:2});};
+  function calc(){
+    var base=parseFloat(amt.value)||0;
+    var taxable=headSel.value.split('|')[1]==='1';
+    var gst=taxable?Math.round(base*SITE.gstRate)/100:0;
+    document.getElementById('sum-base').textContent=money(base);
+    document.getElementById('sum-gst').textContent=money(gst);
+    document.getElementById('sum-gstlabel').textContent=taxable?('('+SITE.gstRate+'%)'):'(not applicable to this head)';
+    document.getElementById('sum-total').textContent=money(base+gst);
+    return {base:base,gst:gst,total:base+gst,taxable:taxable};
+  }
+  amt.addEventListener('input',calc); headSel.addEventListener('change',calc); calc();
+
+  document.getElementById('pay-form').addEventListener('submit',function(e){
+    e.preventDefault();
+    var t=calc(), m=document.getElementById('pay-msg');
+    if(t.base<=0){ m.className='formmsg err'; m.textContent='Enter a valid amount.'; return; }
+    var head=headSel.value.split('|')[0];
+    var rc='RCPT/DEMO/'+Math.floor(100000+Math.random()*899999);
+    var txn='TXN'+Date.now().toString().slice(-10);
+    m.className='formmsg ok';
+    m.textContent='Demonstration only — no money has been taken. A specimen receipt is shown below.';
+    document.getElementById('pay-receipt').innerHTML='<div class="verify-panel">'+
+      '<div style="display:flex;justify-content:space-between;gap:1rem;align-items:flex-start;flex-wrap:wrap">'+
+      '<div><span class="pill pill-gold">Specimen receipt</span>'+
+      '<div style="margin:.6rem 0 .3rem">'+siteLogo(56)+'</div>'+
+      '<p class="small muted mb0">'+SITE.legalName+'</p></div>'+qrBlock(rc)+'</div>'+
+      '<dl class="kv small" style="margin-top:1rem">'+
+      '<dt>Receipt number</dt><dd>'+rc+'</dd>'+
+      '<dt>Transaction reference</dt><dd>'+txn+'</dd>'+
+      '<dt>Enrollment number</dt><dd>'+document.getElementById('pay-en').value+'</dd>'+
+      '<dt>Name</dt><dd>'+document.getElementById('pay-name').value+'</dd>'+
+      '<dt>Centre</dt><dd>'+(document.getElementById('pay-centre').value||'—')+'</dd>'+
+      '<dt>Fee head</dt><dd>'+head+'</dd>'+
+      '<dt>Fee amount</dt><dd>'+money(t.base)+'</dd>'+
+      '<dt>GST'+(t.taxable?' ('+SITE.gstRate+'%)':'')+'</dt><dd>'+(t.taxable?money(t.gst):'Not applicable')+'</dd>'+
+      '<dt>Total paid</dt><dd><b>'+money(t.total)+'</b></dd>'+
+      '<dt>Mode</dt><dd>'+document.getElementById('pay-mode').value+'</dd>'+
+      '<dt>Date</dt><dd>'+new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})+'</dd></dl>'+
+      '<p style="margin-top:1rem"><button class="btn btn-sm btn-outline" onclick="window.print()">Print</button></p>'+
+      '<p class="tiny muted mb0">This is a demonstration receipt generated in the browser. It is not proof of '+
+      'payment and has no financial validity.</p></div>';
+  });
+});
+</script></body>
+</html>

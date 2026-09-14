@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Results | Student Result Portal | BGLRGM</title>
+<meta name="description" content="Check BGLRGM semester results using your enrollment number and date of birth.">
+<link rel="icon" href="../assets/img/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#0b3c8c">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="pagebanner">
+  <div class="wrap">
+    <div class="crumbs"><a href="../index.html">Home</a><span>›</span>Results</div>
+    <h1>Results</h1>
+    <p>Enter your enrollment number and date of birth to view your result.</p>
+  </div>
+</section>
+
+<section class="sec"><div class="wrap split-3070">
+  <div>
+    <div class="form-box">
+      <h3 style="font-size:1.05rem">Student Result Portal</h3>
+      <form id="res-form">
+        <div class="field"><label>Enrollment / Registration Number <span class="req">*</span></label>
+          <input id="res-en" required placeholder="e.g. BG2026001"></div>
+        <div class="field"><label>Date of Birth <span class="req">*</span></label>
+          <input type="date" id="res-dob" required></div>
+        <button class="btn btn-primary btn-block" type="submit">View Result</button>
+        <div class="formmsg" id="res-msg"></div>
+      </form>
+      <div class="gst-note" style="margin-top:1rem;font-size:.8rem"><b>Demo records</b><br>
+        BG2026001 · 14 June 2004<br>BG2026114 · 02 November 2003</div>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <h3 style="font-size:1rem">Revaluation</h3>
+      <p class="small">Apply for revaluation or a photocopy of your answer script within the notified window
+        on payment of the prescribed fee.</p>
+      <a class="btn btn-outline btn-sm" href="../legal/examination-regulations.html">Examination Regulations</a>
+    </div>
+  </div>
+  <div id="res-out">
+    <div class="card center"><div class="card-ico" style="margin:0 auto 1rem">📊</div>
+      <h3>Your result appears here</h3>
+      <p class="mb0 muted">Enter your enrollment number and date of birth to retrieve your mark statement.</p></div>
+  </div>
+</div></section>
+
+<div id="site-footer"></div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/demo-data.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var f=document.getElementById('res-form'); if(!f) return;
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var en=document.getElementById('res-en').value, dob=document.getElementById('res-dob').value;
+    var m=document.getElementById('res-msg'), out=document.getElementById('res-out');
+    var r=findResult(en,dob);
+    if(!r){ m.className='formmsg err';
+      m.textContent='No result found for that enrollment number and date of birth. Check both and try again, or contact your centre.';
+      return; }
+    m.className='formmsg ok'; m.textContent='Result retrieved.';
+    out.innerHTML='<div class="verify-panel">'+
+      '<div style="display:flex;justify-content:space-between;gap:1rem;align-items:flex-start;flex-wrap:wrap">'+
+      '<div><span class="pill pill-blue">Mark Statement</span>'+
+      '<div style="margin:.6rem 0 .5rem">'+siteLogo(50)+'</div>'+
+      '<h3 style="margin:0">'+r.name+'</h3>'+
+      '<p class="small muted mb0">'+r.programme+' · '+r.semester+'</p></div>'+qrBlock(r.enrollment+r.semester)+'</div>'+
+      '<dl class="kv small" style="margin-top:1.2rem"><dt>Enrollment number</dt><dd>'+r.enrollment+'</dd>'+
+      '<dt>Examination session</dt><dd>'+r.session+'</dd></dl>'+
+      '<div class="table table-wrap" style="margin-top:1rem"><table><thead><tr>'+
+      '<th>Code</th><th>Subject</th><th>Internal</th><th>External</th><th>Total</th><th>Grade</th><th>Result</th></tr></thead><tbody>'+
+      r.subjects.map(function(s){return '<tr><td>'+s.code+'</td><td>'+s.name+'</td><td>'+s.ia+'</td><td>'+s.ext+
+        '</td><td><b>'+s.total+'</b></td><td>'+s.grade+'</td><td><span class="pill pill-green">'+s.res+'</span></td></tr>';}).join('')+
+      '</tbody></table></div>'+
+      '<div class="grid g4" style="margin-top:1.2rem">'+
+      '<div class="stat"><b>'+r.total+'</b><span>Total Marks</span></div>'+
+      '<div class="stat"><b>'+r.percentage+'</b><span>Percentage</span></div>'+
+      '<div class="stat"><b>'+r.cgpa+'</b><span>CGPA</span></div>'+
+      '<div class="stat"><b style="color:var(--green-600)">'+r.result+'</b><span>Result</span></div></div>'+
+      '<p style="margin-top:1.2rem"><button class="btn btn-sm btn-outline" onclick="window.print()">Print</button> '+
+      '<a class="btn btn-sm btn-primary" href="verification.html#certificate">Verify a Certificate</a></p>'+
+      '<p class="tiny muted mb0">Specimen generated from demonstration data. The printed mark statement issued '+
+      'by the institution is the authoritative record.</p></div>';
+  });
+});
+</script></body>
+</html>

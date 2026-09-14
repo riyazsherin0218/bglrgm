@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Employer Services | Hire BGLRGM-Trained Candidates</title>
+<meta name="description" content="Employers can submit vacancies, request candidates, offer internships and OJT, conduct campus interviews and verify BGLRGM certificates.">
+<link rel="icon" href="../assets/img/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#0b3c8c">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="pagebanner">
+  <div class="wrap">
+    <div class="crumbs"><a href="../index.html">Home</a><span>›</span>Employer Services</div>
+    <h1>Employer Services</h1>
+    <p>Hire BGLRGM-trained candidates — vacancies, interviews, internships and verification in one place.</p>
+  </div>
+</section>
+
+<section class="sec"><div class="wrap">
+  <div class="grid g3">
+    <div class="card"><div class="card-ico">📢</div><h3>Submit Job Vacancies</h3><p style="margin:0">Tell us the role, location and requirements; we circulate it to eligible learners and alumni.</p></div>
+    <div class="card"><div class="card-ico">👥</div><h3>Request Candidates</h3><p style="margin:0">Ask for a shortlist by sector, programme, centre or eligibility.</p></div>
+    <div class="card"><div class="card-ico">🏢</div><h3>Offer Internships</h3><p style="margin:0">Offer internship places and receive learners with documented training plans.</p></div>
+    <div class="card"><div class="card-ico">🏥</div><h3>Offer OJT</h3><p style="margin:0">Offer on-the-job training places, with or without a stipend.</p></div>
+    <div class="card"><div class="card-ico">🎤</div><h3>Campus Interviews</h3><p style="margin:0">Conduct interviews at a centre or online, with scheduling support from us.</p></div>
+    <div class="card"><div class="card-ico">✅</div><h3>Verify Certificates</h3><p style="margin:0">Check any BGLRGM certificate, student record or experience certificate online.</p></div>
+    <div class="card"><div class="card-ico">🎖️</div><h3>Verify Industry Experience</h3><p style="margin:0">Confirm a workplace training certificate issued through our network.</p></div>
+    <div class="card"><div class="card-ico">📊</div><h3>Report Placement Status</h3><p style="margin:0">Tell us the outcome of an interview so learner records stay accurate.</p></div>
+    <div class="card"><div class="card-ico">🤝</div><h3>Skill Development Partnership</h3><p style="margin:0">Partner with us to upskill your existing employees.</p></div>
+  </div>
+</div></section>
+
+<section class="sec sec-tint"><div class="wrap split-3070">
+  <div>
+    <div class="card"><h3 style="font-size:1rem">Employer login</h3>
+      <p class="small">Post vacancies, view shortlists and track interview outcomes.</p>
+      <a class="btn btn-primary btn-sm" href="login.html?role=employer">Employer Login</a></div>
+    <div class="card" style="margin-top:18px"><h3 style="font-size:1rem">Verify a candidate</h3>
+      <p class="small">Certificate, student record and experience certificate verification.</p>
+      <a class="btn btn-outline btn-sm" href="verification.html">Verification</a></div>
+  </div>
+  <div class="form-box">
+    <h3>Employer Enquiry</h3>
+    <form data-form="Employer Enquiry">
+      <div class="form-grid">
+        <div class="field"><label>Organisation <span class="req">*</span></label><input name="org" required></div>
+        <div class="field"><label>Contact Person <span class="req">*</span></label><input name="contact" required></div>
+        <div class="field"><label>Designation</label><input name="designation"></div>
+        <div class="field"><label>Mobile <span class="req">*</span></label><input type="tel" name="mobile" required></div>
+        <div class="field"><label>Email <span class="req">*</span></label><input type="email" name="email" required></div>
+        <div class="field"><label>City</label><input name="city"></div>
+      </div>
+      <div class="field"><label>What do you need?</label>
+        <select name="need"><option>Submit a job vacancy</option><option>Request candidates</option>
+        <option>Offer internship places</option><option>Offer OJT places</option>
+        <option>Conduct a campus interview</option><option>Verify a certificate</option>
+        <option>Employee upskilling</option></select></div>
+      <div class="form-grid">
+        <div class="field"><label>Sector</label><select name="sector" id="emp-sector"></select></div>
+        <div class="field"><label>Number of Positions</label><input name="positions"></div>
+      </div>
+      <div class="field"><label>Role / Requirement Details</label><textarea name="details"></textarea></div>
+      <div class="form-actions" style="display:flex;gap:.6rem;flex-wrap:wrap"></div>
+      <div class="formmsg"></div>
+    </form>
+  </div>
+</div></section>
+
+<div id="site-footer"></div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/demo-data.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var s=document.getElementById('emp-sector');
+  if(s) s.innerHTML=SECTORS.map(function(x){return '<option>'+x+'</option>';}).join('');
+});
+</script></body>
+</html>

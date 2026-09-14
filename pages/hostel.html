@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hostel & Accommodation Assistance | BGLRGM</title>
+<meta name="description" content="Student accommodation assistance near BGLRGM training locations — male and female accommodation, furnished rooms, mess, Wi-Fi, security and transport access.">
+<link rel="icon" href="../assets/img/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#0b3c8c">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="pagebanner">
+  <div class="wrap">
+    <div class="crumbs"><a href="../index.html">Home</a><span>›</span>Hostel & Accommodation</div>
+    <h1>Hostel &amp; Accommodation</h1>
+    <p>Assistance in arranging student accommodation near your training location.</p>
+  </div>
+</section>
+
+<section class="sec"><div class="wrap split">
+  <div>
+    <p>BGLRGM assists learners who relocate for a programme in finding accommodation close to their centre or
+       workplace training location. Accommodation is arranged with independent providers; the institution
+       does not itself operate a hostel at every centre.</p>
+    <div class="sec-head left" style="margin-bottom:1.2rem"><span class="tagline">Options</span><h2>What May Be Available</h2></div>
+    <ul class="ticklist"><li>Male accommodation</li><li>Female accommodation</li><li>Furnished rooms</li><li>Food / mess arrangement</li><li>Wi-Fi</li><li>Security</li><li>Transport accessibility</li><li>Accommodation near training locations</li></ul>
+    <div class="disclaimer">Availability, facilities and charges vary according to location and provider.
+      Learners should inspect accommodation and satisfy themselves before making any payment. Payments for
+      accommodation are made to the provider, not to the institution.</div>
+  </div>
+  <div class="form-box">
+    <h3>Accommodation Enquiry</h3>
+    <form data-form="Accommodation Enquiry">
+      <div class="field"><label>Student Name <span class="req">*</span></label><input name="name" required></div>
+      <div class="form-grid">
+        <div class="field"><label>Mobile <span class="req">*</span></label><input type="tel" name="mobile" required></div>
+        <div class="field"><label>Email</label><input type="email" name="email"></div>
+      </div>
+      <div class="field"><label>Centre / Location <span class="req">*</span></label><select name="centre" id="h-centre" required></select></div>
+      <div class="form-grid">
+        <div class="field"><label>Accommodation Type</label>
+          <select name="type"><option>Female accommodation</option><option>Male accommodation</option></select></div>
+        <div class="field"><label>Sharing Preference</label>
+          <select name="sharing"><option>Twin sharing</option><option>Triple sharing</option><option>Single room</option><option>No preference</option></select></div>
+      </div>
+      <div class="field"><label>Mess / Food Required?</label>
+        <select name="mess"><option>Yes</option><option>No</option></select></div>
+      <div class="field"><label>Expected Date of Joining</label><input type="date" name="joining"></div>
+      <div class="field"><label>Message</label><textarea name="message"></textarea></div>
+      <div class="form-actions" style="display:flex;gap:.6rem;flex-wrap:wrap"></div>
+      <div class="formmsg"></div>
+    </form>
+  </div>
+</div></section>
+
+<section class="sec sec-tint"><div class="wrap">
+  <div class="sec-head"><span class="tagline">Practical Advice</span><h2>Before You Confirm a Room</h2></div>
+  <div class="grid g3">
+    <div class="card"><div class="card-ico">👀</div><h3>Inspect First</h3><p style="margin:0">Visit the accommodation, meet the provider and see the actual room before paying.</p></div>
+    <div class="card"><div class="card-ico">🧾</div><h3>Get It in Writing</h3><p style="margin:0">Ask for a written statement of rent, deposit, notice period and what is included.</p></div>
+    <div class="card"><div class="card-ico">🚏</div><h3>Check the Commute</h3><p style="margin:0">Confirm the distance and bus route to your centre and to any workplace posting.</p></div>
+    <div class="card"><div class="card-ico">🔐</div><h3>Check Security</h3><p style="margin:0">Ask about entry timings, warden arrangements, lighting and visitor rules.</p></div>
+    <div class="card"><div class="card-ico">🍚</div><h3>Check the Mess</h3><p style="margin:0">Where food is included, ask to see the menu and timings, and mention any dietary requirement.</p></div>
+    <div class="card"><div class="card-ico">👨‍👩‍👧</div><h3>Involve Family</h3><p style="margin:0">For learners under 18 or moving away for the first time, involve a parent or guardian in the decision.</p></div>
+  </div>
+</div></section>
+
+<div id="site-footer"></div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/demo-data.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var c=document.getElementById('h-centre');
+  if(c) c.innerHTML='<option value="">Select</option>'+BRANCHES.map(function(b){return '<option>'+b.name+'</option>';}).join('');
+});
+</script></body>
+</html>

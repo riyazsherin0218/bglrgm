@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Master of Vocation – M.Voc.* | BGLRGM</title>
+<meta name="description" content="M.Voc. postgraduate vocational degree specialisations in healthcare management, hospital administration, laboratory technology, hospitality, IT, business and supply chain.">
+<link rel="icon" href="../assets/img/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#0b3c8c">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="pagebanner">
+  <div class="wrap">
+    <div class="crumbs"><a href="../index.html">Home</a><span>›</span>M.Voc.</div>
+    <h1>Master of Vocation – M.Voc.*</h1>
+    <p>Postgraduate vocational degree programmes offered through applicable recognised university arrangements.</p>
+  </div>
+</section>
+
+<section class="sec"><div class="wrap">
+  <div class="disclaimer" style="margin-top:0"><strong>Awarding institution:</strong> M.Voc. degrees are
+    awarded only by the respective legally authorised university or institution. The awarding institution and
+    the nature of BGLRGM's participation are disclosed for each programme before admission.</div>
+
+  <div class="grid g3" style="margin:2rem 0">
+    <div class="card"><div class="card-ico">⏳</div><h3>Duration</h3><p style="margin:0">Two years, ordinarily four semesters, with a project or workplace component.</p></div>
+    <div class="card"><div class="card-ico">📋</div><h3>Eligibility</h3><p style="margin:0">Bachelor’s degree, ordinarily B.Voc. or a related discipline, as prescribed by the awarding institution.</p></div>
+    <div class="card"><div class="card-ico">💼</div><h3>Focus</h3><p style="margin:0">Supervisory and management competencies in the chosen vocational sector.</p></div>
+  </div>
+
+  <div class="sec-head"><span class="tagline">Specialisations</span><h2>Major Areas May Include</h2></div>
+  <div class="grid g3" id="mvoc-list"></div>
+
+  <div class="center" style="margin-top:2.4rem">
+    <a class="btn btn-primary" href="apply.html">Apply Online</a>
+    <a class="btn btn-outline" href="contact.html" style="margin-left:.5rem">Ask an Admission Counsellor</a>
+  </div>
+</div></section>
+
+<div id="site-footer"></div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/demo-data.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var h=document.getElementById('mvoc-list'); if(!h) return;
+  h.innerHTML = MVOC.map(function(m){
+    return '<div class="card" style="padding:18px"><b style="color:var(--ink-900)">M.Voc. '+m+'</b>'+
+      '<p class="small muted" style="margin:.4rem 0 .8rem">2 years • Graduate • Full time</p>'+
+      '<a class="more" href="apply.html?course='+encodeURIComponent('M.Voc. '+m)+'">Apply</a></div>';
+  }).join('');
+});
+</script></body>
+</html>

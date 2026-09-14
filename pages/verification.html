@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Verification | Certificate, Student, Payment & Partner Verification | BGLRGM</title>
+<meta name="description" content="Verify BGLRGM certificates, student records, admissions, industry experience certificates, fee receipts, staff, members and training partners online.">
+<link rel="icon" href="../assets/img/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#0b3c8c">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="pagebanner">
+  <div class="wrap">
+    <div class="crumbs"><a href="../index.html">Home</a><span>›</span>Verification</div>
+    <h1>Verification</h1>
+    <p>Employers, institutions and learners can confirm any record issued by BGLRGM.</p>
+  </div>
+</section>
+
+<section class="sec"><div class="wrap">
+  <div class="demo-banner"><b>Demonstration mode.</b> Verification runs against the sample records in
+    <code>assets/js/demo-data.js</code>. In production these lookups should call an authenticated backend
+    so that a record cannot be forged by editing the page.</div>
+
+  <div class="tabs" data-panes="ver-panes">
+    <button class="on" data-tab="certificate">Certificate</button>
+    <button data-tab="student">Student</button>
+    <button data-tab="admission">Admission</button>
+    <button data-tab="experience">Industry Experience</button>
+    <button data-tab="payment">Fee / Payment</button>
+    <button data-tab="staff">Staff</button>
+    <button data-tab="member">Member</button>
+    <button data-tab="partner">Training / Industry Partner</button>
+  </div>
+
+  <div id="ver-panes">
+    <div class="tabpane on" id="certificate">
+      <div class="split-3070"><div class="form-box">
+        <h3 style="font-size:1.05rem">Certificate Verification</h3>
+        <form data-verify="certificate">
+          <div class="field"><label>Certificate Number or Enrollment Number</label>
+            <input name="q" required placeholder="BG/CERT/2026/000318"></div>
+          <button class="btn btn-primary btn-block">Verify Certificate</button>
+          <div class="formmsg"></div>
+          <p class="form-note">Demo: BG/CERT/2026/000318 or BG2025097</p>
+        </form></div><div class="out"></div></div>
+    </div>
+
+    <div class="tabpane" id="student">
+      <div class="split-3070"><div class="form-box">
+        <h3 style="font-size:1.05rem">Student Verification</h3>
+        <form data-verify="student">
+          <div class="field"><label>Enrollment Number</label><input name="q" required placeholder="BG2026001"></div>
+          <button class="btn btn-primary btn-block">Verify Student</button>
+          <div class="formmsg"></div>
+          <p class="form-note">Demo: BG2026001</p>
+        </form></div><div class="out"></div></div>
+    </div>
+
+    <div class="tabpane" id="admission">
+      <div class="split-3070"><div class="form-box">
+        <h3 style="font-size:1.05rem">Admission Verification</h3>
+        <form data-verify="admission">
+          <div class="field"><label>Application Number or Enrollment Number</label>
+            <input name="q" required placeholder="APP/2026/004417"></div>
+          <button class="btn btn-primary btn-block">Verify Admission</button>
+          <div class="formmsg"></div>
+          <p class="form-note">Demo: APP/2026/004417 or APP/2026/005190</p>
+        </form></div><div class="out"></div></div>
+    </div>
+
+    <div class="tabpane" id="experience">
+      <div class="split-3070"><div class="form-box">
+        <h3 style="font-size:1.05rem">Industry Experience Certificate</h3>
+        <form data-verify="experience">
+          <div class="field"><label>Certificate Number or Enrollment Number</label>
+            <input name="q" required placeholder="BG/EXP/2026/000077"></div>
+          <button class="btn btn-primary btn-block">Verify Experience Certificate</button>
+          <div class="formmsg"></div>
+          <p class="form-note">Demo: BG/EXP/2026/000077</p>
+        </form></div><div class="out"></div></div>
+    </div>
+
+    <div class="tabpane" id="payment">
+      <div class="split-3070"><div class="form-box">
+        <h3 style="font-size:1.05rem">Fee / Payment Verification</h3>
+        <form data-verify="payment">
+          <div class="field"><label>Enrollment Number</label><input name="q" required placeholder="BG2026001"></div>
+          <div class="field"><label>Receipt or Transaction Number</label>
+            <input name="q2" required placeholder="RCPT/26/000915"></div>
+          <button class="btn btn-primary btn-block">Verify Payment</button>
+          <div class="formmsg"></div>
+          <p class="form-note">Demo: BG2026001 with RCPT/26/000915</p>
+        </form></div><div class="out"></div></div>
+    </div>
+
+    <div class="tabpane" id="staff">
+      <div class="split-3070"><div class="form-box">
+        <h3 style="font-size:1.05rem">Staff Verification</h3>
+        <form data-verify="staff">
+          <div class="field"><label>Staff ID or Name</label><input name="q" required placeholder="STF1042"></div>
+          <button class="btn btn-primary btn-block">Verify Staff</button>
+          <div class="formmsg"></div>
+          <p class="form-note">Demo: STF1042 or STF1108</p>
+        </form></div><div class="out"></div></div>
+    </div>
+
+    <div class="tabpane" id="member">
+      <div class="split-3070"><div class="form-box">
+        <h3 style="font-size:1.05rem">Member Verification</h3>
+        <form data-verify="member">
+          <div class="field"><label>Membership ID</label><input name="q" required placeholder="MEM20851"></div>
+          <button class="btn btn-primary btn-block">Verify Member</button>
+          <div class="formmsg"></div>
+          <p class="form-note">Demo: MEM20851</p>
+        </form></div><div class="out"></div></div>
+    </div>
+
+    <div class="tabpane" id="partner">
+      <div class="split-3070"><div class="form-box">
+        <h3 style="font-size:1.05rem">Partner Verification</h3>
+        <form data-verify="partner">
+          <div class="field"><label>Partner ID or Organisation Name</label>
+            <input name="q" required placeholder="VTP0217"></div>
+          <button class="btn btn-primary btn-block">Verify Partner</button>
+          <div class="formmsg"></div>
+          <p class="form-note">Demo: VTP0217, VTP0233, ITP0093 or ITP0121</p>
+        </form></div><div class="out"></div></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec sec-tint"><div class="wrap">
+  <div class="sec-head"><span class="tagline">Why This Matters</span><h2>Verification Protects Everyone</h2></div>
+  <div class="grid g3">
+    <div class="card"><div class="card-ico">🛡️</div><h3>Against Forgery</h3><p style="margin:0">A certificate that cannot be checked is a certificate that can be faked. Every record we issue carries a reference number.</p></div>
+    <div class="card"><div class="card-ico">⚡</div><h3>Fast for Employers</h3><p style="margin:0">No phone calls or letters — an employer confirms a candidate in seconds before making an offer.</p></div>
+    <div class="card"><div class="card-ico">🎓</div><h3>Fair to Learners</h3><p style="margin:0">Learners who did the work can prove it, anywhere, at any time.</p></div>
+  </div>
+  <div class="disclaimer">If a verification returns no record, it does not automatically mean the document is
+    false — it may not yet have been uploaded, or the reference may be mistyped. Contact us at
+    <b data-site-email></b> and we will check the register directly.</div>
+</div></section>
+
+<div id="site-footer"></div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/demo-data.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var kv=function(rows){ return '<dl class="kv small">'+rows.map(function(r){
+    return '<dt>'+r[0]+'</dt><dd>'+r[1]+'</dd>';}).join('')+'</dl>'; };
+  var panel=function(tagText,title,sub,rows,seed,status){
+    return '<div class="verify-panel">'+
+      '<div style="display:flex;justify-content:space-between;gap:1rem;align-items:flex-start;flex-wrap:wrap">'+
+      '<div><span class="pill pill-green">'+tagText+'</span><h3 style="margin:.5rem 0 0">'+title+'</h3>'+
+      '<p class="small muted mb0">'+sub+'</p></div>'+qrBlock(seed)+'</div>'+
+      '<div style="margin-top:1.2rem">'+kv(rows)+'</div>'+
+      '<p style="margin-top:1rem"><span class="pill pill-green">'+status+'</span></p>'+
+      '<p class="tiny muted mb0">Verified against demonstration records on '+
+      new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})+'.</p></div>';
+  };
+  var fail=function(){ return '<div class="verify-panel" style="border-color:#f6c9c9">'+
+      '<span class="pill pill-red">No record found</span>'+
+      '<h3 style="margin:.6rem 0 .3rem">We could not verify that reference</h3>'+
+      '<p class="small muted">Check the reference and try again. If you believe the document is genuine, '+
+      'email <b>'+SITE.email+'</b> and we will check the register directly.</p></div>'; };
+
+  document.querySelectorAll('form[data-verify]').forEach(function(f){
+    f.addEventListener('submit',function(e){
+      e.preventDefault();
+      var kind=f.getAttribute('data-verify');
+      var q=(f.querySelector('[name=q]')||{}).value||'';
+      var q2=(f.querySelector('[name=q2]')||{}).value||'';
+      var msg=f.querySelector('.formmsg');
+      var out=f.closest('.split-3070').querySelector('.out');
+      var html=null;
+
+      if(kind==='certificate'){ var c=findCertificate(q); if(c) html=panel('Certificate Verified',c.name,
+        c.programme,[['Certificate number',c.cert],['Enrollment number',c.enrollment],['Programme',c.programme],
+        ['Level',c.level],['Centre',c.centre],['Completion year',c.year],['Result',c.result],['Issued on',c.issued]],c.cert,c.status); }
+
+      if(kind==='student'){ var s=findStudent(q); if(s) html=panel('Student Verified',s.name,s.programme,
+        [['Enrollment number',s.enrollment],['Programme',s.programme],['Level / sector',s.level+' · '+s.sector],
+         ['Centre',s.centre],['Session',s.session],['Current term',s.semester],['Admission date',s.admissionDate]],s.enrollment,s.status); }
+
+      if(kind==='admission'){ var a=findAdmission(q); if(a) html=panel('Admission Verified',a.name,a.programme,
+        [['Application number',a.app],['Programme',a.programme],['Centre',a.centre],['Applied on',a.applied],
+         ['Current stage',a.stage],['Enrollment number',a.enrollment]],a.app,a.status); }
+
+      if(kind==='experience'){ var x=findExperience(q); if(x) html=panel('Experience Certificate Verified',x.name,
+        x.organisation,[['Certificate number',x.cert],['Enrollment number',x.enrollment],['Organisation',x.organisation],
+        ['Department',x.department],['Job role',x.role],['Training period',x.period],['Skills',x.skills],
+        ['Completion',x.completion],['Authorised signatory',x.signatory]],x.cert,x.status); }
+
+      if(kind==='payment'){ var p=findPayment(q,q2); if(p) html=panel('Payment Verified',p.name,p.head,
+        [['Receipt number',p.receipt],['Transaction reference',p.txn],['Enrollment number',p.enrollment],
+         ['Fee head',p.head],['Base amount','₹ '+p.base.toLocaleString('en-IN')],
+         ['GST '+(p.gst?'('+SITE.gstRate+'%)':''),p.gst?('₹ '+p.gst.toLocaleString('en-IN')):'Not applicable'],
+         ['Total paid','<b>₹ '+p.amount.toLocaleString('en-IN')+'</b>'],['Mode',p.mode],['Date',p.date]],p.receipt,p.status); }
+
+      if(kind==='staff'){ var t=findStaff(q); if(t) html=panel('Staff Verified',t.name,t.designation,
+        [['Staff ID',t.id],['Designation',t.designation],['Centre',t.centre],['Associated since',t.since]],t.id,t.status); }
+
+      if(kind==='member'){ var m2=findMember(q); if(m2) html=panel('Member Verified',m2.name,m2.category,
+        [['Membership ID',m2.id],['Category',m2.category],['Member since',m2.since],['Valid until',m2.valid]],m2.id,m2.status); }
+
+      if(kind==='partner'){ var pr=findPartner(q); if(pr) html=panel('Partner Verified',pr.org,pr.type,
+        [['Partner ID',pr.id],['Partner type',pr.type],['Location',pr.location],
+         ['Approved training areas',pr.areas],['Validity',pr.valid]],pr.id,pr.status); }
+
+      if(html){ msg.className='formmsg ok'; msg.textContent='Record found.'; out.innerHTML=html; }
+      else { msg.className='formmsg err'; msg.textContent='No matching record.'; out.innerHTML=fail(); }
+    });
+  });
+});
+</script></body>
+</html>

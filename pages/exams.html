@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Examination Portal | Notifications, Timetable & Hall Ticket | BGLRGM</title>
+<meta name="description" content="BGLRGM examination portal — notifications, examination application, fees, timetable, practical examination, hall ticket, internal assessment and results.">
+<link rel="icon" href="../assets/img/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#0b3c8c">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="pagebanner">
+  <div class="wrap">
+    <div class="crumbs"><a href="../index.html">Home</a><span>›</span>Examinations</div>
+    <h1>Examination Portal</h1>
+    <p>Notifications, applications, fees, timetable, hall ticket and results.</p>
+  </div>
+</section>
+
+<section class="sec-sm" style="padding-top:34px"><div class="wrap">
+  <div class="grid g4">
+    <a class="prog-card" href="#notifications"><div class="ico">📢</div><b>Notifications</b></a>
+    <a class="prog-card" href="#timetable"><div class="ico">🗓️</div><b>Timetable</b></a>
+    <a class="prog-card" href="#hallticket"><div class="ico">🎫</div><b>Hall Ticket</b></a>
+    <a class="prog-card" href="results.html"><div class="ico">📊</div><b>Results</b></a>
+  </div>
+</div></section>
+
+<section class="sec" id="notifications"><div class="wrap">
+  <div class="sec-head"><span class="tagline">Notifications</span><h2>Examination Notices</h2></div>
+  <div class="grid g2">
+    <div class="card"><span class="pill pill-blue">Notification</span>
+      <h3 style="margin-top:.6rem">Odd semester examinations — November 2026</h3>
+      <p>Examination applications open 20 September and close 10 October 2026. Late applications are accepted
+         until 15 October with a late fee.</p>
+      <a class="btn btn-sm btn-primary" href="login.html?role=student">Apply Through Student Portal</a></div>
+    <div class="card"><span class="pill pill-gold">Fee</span>
+      <h3 style="margin-top:.6rem">Examination fee</h3>
+      <p>Examination fee is payable per subject as notified for your programme. GST at the applicable rate,
+         including <b data-gst>18%</b> where legally applicable, is charged on taxable services.</p>
+      <a class="btn btn-sm btn-outline" href="payment.html">Pay Examination Fee</a></div>
+    <div class="card"><span class="pill pill-blue">Practical</span>
+      <h3 style="margin-top:.6rem">Practical examinations</h3>
+      <p>Practical examinations are conducted 24–26 November 2026 at the allotted centre. Practical records
+         must be complete and countersigned before the examination.</p></div>
+    <div class="card"><span class="pill pill-green">Internal</span>
+      <h3 style="margin-top:.6rem">Internal assessment</h3>
+      <p>Internal assessment marks are published on the student portal before the external examination.
+         Any discrepancy must be raised with the subject faculty within seven days.</p></div>
+  </div>
+</div></section>
+
+<section class="sec sec-tint" id="timetable"><div class="wrap">
+  <div class="sec-head"><span class="tagline">Timetable</span><h2>Examination Timetable — Odd Semester 2026</h2><p class="muted">Specimen timetable for Diploma in Medical Laboratory Technology, Semester 3.</p></div>
+  <div class="table table-wrap"><table>
+    <thead><tr><th>Date</th><th>Day</th><th>Session</th><th>Code</th><th>Subject</th></tr></thead>
+    <tbody id="tt-body"></tbody></table></div>
+  <p class="small muted" style="margin-top:1rem">Programme-wise timetables are published in the
+     <a href="downloads.html">download centre</a> and on the centre notice board.</p>
+</div></section>
+
+<section class="sec" id="hallticket"><div class="wrap">
+  <div class="sec-head"><span class="tagline">Hall Ticket</span><h2>Download Your Hall Ticket</h2></div>
+  <div class="split">
+    <div class="form-box">
+      <form id="ht-form">
+        <div class="field"><label>Enrollment / Registration Number</label>
+          <input id="ht-en" required placeholder="e.g. BG2026001"></div>
+        <div class="field"><label>Date of Birth</label><input type="date" id="ht-dob" required></div>
+        <button class="btn btn-primary btn-block" type="submit">Generate Hall Ticket</button>
+        <div class="formmsg" id="ht-msg"></div>
+        <p class="form-note">Demo record: enrollment <b>BG2026001</b>, date of birth <b>14 June 2004</b>.</p>
+      </form>
+    </div>
+    <div id="ht-out"></div>
+  </div>
+  <div class="disclaimer">Candidates must carry a printed hall ticket and a photo identity document to every
+    session. Entry is not permitted without them. See the
+    <a href="../legal/examination-regulations.html">Examination Regulations</a>.</div>
+</div></section>
+
+<div id="site-footer"></div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/demo-data.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var b=document.getElementById('tt-body');
+  if(b) b.innerHTML=DEMO_TIMETABLE.map(function(t){
+    return '<tr><td><b>'+t.date+'</b></td><td>'+t.day+'</td><td>'+t.session+'</td><td>'+t.code+'</td><td>'+t.subject+'</td></tr>';}).join('');
+
+  var f=document.getElementById('ht-form');
+  if(f) f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var en=document.getElementById('ht-en').value, dob=document.getElementById('ht-dob').value;
+    var m=document.getElementById('ht-msg'), out=document.getElementById('ht-out');
+    var r=findResult(en,dob);
+    if(!r){ m.className='formmsg err'; m.textContent='No matching record. Check the enrollment number and date of birth, or contact your centre.'; out.innerHTML=''; return; }
+    m.className='formmsg ok'; m.textContent='Hall ticket generated.';
+    out.innerHTML='<div class="verify-panel">'+
+      '<div style="display:flex;justify-content:space-between;gap:1rem;align-items:flex-start">'+
+      '<div><span class="pill pill-blue">Hall Ticket</span>'+
+      '<div style="margin:.6rem 0 .3rem">'+siteLogo(56)+'</div>'+
+      '<p class="small muted mb0">Odd Semester Examinations — November 2026</p></div>'+qrBlock(r.enrollment)+'</div>'+
+      '<dl class="kv small" style="margin-top:1rem"><dt>Candidate</dt><dd>'+r.name+'</dd>'+
+      '<dt>Enrollment number</dt><dd>'+r.enrollment+'</dd><dt>Programme</dt><dd>'+r.programme+'</dd>'+
+      '<dt>Semester</dt><dd>'+r.semester+'</dd><dt>Centre</dt><dd>'+DEMO_STUDENT.centre+'</dd>'+
+      '<dt>Examination centre</dt><dd>As allotted — see the notice board</dd></dl>'+
+      '<div class="table table-wrap" style="margin-top:1rem"><table><thead><tr><th>Date</th><th>Session</th><th>Subject</th></tr></thead><tbody>'+
+      DEMO_TIMETABLE.map(function(t){return '<tr><td>'+t.date+'</td><td>'+t.session+'</td><td>'+t.subject+'</td></tr>';}).join('')+
+      '</tbody></table></div>'+
+      '<p style="margin-top:1rem"><button class="btn btn-sm btn-outline" onclick="window.print()">Print</button></p>'+
+      '<p class="tiny muted mb0">Specimen generated from demonstration data.</p></div>';
+  });
+});
+</script></body>
+</html>

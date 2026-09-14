@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact Us | BGLRGM Vocational College</title>
+<meta name="description" content="Contact the BGLRGM admission team — Chennai head office, Bengaluru corporate office and branch centres across Tamil Nadu.">
+<link rel="icon" href="../assets/img/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#0b3c8c">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="pagebanner">
+  <div class="wrap">
+    <div class="crumbs"><a href="../index.html">Home</a><span>›</span>Contact</div>
+    <h1>Contact Us</h1>
+    <p>Talk to our admission team — by phone, WhatsApp, email, or at your nearest centre.</p>
+  </div>
+</section>
+
+<section class="sec"><div class="wrap split">
+  <div>
+    <div class="sec-head left" style="margin-bottom:1.2rem"><span class="tagline">Enquiry</span><h2>Talk to Our Admission Team</h2></div>
+    <div class="form-box">
+      <form data-form="Website Enquiry">
+        <div class="form-grid">
+          <div class="field"><label>Student Name <span class="req">*</span></label><input name="name" required></div>
+          <div class="field"><label>Mobile Number <span class="req">*</span></label><input type="tel" name="mobile" required></div>
+          <div class="field"><label>WhatsApp Number</label><input type="tel" name="whatsapp"></div>
+          <div class="field"><label>Email</label><input type="email" name="email"></div>
+          <div class="field"><label>State</label><select name="state"><option>Tamil Nadu</option><option>Karnataka</option><option>Other</option></select></div>
+          <div class="field"><label>City</label><input name="city"></div>
+        </div>
+        <div class="field"><label>Interested Programme</label><select name="programme" id="c-prog"></select></div>
+        <div class="field"><label>Preferred Branch</label><select name="branch" id="c-branch"></select></div>
+        <div class="field"><label>Message</label><textarea name="message"></textarea></div>
+        <div class="form-actions" style="display:flex;gap:.6rem;flex-wrap:wrap"></div>
+        <div class="formmsg"></div>
+      </form>
+    </div>
+  </div>
+  <div>
+    <div class="sec-head left" style="margin-bottom:1.2rem"><span class="tagline">Quick Contact</span><h2>Reach Us Directly</h2></div>
+    <div class="grid g2" style="margin-bottom:1.4rem">
+      <a class="prog-card" id="c-call" href="#"><div class="ico">☎️</div><b>Call Now</b><small data-site-phone></small></a>
+      <a class="prog-card" id="c-wa" href="#" target="_blank" rel="noopener"><div class="ico">💬</div><b>WhatsApp</b><small>Chat with us</small></a>
+      <a class="prog-card" id="c-mail" href="#"><div class="ico">✉️</div><b>Email</b><small data-site-email></small></a>
+      <a class="prog-card" href="branches.html"><div class="ico">📍</div><b>Find a Branch</b><small>Six centres and offices</small></a>
+    </div>
+
+    <div class="card" style="margin-bottom:18px">
+      <h3 style="font-size:1rem">Registered Office — Tamil Nadu</h3>
+      <address class="small" style="font-style:normal;color:var(--ink-500)">
+        No. 130 B, BBR Towers, 2nd Floor, IOB Bank Upstairs,<br>
+        Mudichur Road, West Tambaram, Chennai – 600 045, Tamil Nadu.</address>
+      <div class="ph small"><b>☎ +91 95003 22006</b></div>
+    </div>
+    <div class="card">
+      <h3 style="font-size:1rem">Corporate Office — Karnataka</h3>
+      <address class="small" style="font-style:normal;color:var(--ink-500)">
+        No. 21, 2nd Floor, 9th Main, 6th Cross, RK Layout 2nd Stage,<br>
+        Padmanabhanagar, Bangalore South, Bengaluru – 560 070, Karnataka.</address>
+      <div class="ph small"><b>☎ +91 95003 22006</b></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec sec-tint"><div class="wrap">
+  <div class="sec-head"><span class="tagline">All Centres</span><h2>Branch Contact Numbers</h2></div>
+  <div class="table table-wrap"><table>
+    <thead><tr><th>Centre</th><th>Address</th><th>Phone</th></tr></thead>
+    <tbody id="contact-table"></tbody></table></div>
+</div></section>
+
+<section class="sec"><div class="wrap">
+  <div class="card" style="padding:0;overflow:hidden">
+    <iframe title="Chennai head office map" id="c-map" width="100%" height="380" style="border:0;display:block" loading="lazy"></iframe>
+  </div>
+</div></section>
+
+<div id="site-footer"></div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/demo-data.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var p=document.getElementById('c-prog');
+  if(p){
+    var groups={}; COURSES.forEach(function(x){(groups[x.sector]=groups[x.sector]||[]).push(x.name);});
+    p.innerHTML='<option value="">Select a programme</option><option>B.Voc. Programme*</option><option>M.Voc. Programme*</option>'+
+      Object.keys(groups).sort().map(function(g){return '<optgroup label="'+g+'">'+
+        groups[g].map(function(n){return '<option>'+n+'</option>';}).join('')+'</optgroup>';}).join('')+
+      '<option>Not decided — please advise</option>';
+  }
+  var b=document.getElementById('c-branch');
+  if(b) b.innerHTML='<option value="">Select a branch</option>'+BRANCHES.map(function(x){return '<option>'+x.name+'</option>';}).join('');
+  var t=document.getElementById('contact-table');
+  if(t) t.innerHTML=BRANCHES.map(function(x){
+    return '<tr><td><b>'+x.name+'</b><br><span class="small muted">'+x.type+'</span></td><td class="small">'+x.address+
+      '</td><td><a href="tel:'+x.phone.replace(/\s/g,'')+'">'+x.phone+'</a></td></tr>';}).join('');
+  var call=document.getElementById('c-call'); if(call) call.href='tel:'+SITE.phone.replace(/\s/g,'');
+  var wa=document.getElementById('c-wa'); if(wa) wa.href='https://wa.me/'+SITE.whatsapp;
+  var ml=document.getElementById('c-mail'); if(ml) ml.href='mailto:'+SITE.email;
+  var mp=document.getElementById('c-map'); if(mp) mp.src=BRANCHES[0].map;
+});
+</script></body>
+</html>

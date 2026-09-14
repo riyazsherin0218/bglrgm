@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>News & Events | BGLRGM Vocational College</title>
+<meta name="description" content="Admissions, new programme launches, workshops, seminars, guest lectures, industry visits, healthcare camps, skill competitions, internship opportunities, placement drives and certification events.">
+<link rel="icon" href="../assets/img/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#0b3c8c">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="pagebanner">
+  <div class="wrap">
+    <div class="crumbs"><a href="../index.html">Home</a><span>›</span>News & Events</div>
+    <h1>News &amp; Events</h1>
+    <p>Admissions, workshops, industry visits, skill competitions, placement drives and certification events.</p>
+  </div>
+</section>
+
+<section class="sec"><div class="wrap">
+  <div class="chips" style="margin-bottom:1.6rem;justify-content:center" id="news-filter"></div>
+  <div class="grid g3" id="news-grid"></div>
+</div></section>
+
+<section class="sec sec-tint"><div class="wrap">
+  <div class="sec-head"><span class="tagline">What We Publish Here</span><h2>Categories</h2></div>
+  <div class="grid g4">
+    <div class="card center" style="padding:18px"><b>Admissions</b></div><div class="card center" style="padding:18px"><b>New Programme Launches</b></div><div class="card center" style="padding:18px"><b>Workshops</b></div><div class="card center" style="padding:18px"><b>Seminars</b></div><div class="card center" style="padding:18px"><b>Guest Lectures</b></div><div class="card center" style="padding:18px"><b>Industry Visits</b></div><div class="card center" style="padding:18px"><b>Healthcare Camps</b></div><div class="card center" style="padding:18px"><b>Skill Competitions</b></div><div class="card center" style="padding:18px"><b>Internship Opportunities</b></div><div class="card center" style="padding:18px"><b>Placement Drives</b></div><div class="card center" style="padding:18px"><b>Certification Events</b></div><div class="card center" style="padding:18px"><b>Examination Notices</b></div>
+  </div>
+</div></section>
+
+<div id="site-footer"></div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/demo-data.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var cats=['All'].concat(NEWS.map(function(n){return n.cat;}).filter(function(v,i,a){return a.indexOf(v)===i;}));
+  var f=document.getElementById('news-filter');
+  var grid=document.getElementById('news-grid');
+  function draw(cat){
+    var list=(cat&&cat!=='All')?NEWS.filter(function(n){return n.cat===cat;}):NEWS;
+    grid.innerHTML=list.map(function(n){
+      return '<article class="news-card"><div class="news-thumb"><div class="date"><b>'+n.d+
+        '</b><span>'+n.m+' '+n.y+'</span></div></div><div class="news-body">'+
+        '<span class="pill pill-blue">'+n.cat+'</span><h4 style="margin-top:.5rem">'+n.title+'</h4>'+
+        '<p>'+n.text+'</p></div></article>';
+    }).join('');
+  }
+  if(f){
+    f.innerHTML=cats.map(function(c,i){return '<button class="chip'+(i?'':' on')+'" data-cat="'+c+'">'+c+'</button>';}).join('');
+    f.addEventListener('click',function(e){
+      var b=e.target.closest('.chip'); if(!b) return;
+      Array.prototype.forEach.call(f.children,function(x){x.classList.remove('on');});
+      b.classList.add('on'); draw(b.getAttribute('data-cat'));
+    });
+  }
+  draw('All');
+});
+</script></body>
+</html>

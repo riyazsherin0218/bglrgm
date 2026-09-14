@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Download Centre | Prospectus, Forms & Policies | BGLRGM</title>
+<meta name="description" content="Download the BGLRGM prospectus, application form, fee structure, academic calendar, examination timetable, student handbook, internship and OJT forms, scholarship and partner applications.">
+<link rel="icon" href="../assets/img/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#0b3c8c">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="pagebanner">
+  <div class="wrap">
+    <div class="crumbs"><a href="../index.html">Home</a><span>›</span>Downloads</div>
+    <h1>Download Centre</h1>
+    <p>Prospectus, forms, calendar and policies in one place.</p>
+  </div>
+</section>
+
+<section class="sec"><div class="wrap split-3070">
+  <div>
+    <div class="card"><h3 style="font-size:1rem">How to use these</h3>
+      <p class="small">Print a form, fill it and submit it at your centre — or ask us to email it to you.
+        Where a document is not yet uploaded, contact your centre and we will send it directly.</p>
+      <a class="btn btn-primary btn-sm" href="contact.html">Request a Document</a></div>
+    <div class="card" style="margin-top:18px"><h3 style="font-size:1rem">Policies</h3>
+      <p class="small">Fee, refund, scholarship, examination, academic, grievance and conduct policies are
+        published in full on the website.</p>
+      <a class="btn btn-outline btn-sm" href="../legal/recognition-disclosure.html">Legal &amp; Policies</a></div>
+  </div>
+  <div>
+    <div id="dl-list"></div>
+    <div class="gst-note" style="margin-top:1.4rem"><strong>Note on fees:</strong> the fee structure document
+      shows fee heads and amounts exclusive of tax. GST at the applicable rate, including
+      <strong data-gst>18%</strong> where legally applicable, is added on specified taxable courses and
+      services and shown on the invoice or receipt.</div>
+  </div>
+</div></section>
+
+<div id="site-footer"></div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/demo-data.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var h=document.getElementById('dl-list'); if(!h) return;
+  h.innerHTML=DOWNLOADS.map(function(d){
+    return '<div class="dl-row"><div><b>'+d.name+'</b><small>'+d.note+'</small></div>'+
+      '<div style="display:flex;gap:.5rem;align-items:center"><span class="pill pill-blue">'+d.type+'</span>'+
+      '<a class="btn btn-sm btn-outline" href="contact.html">Request</a></div></div>';
+  }).join('');
+});
+</script></body>
+</html>

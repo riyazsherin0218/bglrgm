@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Login Portal | Student, Staff, Member, Partner, Employer | BGLRGM</title>
+<meta name="description" content="BGLRGM login portal for students, staff, members, vocational training partners, industry training partners, branches, employers and administrators.">
+<link rel="icon" href="../assets/img/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#0b3c8c">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="pagebanner">
+  <div class="wrap">
+    <div class="crumbs"><a href="../index.html">Home</a><span>›</span>Login</div>
+    <h1>Login Portal</h1>
+    <p>Choose your role and sign in. Each role sees only the records relevant to it.</p>
+  </div>
+</section>
+
+<section class="sec"><div class="wrap">
+  <div class="demo-banner"><b>Demonstration mode.</b> These portals run on sample records held
+  in <code>assets/js/demo-data.js</code> so the screens and flows can be seen. Connect a real backend and set
+  <code>SITE.demoMode = false</code> in <code>assets/js/config.js</code> to use live data.</div>
+  <div class="login-wrap">
+    <div>
+      <div class="sec-head left" style="margin-bottom:1.2rem"><span class="tagline">Roles</span><h2>Eight Role-Based Portals</h2></div>
+      <div class="grid g2" id="role-cards"></div>
+      <div class="disclaimer" style="margin-top:1.4rem">Accounts are personal to the holder. Never share your
+        password, and report any suspected misuse to your centre immediately.</div>
+    </div>
+
+    <div class="login-card">
+      <img class="login-logo" src="../assets/img/logo-full.png" alt="BGLRGM Vocational College">
+      <h3 id="login-title" class="center">Student Login</h3>
+      <p class="small muted center" id="login-sub">Enter your enrollment number and password.</p>
+      <form id="login-form">
+        <div class="field"><label id="user-label">Enrollment Number</label>
+          <input name="user" id="login-user" required autocomplete="username"></div>
+        <div class="field"><label>Password</label>
+          <input type="password" name="pass" id="login-pass" required autocomplete="current-password"></div>
+        <div class="field" style="display:flex;justify-content:space-between;align-items:center">
+          <label style="font-weight:500;font-size:.82rem;display:flex;gap:.4rem;align-items:center">
+            <input type="checkbox" style="width:auto"> Remember me</label>
+          <a class="small" href="contact.html">Forgot password?</a>
+        </div>
+        <button class="btn btn-primary btn-block" type="submit">Sign In</button>
+        <div class="formmsg" id="login-msg"></div>
+      </form>
+      <div class="gst-note" style="margin-top:1.2rem;font-size:.8rem">
+        <b>Demo credentials</b><div id="demo-cred" style="margin-top:.3rem"></div></div>
+      <p class="small muted" style="margin-top:1rem;margin-bottom:0">Not registered yet?
+        <a href="apply.html">Apply online</a> or <a href="become-partner.html">become a partner</a>.</p>
+    </div>
+  </div>
+</div></section>
+
+<div id="site-footer"></div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/demo-data.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var roles=[
+    ['student','👤','Student Login','Profile, attendance, marks, examinations, fees, certificates and OJT records.','Enrollment Number'],
+    ['staff','👩‍🏫','Staff Login','Student management, attendance, internal marks, timetable, materials and reports.','Staff ID'],
+    ['member','🪪','Member Login','Membership status, digital ID, certificate, renewal, receipts and events.','Membership ID'],
+    ['partner','🏫','Vocational Training Partner','Enrollment, student records, attendance, results, fees and certificate status.','Partner ID'],
+    ['industry','🏭','Industry Training Partner','Trainee allocation, attendance, OJT records, assessment and experience certificates.','Partner ID'],
+    ['branch','🏢','Branch / Centre Login','Centre-level admissions, records, fee collection and reporting.','Branch Code'],
+    ['employer','💼','Employer Login','Vacancies, candidate requests, interview scheduling and verification.','Employer ID'],
+    ['admin','🛡️','Admin Login','System administration, approvals, certification and master data.','Admin ID']
+  ];
+  var current=new URLSearchParams(location.search).get('role')||'student';
+  if(!DEMO_LOGINS[current]) current='student';
+
+  var host=document.getElementById('role-cards');
+  function paint(){
+    host.innerHTML=roles.map(function(r){
+      return '<a class="prog-card'+(r[0]===current?' on':'')+'" href="login.html?role='+r[0]+'" '+
+        (r[0]===current?'style="border-color:var(--blue-500);box-shadow:var(--shadow-md)"':'')+'>'+
+        '<div class="ico">'+r[1]+'</div><b>'+r[2]+'</b><small>'+r[3]+'</small></a>';
+    }).join('');
+    var r=roles.filter(function(x){return x[0]===current;})[0];
+    document.getElementById('login-title').textContent=r[2];
+    document.getElementById('login-sub').textContent='Enter your '+r[4].toLowerCase()+' and password.';
+    document.getElementById('user-label').textContent=r[4];
+    var d=DEMO_LOGINS[current];
+    document.getElementById('demo-cred').innerHTML=r[4]+': <b>'+d.user+'</b> &nbsp;·&nbsp; Password: <b>'+d.pass+'</b>';
+    document.getElementById('login-user').value='';
+    document.getElementById('login-pass').value='';
+  }
+  paint();
+
+  document.getElementById('login-form').addEventListener('submit',function(e){
+    e.preventDefault();
+    var u=document.getElementById('login-user').value,
+        p=document.getElementById('login-pass').value,
+        m=document.getElementById('login-msg');
+    var rec=demoLogin(current,u,p);
+    if(!rec){ m.className='formmsg err'; m.textContent='Those credentials were not recognised. Use the demo credentials shown below, or contact your centre.'; return; }
+    m.className='formmsg ok'; m.textContent='Signed in. Opening your portal…';
+    try{ sessionStorage.setItem('bg_session', JSON.stringify({role:current,user:rec.user,name:rec.name,extra:rec.extra})); }catch(err){}
+    setTimeout(function(){ location.href='portal.html?role='+current; },500);
+  });
+});
+</script></body>
+</html>

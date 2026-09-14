@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Alumni Network | BGLRGM Vocational College</title>
+<meta name="description" content="Join the BGLRGM alumni network — registration, profiles, success stories, career achievements, employer feedback and alumni events.">
+<link rel="icon" href="../assets/img/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#0b3c8c">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="pagebanner">
+  <div class="wrap">
+    <div class="crumbs"><a href="../index.html">Home</a><span>›</span>Alumni</div>
+    <h1>Alumni Network</h1>
+    <p>Stay connected with BGLRGM — and help the learners coming after you.</p>
+  </div>
+</section>
+
+<section class="sec"><div class="wrap split">
+  <div>
+    <div class="sec-head left" style="margin-bottom:1.2rem"><span class="tagline">Why Register</span><h2>What the Network Offers</h2></div>
+    <ul class="ticklist"><li>Keep your qualification record and contact details current</li><li>Get notified about advanced and upskilling programmes</li><li>Share a vacancy at your workplace with current learners</li><li>Return as a guest speaker or mentor</li><li>Attend alumni events at your centre</li><li>Have your success story featured, if you would like</li></ul>
+    <div class="grid g2" style="margin-top:1.4rem">
+      <div class="stat"><b>Success Stories</b><span>To be published</span></div>
+      <div class="stat"><b>Alumni Events</b><span>Centre-wise</span></div>
+    </div>
+  </div>
+  <div class="form-box">
+    <h3>Alumni Registration</h3>
+    <form data-form="Alumni Registration">
+      <div class="field"><label>Full Name <span class="req">*</span></label><input name="name" required></div>
+      <div class="form-grid">
+        <div class="field"><label>Enrollment Number</label><input name="enrollment"></div>
+        <div class="field"><label>Year of Completion</label><input name="year" maxlength="4"></div>
+        <div class="field"><label>Mobile <span class="req">*</span></label><input type="tel" name="mobile" required></div>
+        <div class="field"><label>Email</label><input type="email" name="email"></div>
+      </div>
+      <div class="field"><label>Programme Completed</label><select name="programme" id="al-prog"></select></div>
+      <div class="field"><label>Centre</label><select name="centre" id="al-centre"></select></div>
+      <div class="form-grid">
+        <div class="field"><label>Current Occupation</label><input name="occupation"></div>
+        <div class="field"><label>Organisation</label><input name="org"></div>
+      </div>
+      <div class="field"><label>Would you like to help current learners?</label>
+        <select name="help"><option>Yes — share vacancies</option><option>Yes — guest lecture / mentoring</option>
+        <option>Yes — offer internship or OJT places</option><option>Not at present</option></select></div>
+      <div class="field"><label>Your story (optional)</label><textarea name="story"></textarea></div>
+      <div class="form-actions" style="display:flex;gap:.6rem;flex-wrap:wrap"></div>
+      <div class="formmsg"></div>
+    </form>
+  </div>
+</div></section>
+
+<div id="site-footer"></div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/demo-data.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var p=document.getElementById('al-prog');
+  if(p) p.innerHTML='<option value="">Select</option>'+COURSES.map(function(x){return '<option>'+x.name+'</option>';}).join('');
+  var c=document.getElementById('al-centre');
+  if(c) c.innerHTML='<option value="">Select</option>'+BRANCHES.map(function(b){return '<option>'+b.name+'</option>';}).join('');
+});
+</script></body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Programmes & Course Finder | BGLRGM Vocational College</title>
+<meta name="description" content="Certificate, advanced certificate, diploma, advanced diploma, professional diploma, skill development, short-term, job-oriented and industry-oriented vocational programmes. Search by level, sector, eligibility and mode.">
+<link rel="icon" href="../assets/img/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#0b3c8c">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="pagebanner">
+  <div class="wrap">
+    <div class="crumbs"><a href="../index.html">Home</a><span>›</span>Programmes</div>
+    <h1>Programmes</h1>
+    <p>Twelve programme families across healthcare, hospitality, IT, management, technical trades, agriculture, wellness and more.</p>
+  </div>
+</section>
+
+<section class="sec-sm" style="padding-top:34px"><div class="wrap">
+  <div class="finder">
+    <h3 style="margin-bottom:1rem">Find Your Career Programme</h3>
+    <div class="finder-grid">
+      <div class="field"><label>Programme level</label><select id="f-level"></select></div>
+      <div class="field"><label>Industry sector</label><select id="f-sector"></select></div>
+      <div class="field"><label>Eligibility</label><select id="f-elig"></select></div>
+      <div class="field"><label>Mode</label><select id="f-mode"></select></div>
+    </div>
+    <div class="field"><label>Search by course name or keyword</label>
+      <input type="search" id="f-text" placeholder="e.g. laboratory, hotel, electrician, data"></div>
+    <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+      <button class="btn btn-primary" id="f-search">Search Programmes</button>
+      <button class="btn btn-outline" id="f-clear">Clear Filters</button>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" style="padding-top:26px"><div class="wrap">
+  <p id="course-count" class="small muted" style="font-weight:700;letter-spacing:.05em;text-transform:uppercase"></p>
+  <div id="course-results"></div>
+  <p class="asterisk-note" style="margin-top:1rem">Programme availability varies by centre. Duration, fee and
+     certification details for a specific programme are confirmed at the time of admission.</p>
+</div></section>
+
+<section class="sec sec-tint"><div class="wrap">
+  <div class="sec-head"><span class="tagline">Programme Families</span><h2>Explore by Category</h2></div>
+  <div class="grid g4" id="programme-cards"></div>
+</div></section>
+
+<section class="sec"><div class="wrap">
+  <div class="sec-head"><span class="tagline">Categories in Detail</span><h2>What Each Programme Family Means</h2></div>
+  <div class="grid g2" id="cat-detail"></div>
+</div></section>
+
+<section class="sec sec-blue"><div class="wrap">
+  <div class="sec-head"><span class="tagline">Degree Programmes</span><h2>B.Voc.* • M.Voc.* • Ph.D. Information*</h2></div>
+  <div class="grid g3">
+    <div class="card"><div class="card-ico">🎓</div><h3>Bachelor of Vocation – B.Voc.*</h3>
+      <p>Undergraduate vocational degrees across healthcare, hospitality, IT, management and commerce.</p>
+      <a class="more" href="bvoc.html">View B.Voc. list</a></div>
+    <div class="card"><div class="card-ico">📗</div><h3>Master of Vocation – M.Voc.*</h3>
+      <p>Postgraduate vocational specialisations for career progression.</p>
+      <a class="more" href="mvoc.html">View M.Voc. list</a></div>
+    <div class="card"><div class="card-ico">🔬</div><h3>Doctoral / Ph.D. Information*</h3>
+      <p>Guidance on eligible doctoral programmes through recognised university arrangements.</p>
+      <a class="more" href="phd.html">View Ph.D. information</a></div>
+  </div>
+  <p class="center small" style="color:#a9bfe0;margin-top:1.6rem">*Awarded only by the respective legally
+     authorised university or institution. See the
+     <a href="../legal/recognition-disclosure.html" style="color:#fff">Recognition &amp; Certification Disclosure</a>.</p>
+</div></section>
+
+<div id="site-footer"></div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/demo-data.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var host=document.getElementById('cat-detail');
+  if(host) host.innerHTML = PROG_CATEGORIES.map(function(c){
+    var n = COURSES.filter(function(x){return x.level===({
+      'certificate':'Certificate','adv-certificate':'Advanced Certificate','diploma':'Diploma',
+      'adv-diploma':'Advanced Diploma','prof-diploma':'Professional Diploma',
+      'professional':'Professional Programme','skill':'Skill Development','short-term':'Short-Term'
+    })[c.id];}).length;
+    return '<div class="card" id="'+c.id+'"><div class="card-ico">'+c.icon+'</div>'+
+      '<h3>'+c.name+'</h3><p>'+c.desc+'</p>'+
+      (n?'<a class="more" href="programmes.html?level='+encodeURIComponent(({
+        'certificate':'Certificate','adv-certificate':'Advanced Certificate','diploma':'Diploma',
+        'adv-diploma':'Advanced Diploma','prof-diploma':'Professional Diploma',
+        'professional':'Professional Programme','skill':'Skill Development','short-term':'Short-Term'
+      })[c.id])+'">View '+n+' programmes</a>'
+      :'<a class="more" href="contact.html">Enquire about this category</a>')+'</div>';
+  }).join('');
+  /* eligibility from the URL */
+  var e=new URLSearchParams(location.search).get('elig');
+  if(e){var s=document.getElementById('f-elig'); if(s){s.value=e; s.dispatchEvent(new Event('change'));}}
+});
+</script></body>
+</html>

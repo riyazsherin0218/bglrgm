@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Our Branches | Chennai, Chengalpattu, Cheyyar, Villupuram, Tindivanam & Bengaluru</title>
+<meta name="description" content="BGLRGM branches and offices — Chennai head office, Bengaluru corporate office and training centres at Chengalpattu, Cheyyar, Villupuram and Tindivanam.">
+<link rel="icon" href="../assets/img/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#0b3c8c">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="pagebanner">
+  <div class="wrap">
+    <div class="crumbs"><a href="../index.html">Home</a><span>›</span>Branches</div>
+    <h1>Our Branches</h1>
+    <p>Registered office in Chennai, corporate office in Bengaluru and training centres across northern Tamil Nadu.</p>
+  </div>
+</section>
+
+<section class="sec"><div class="wrap">
+  <div class="tabs" data-panes="branch-panes">
+    <button class="on" data-tab="all">All Centres</button>
+    <button data-tab="tn">Tamil Nadu</button>
+    <button data-tab="ka">Karnataka</button>
+  </div>
+  <div id="branch-panes">
+    <div class="tabpane on" id="all"><div class="grid g2" id="pane-all"></div></div>
+    <div class="tabpane" id="tn"><div class="grid g2" id="pane-tn"></div></div>
+    <div class="tabpane" id="ka"><div class="grid g2" id="pane-ka"></div></div>
+  </div>
+</div></section>
+
+<section class="sec sec-tint"><div class="wrap">
+  <div class="sec-head"><span class="tagline">Find Us</span><h2>Locations on the Map</h2></div>
+  <div class="grid g2" id="branch-maps"></div>
+</div></section>
+
+<section class="sec"><div class="wrap">
+  <div class="sec-head"><span class="tagline">Getting Here</span><h2>Bus &amp; Transport</h2></div>
+  <div class="grid g3">
+    <div class="card"><div class="card-ico">🚌</div><h3>Near Bus Stands</h3><p style="margin:0">Villupuram and Tindivanam centres are located close to the bus stand; Chengalpattu and Cheyyar centres are in the town centre.</p></div>
+    <div class="card"><div class="card-ico">🚉</div><h3>Rail Access</h3><p style="margin:0">Chennai (West Tambaram), Chengalpattu, Villupuram and Tindivanam are served by suburban and mainline rail.</p></div>
+    <div class="card"><div class="card-ico">🛣️</div><h3>Road Connectivity</h3><p style="margin:0">All Tamil Nadu centres are on or near the Chennai–Villupuram corridor, making inter-centre transfer straightforward.</p></div>
+  </div>
+  <div class="disclaimer">Transport arrangements are not operated by the institution. Learners should plan
+    travel to suit their batch timing; centre staff can advise on local bus routes.</div>
+</div></section>
+
+<section class="sec sec-blue"><div class="wrap center">
+  <h2>Visit a centre</h2>
+  <p style="color:#c3d4ee">Walk in for a counselling session, or call ahead to fix a time.</p>
+  <a class="btn btn-gold" href="contact.html">Contact Us</a>
+  <a class="btn btn-ghost-white" href="apply.html" style="margin-left:.5rem">Apply Online</a>
+</div></section>
+
+<div id="site-footer"></div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/demo-data.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var b=function(list,host){
+    var el=document.getElementById(host); if(!el) return;
+    el.innerHTML=list.map(function(x){
+      return '<div class="branch"><span class="type">'+x.type+' · '+x.state+'</span>'+
+      '<h4>'+x.name+'</h4><p class="small muted" style="margin:.1rem 0 .5rem">'+x.unit+'</p>'+
+      '<address>'+x.address+'</address>'+
+      '<div class="ph">☎ <a href="tel:'+x.phone.replace(/\s/g,'')+'">'+x.phone+'</a></div>'+
+      '<p class="small muted" style="margin:.6rem 0 .8rem"><b>Programmes:</b> '+x.programmes+'</p>'+
+      '<a class="btn btn-sm btn-outline" href="contact.html">Enquire</a> '+
+      '<a class="btn btn-sm btn-primary" href="apply.html">Apply</a></div>';
+    }).join('');
+  };
+  b(BRANCHES,'pane-all');
+  b(BRANCHES.filter(function(x){return x.state==='Tamil Nadu';}),'pane-tn');
+  b(BRANCHES.filter(function(x){return x.state==='Karnataka';}),'pane-ka');
+  var m=document.getElementById('branch-maps');
+  if(m) m.innerHTML=BRANCHES.map(function(x){
+    return '<div class="card" style="padding:0;overflow:hidden">'+
+      '<iframe title="'+x.name+'" src="'+x.map+'" width="100%" height="230" style="border:0;display:block" loading="lazy"></iframe>'+
+      '<div style="padding:14px 18px"><b>'+x.name+'</b><p class="small muted mb0">'+x.address+'</p></div></div>';
+  }).join('');
+});
+</script></body>
+</html>

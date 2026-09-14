@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Student Grievance Redressal | BGLRGM</title>
+<meta name="description" content="Submit a grievance about admissions, academics, examinations, fees, certificates, internship, OJT, placement, accommodation or student services.">
+<link rel="icon" href="../assets/img/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#0b3c8c">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="pagebanner">
+  <div class="wrap">
+    <div class="crumbs"><a href="../index.html">Home</a><span>›</span>Grievance Redressal</div>
+    <h1>Student Grievance Redressal</h1>
+    <p>Raise a concern — it is acknowledged within three working days and answered within the timelines below.</p>
+  </div>
+</section>
+
+<section class="sec"><div class="wrap split-3070">
+  <div>
+    <div class="card"><h3 style="font-size:1rem">Timelines</h3>
+      <ul class="small" style="padding-left:1.1rem">
+        <li>Acknowledgement — 3 working days</li>
+        <li>Stage 1, centre head — 10 working days</li>
+        <li>Stage 2, committee — a further 15 working days</li>
+        <li>Stage 3, appeal to the Director — concludes the internal process</li>
+      </ul>
+      <a class="btn btn-outline btn-sm" href="../legal/grievance-policy.html">Grievance Policy</a></div>
+    <div class="card" style="margin-top:18px;border-left:4px solid var(--red-600)">
+      <h3 style="font-size:1rem">Serious matters</h3>
+      <p class="small">Complaints of ragging are handled under the
+        <a href="../legal/anti-ragging.html">anti-ragging</a> mechanism and complaints of sexual harassment
+        under the <a href="../legal/posh.html">POSH / ICC</a> mechanism. Those take precedence over the
+        general process and are handled confidentially.</p></div>
+  </div>
+  <div class="form-box">
+    <h3>Submit a Grievance</h3>
+    <form data-form="Student Grievance Submission">
+      <div class="form-grid">
+        <div class="field"><label>Name <span class="req">*</span></label><input name="name" required></div>
+        <div class="field"><label>Enrollment Number</label><input name="enrollment"></div>
+        <div class="field"><label>Mobile <span class="req">*</span></label><input type="tel" name="mobile" required></div>
+        <div class="field"><label>Email</label><input type="email" name="email"></div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label>Centre <span class="req">*</span></label><select name="centre" id="g-centre" required></select></div>
+        <div class="field"><label>Category <span class="req">*</span></label>
+          <select name="category" required>
+            <option>Admissions</option><option>Academics</option><option>Examinations</option>
+            <option>Fees</option><option>Certificates</option><option>Internship / OJT</option>
+            <option>Placement</option><option>Accommodation</option><option>Student services</option>
+            <option>Conduct / behaviour</option><option>Other</option></select></div>
+      </div>
+      <div class="field"><label>Subject <span class="req">*</span></label><input name="subject" required></div>
+      <div class="field"><label>Describe the concern <span class="req">*</span></label>
+        <textarea name="description" required style="min-height:150px"></textarea></div>
+      <div class="field"><label>What outcome are you seeking?</label><textarea name="outcome"></textarea></div>
+      <div class="field"><label>Have you raised this with anyone already?</label>
+        <select name="raised"><option>No</option><option>Yes — with my faculty</option>
+        <option>Yes — with the centre office</option><option>Yes — with the coordinator</option></select></div>
+      <div class="form-actions" style="display:flex;gap:.6rem;flex-wrap:wrap"></div>
+      <div class="formmsg"></div>
+      <p class="form-note">No adverse action is taken against anyone for raising a grievance in good faith.</p>
+    </form>
+  </div>
+</div></section>
+
+<div id="site-footer"></div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/demo-data.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var c=document.getElementById('g-centre');
+  if(c) c.innerHTML='<option value="">Select</option>'+BRANCHES.map(function(b){return '<option>'+b.name+'</option>';}).join('');
+});
+</script></body>
+</html>
