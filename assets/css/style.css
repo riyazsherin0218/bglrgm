@@ -18,6 +18,7 @@
 
   --green-600:#127a4b;
   --red-600:#c62828;
+  --brand-red:#ca0202;      /* the red used in the BGLRGM crest */
 
   --ink-900:#10233f;
   --ink-700:#33475f;
@@ -89,51 +90,53 @@ table{border-collapse:collapse;width:100%}
 .btn-block{width:100%}
 
 /* ---------- Top utility bar ---------- */
-.topbar{background:var(--blue-900);color:#cddcf3;font-size:.8rem}
+.topbar{background:var(--blue-900);color:#cddcf3;font-size:.78rem}
 .topbar a{color:#cddcf3}
 .topbar a:hover{color:var(--gold-500)}
 .topbar .wrap{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;align-items:center;justify-content:space-between;padding-top:.45rem;padding-bottom:.45rem}
-.topbar-links{display:flex;flex-wrap:wrap;gap:.2rem .95rem;align-items:center}
+.topbar-links{display:flex;flex-wrap:wrap;gap:.2rem .72rem;align-items:center}
 .topbar-links span.sep{opacity:.35}
-.topbar-contact{display:flex;flex-wrap:wrap;gap:.9rem;align-items:center;font-weight:600}
+.topbar-contact{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;font-weight:600}
 
 /* ---------- Logo bar ---------- */
 .logobar{background:#fff;border-bottom:1px solid var(--line)}
-.logobar .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-top:.9rem;padding-bottom:.9rem}
-.brand{display:flex;align-items:center;gap:.85rem}
+.logobar .wrap{display:flex;align-items:center;justify-content:space-between;gap:1.2rem;padding-top:.75rem;padding-bottom:.75rem}
+.brand{display:flex;align-items:center;gap:1.1rem}
 .brand-mark{width:58px;height:58px;flex:0 0 58px;border-radius:12px;
   background:linear-gradient(140deg,var(--blue-800),var(--blue-500));
   color:#fff;display:flex;align-items:center;justify-content:center;
   font-family:var(--font-head);font-weight:800;font-size:1rem;letter-spacing:.5px;
   box-shadow:var(--shadow-sm);text-align:center;line-height:1}
-.brand-logo{height:74px;width:auto;flex:0 0 auto}
+.brand-logo{height:124px;width:auto;flex:0 0 auto}
 .footer-logo{height:88px;width:auto;background:#fff;padding:8px 12px;border-radius:12px}
 .login-logo{height:78px;width:auto;margin:0 auto .9rem}
 .panel-logo{height:44px;width:auto}
-.brand-text b{display:block;font-family:var(--font-head);font-size:1.32rem;color:var(--blue-900);line-height:1.15;letter-spacing:.01em}
-.brand-text span{display:block;font-size:.78rem;color:var(--ink-500);letter-spacing:.03em}
-.brand-text em{display:block;font-style:normal;font-size:.7rem;color:var(--gold-600);font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+.brand-text b{display:block;font-family:var(--font-head);font-size:2.45rem;color:var(--brand-red);line-height:1.12;letter-spacing:.01em}
+.brand-text span{display:block;font-size:1.08rem;color:var(--blue-800);font-weight:600;letter-spacing:.03em;margin-top:4px}
+.brand-text em{display:block;font-style:normal;font-size:.85rem;color:var(--gold-600);font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-top:5px}
 .helpline{display:flex;gap:1.4rem;align-items:center}
 .helpline-item{text-align:right;line-height:1.25}
 .helpline-item small{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:.09em;color:var(--ink-300)}
 .helpline-item b{font-size:1.02rem;color:var(--blue-800);font-family:var(--font-head)}
 
 /* ---------- Main navigation ---------- */
-.mainnav{background:var(--blue-800);position:sticky;top:0;z-index:600;box-shadow:var(--shadow-sm)}
+.mainnav{background:var(--blue-800);position:sticky;top:0;z-index:600;box-shadow:var(--shadow-sm);
+  overflow-x:clip}  /* keeps a right-hand dropdown from widening the page */
 .mainnav .wrap{display:flex;align-items:center;justify-content:space-between}
 .navlist{list-style:none;display:flex;flex-wrap:wrap;margin:0;padding:0}
 .navlist>li{position:relative}
 .mainnav .navbar-top{display:none}
 .navlist>li>a{
-  display:block;color:#eaf1fb;padding:.8rem .55rem;font-size:.745rem;font-weight:700;
-  letter-spacing:.02em;text-transform:uppercase;font-family:var(--font-head);white-space:nowrap}
+  display:block;color:#eaf1fb;padding:.8rem .38rem;font-size:.70rem;font-weight:700;
+  letter-spacing:.01em;text-transform:uppercase;font-family:var(--font-head);white-space:nowrap}
 .navlist>li>a:hover,.navlist>li.active>a{background:var(--blue-600);color:#fff}
-.navlist>li.has-sub>a::after{content:"▾";margin-left:.3rem;font-size:.7rem;opacity:.8}
+.navlist>li.has-sub>a::after{content:"▾";margin-left:.22rem;font-size:.66rem;opacity:.8}
 .subnav{
   list-style:none;position:absolute;left:0;top:100%;min-width:262px;background:#fff;
   border-top:3px solid var(--gold-500);box-shadow:var(--shadow-md);padding:.4rem 0;margin:0;
   opacity:0;visibility:hidden;transform:translateY(8px);transition:.18s ease;z-index:20}
 .navlist>li:hover .subnav,.navlist>li:focus-within .subnav{opacity:1;visibility:visible;transform:translateY(0)}
+.navlist>li:nth-last-child(-n+6) .subnav{left:auto;right:0}
 .subnav li{margin:0}
 .subnav a{display:block;padding:.5rem 1.05rem;font-size:.845rem;color:var(--ink-700);border-left:3px solid transparent}
 .subnav a:hover{background:var(--blue-050);color:var(--blue-800);border-left-color:var(--gold-500)}
@@ -352,6 +355,104 @@ section{position:relative}
 .branch address{font-style:normal;font-size:.88rem;color:var(--ink-500);margin-bottom:.6rem}
 .branch .ph{font-weight:700;color:var(--blue-800);font-size:.92rem}
 
+/* event cards — pages/events.html */
+.event-card{display:block;background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);
+  overflow:hidden;box-shadow:var(--shadow-sm);transition:.2s;height:100%;text-decoration:none;color:inherit}
+.event-card:hover{box-shadow:var(--shadow-md);transform:translateY(-4px);border-color:#c9d8ec}
+.event-img{display:block;aspect-ratio:1/1;background:linear-gradient(140deg,var(--blue-050),var(--blue-100));
+  overflow:hidden;position:relative}
+.event-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease}
+.event-card:hover .event-img img{transform:scale(1.03)}
+.event-img.noimg::after{content:"🗓";position:absolute;inset:0;display:flex;align-items:center;
+  justify-content:center;font-size:2.4rem;opacity:.5}
+.event-body{display:block;padding:18px 20px 22px}
+.event-body b{display:block;font-family:var(--font-head);font-size:1.02rem;line-height:1.3;margin:.6rem 0 .2rem}
+.event-body .when{display:block;font-size:.78rem;color:var(--gold-600);font-weight:800;
+  letter-spacing:.06em;text-transform:uppercase;margin-bottom:.5rem}
+.event-body .txt{display:block;font-size:.88rem;color:var(--ink-500);line-height:1.55}
+.event-card:hover .event-body b{color:var(--blue-700)}
+
+/* UGC guidelines: document cards and video cards (home page) */
+a.card.doc-card{display:flex;gap:1rem;align-items:flex-start;text-decoration:none;color:inherit}
+.doc-card .doc-ico{flex:0 0 52px;width:52px;height:52px;border-radius:12px;display:flex;
+  align-items:center;justify-content:center;background:#fdecec;color:var(--red-600);
+  font-family:var(--font-head);font-weight:800;font-size:.78rem;letter-spacing:.06em}
+.doc-card h3{font-size:1rem;line-height:1.35;margin-bottom:.35rem}
+.doc-card:hover h3{color:var(--blue-700)}
+.video-card{display:block;text-decoration:none;color:inherit}
+.video-card .thumb{display:block;position:relative;aspect-ratio:16/9;border-radius:var(--radius);
+  overflow:hidden;background:var(--blue-100);box-shadow:var(--shadow-sm);margin-bottom:.7rem}
+.video-card .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.video-card .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:1.6rem;color:#fff;background:rgba(4,32,77,.35);transition:.2s}
+.video-card:hover .play{background:rgba(4,32,77,.15)}
+.video-card b{display:block;font-size:.92rem;line-height:1.4;font-family:var(--font-head)}
+.video-card:hover b{color:var(--blue-700)}
+
+/* photo cards — a real photograph at the top of a .card, with the original
+   icon shown on a tinted panel until the photo file exists
+   (photos go in assets/img/cards/, 16:9, about 900x506) */
+.pcard{padding-top:0;overflow:hidden}
+.pcard-img{margin:0 -26px 1.15rem;aspect-ratio:16/9;position:relative;overflow:hidden;
+  background:linear-gradient(140deg,var(--blue-050),var(--blue-100))}
+.pcard-img img{width:100%;height:100%;object-fit:cover;display:block}
+.pcard-img .ico{display:none}
+.pcard-img.noimg .ico{display:flex;position:absolute;inset:0;align-items:center;justify-content:center;
+  font-size:2.6rem;opacity:.85}
+.pcard-img.noimg::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 70% 25%,rgba(255,255,255,.55),transparent 60%)}
+.pcard:hover .pcard-img img{transform:scale(1.04)}
+.pcard-img img{transition:transform .35s ease}
+@media (max-width:560px){ .pcard-img{margin:0 -22px 1rem} }
+
+/* leadership profile page — pages/leadership.html */
+.leader-photo{text-align:center}
+.leader-photo img{width:100%;max-width:330px;aspect-ratio:1/1;object-fit:cover;object-position:center top;
+  border-radius:var(--radius-lg);background:var(--blue-050);box-shadow:var(--shadow-md);border:6px solid #fff}
+.leader-row{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+.leader-row img{width:84px;height:84px;flex:0 0 84px;border-radius:50%;object-fit:cover;object-position:center top;
+  background:var(--blue-050);border:3px solid #fff;box-shadow:var(--shadow-sm)}
+.leader-row .role,.leader .role{display:block;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--gold-600);font-weight:800}
+.card .ph{font-weight:700;color:var(--blue-800);font-size:.92rem}
+.card .ph a{color:var(--blue-800)}
+a.card,a.leader{display:block;color:inherit;text-decoration:none}
+a.leader:hover{box-shadow:var(--shadow-md);transform:translateY(-4px);border-color:#c9d8ec}
+a.leader,.leader{transition:.2s}
+a.leader:hover h3,a.card:hover h3{color:var(--blue-700)}
+
+/* leadership cards with photographs — pages/about.html#leadership */
+.leader{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);
+  padding:28px 22px;text-align:center;box-shadow:var(--shadow-sm);height:100%;
+  border-top:4px solid var(--gold-500)}
+.leader img{width:136px;height:136px;border-radius:50%;object-fit:cover;object-position:center top;
+  background:var(--blue-050);border:4px solid #fff;box-shadow:var(--shadow-md);margin-bottom:1rem}
+.leader h3{font-size:1.06rem;margin-bottom:.2rem;line-height:1.25}
+.leader .role{display:block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold-600);font-weight:800;margin-bottom:.6rem}
+.leader p{font-size:.86rem;color:var(--ink-500);margin:0;line-height:1.5}
+
+/* branch card split: address on the left, centre in-charge on the right */
+.branch-split{display:grid;grid-template-columns:1fr 200px;gap:20px;align-items:start}
+.branch-split .b-left{min-width:0}
+.branch-incharge{background:var(--blue-050);border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px 14px;text-align:center}
+.branch-incharge .ic-head{font-size:.64rem;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--ink-300);font-weight:800;margin-bottom:.7rem}
+.branch-incharge img{width:98px;height:98px;border-radius:50%;object-fit:cover;background:#fff;
+  border:3px solid #fff;box-shadow:var(--shadow-sm);margin-bottom:.65rem}
+.branch-incharge b{display:block;font-family:var(--font-head);font-size:.95rem;color:var(--ink-900);line-height:1.25}
+.branch-incharge .role{display:block;font-size:.66rem;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--gold-600);font-weight:800;margin:.3rem 0 .4rem}
+.branch-incharge .qual{display:block;font-size:.78rem;color:var(--ink-500);line-height:1.45;margin-bottom:.55rem}
+.branch-incharge a{display:block;font-size:.82rem;font-weight:700;color:var(--blue-800);
+  word-break:break-word;padding:.1rem 0}
+.branch-incharge a:hover{color:var(--gold-600)}
+@media (max-width:1080px){
+  .branch-split{grid-template-columns:1fr}
+  .branch-incharge{max-width:280px;margin:0 auto}
+}
+
 /* ---------- Partner logos ---------- */
 .logos{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
 .logo-box{background:#fff;border:1px solid var(--line);border-radius:var(--radius);height:82px;display:flex;
@@ -408,10 +509,18 @@ section{position:relative}
   display:flex;flex-wrap:wrap;gap:.6rem 1.2rem;justify-content:space-between;align-items:center}
 .footer-strip a{display:inline}
 .footer-legal{background:#04204d;color:#8aa6cd;font-size:.76rem;padding:14px 0;line-height:1.6}
-.socials{display:flex;gap:.5rem;margin-top:.8rem}
-.socials a{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;
-  align-items:center;justify-content:center;font-size:.85rem;padding:0}
-.socials a:hover{background:var(--gold-500);color:#3a2a00}
+.socials{display:flex;gap:.5rem;margin-top:.9rem}
+.socials a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;
+  align-items:center;justify-content:center;padding:0;transition:.2s}
+.socials a svg{width:17px;height:17px;fill:currentColor;display:block}
+.socials a:hover{background:var(--gold-500);color:#3a2a00;transform:translateY(-2px)}
+
+/* social buttons in the top utility bar */
+.topbar-social{display:flex;gap:.35rem;align-items:center;margin-left:.3rem}
+.topbar-social a{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;background:rgba(255,255,255,.12);color:#cddcf3;padding:0;transition:.2s}
+.topbar-social a svg{width:13px;height:13px;fill:currentColor;display:block}
+.topbar-social a:hover{background:var(--gold-500);color:#3a2a00}
 
 /* ---------- Floating actions ---------- */
 .fab{position:fixed;right:18px;bottom:18px;z-index:900;display:flex;flex-direction:column;gap:.6rem}
@@ -448,6 +557,18 @@ section{position:relative}
   .portal{grid-template-columns:1fr}
   .finder-grid{grid-template-columns:repeat(2,1fr)}
   .gallery-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width:1120px){
+  .brand-logo{height:88px}
+  .brand-text b{font-size:1.55rem}
+  .brand-text span{font-size:.85rem}
+  .brand-text em{font-size:.7rem}
+}
+@media (max-width:1000px){
+  .helpline .helpline-item:nth-of-type(2){display:none}
+  .brand-logo{height:74px}
+  .brand-text b{font-size:1.3rem}
+  .brand-text span{font-size:.8rem}
 }
 @media (max-width:860px){
   .navtoggle{display:block}
@@ -487,10 +608,10 @@ section{position:relative}
   .quick{grid-template-columns:repeat(2,1fr)}
   .footer .fcols{grid-template-columns:1fr}
   .gallery-grid{grid-template-columns:1fr}
-  .brand-text b{font-size:1rem}
-  .brand-text span{font-size:.7rem}
+  .brand-text b{font-size:1.12rem}
+  .brand-text span{font-size:.74rem}
   .brand-text em{display:none}
-  .brand-logo{height:46px}
+  .brand-logo{height:58px}
   .footer-logo{height:56px}
   .login-logo{height:62px}
   .helpline .btn{padding:.55rem 1rem;font-size:.8rem}

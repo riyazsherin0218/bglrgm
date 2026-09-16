@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Events | BGLRGM Vocational College</title>
+<meta name="description" content="Events at BGLRGM Institute of Vocational Education &amp; Training — campus events, placement drives, festival greetings and announcements across our Tamil Nadu and Karnataka centres.">
+<link rel="icon" href="../assets/img/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#0b3c8c">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="pagebanner">
+  <div class="wrap">
+    <div class="crumbs"><a href="../index.html">Home</a><span>›</span>Events</div>
+    <h1>Events</h1>
+    <p>Campus events, placement drives, festival greetings and announcements from across our centres.</p>
+  </div>
+</section>
+
+<!-- upcoming strip (hidden when nothing is upcoming) -->
+<section class="sec sec-sm hide" id="upcoming-wrap"><div class="wrap">
+  <div class="notice"><div class="wrap" style="flex-wrap:wrap;padding-left:18px;padding-right:18px">
+    <span class="pill pill-gold">Coming up</span>
+    <span class="small" id="upcoming-list"></span>
+  </div></div>
+</div></section>
+
+<section class="sec"><div class="wrap">
+  <div class="chips" id="event-filter" style="margin-bottom:26px"></div>
+  <div class="grid g3" id="event-cards"></div>
+  <div id="event-empty" class="card center hide">
+    <h3 style="font-size:1.05rem">Nothing posted yet</h3>
+    <p class="small muted" style="margin:.5rem 0 0">Events, greetings and announcements will appear here.</p>
+  </div>
+</div></section>
+
+<section class="sec sec-tint"><div class="wrap">
+  <div class="sec-head"><span class="tagline">News</span><h2>Announcements &amp; Notices</h2>
+    <p class="muted">Admission, examination, scholarship and placement notices from the institution.</p></div>
+  <div class="grid g3" id="news-cards" data-limit="6"></div>
+  <div class="center" style="margin-top:1.6rem">
+    <a class="btn btn-primary" href="news.html">All News &amp; Events</a>
+    <a class="btn btn-outline" href="gallery.html" style="margin-left:.5rem">Photo Gallery</a>
+  </div>
+</div></section>
+
+<section class="sec sec-blue"><div class="wrap center">
+  <h2>Follow us for event updates</h2>
+  <p style="color:#c3d4ee">Greetings, placement drives and centre events are posted on our channels as they happen.</p>
+  <a class="btn btn-gold" href="contact.html">Contact Us</a>
+  <a class="btn btn-ghost-white" href="branches.html" style="margin-left:.5rem">Our Centres</a>
+</div></section>
+
+<div id="site-footer"></div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/demo-data.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var LIST  = (typeof EVENTS !== 'undefined') ? EVENTS : [];
+  var host  = document.getElementById('event-cards');
+  var empty = document.getElementById('event-empty');
+  var chips = document.getElementById('event-filter');
+  var active = '';
+
+  if (!LIST.length) {
+    if (empty) empty.classList.remove('hide');
+    if (chips) chips.classList.add('hide');
+    return;
+  }
+
+  /* ---------- upcoming strip ---------- */
+  var soon = LIST.filter(function (e) { return e.upcoming; });
+  if (soon.length) {
+    document.getElementById('upcoming-wrap').classList.remove('hide');
+    document.getElementById('upcoming-list').innerHTML = soon.map(function (e) {
+      return '<b>' + esc(e.title) + '</b> — ' + esc(e.when);
+    }).join(' &nbsp;·&nbsp; ');
+  }
+
+  /* ---------- category chips ---------- */
+  var cats = [];
+  LIST.forEach(function (e) { if (e.cat && cats.indexOf(e.cat) < 0) cats.push(e.cat); });
+  if (chips) {
+    chips.innerHTML = '<a class="chip on" href="#" data-cat="">All</a>' +
+      cats.map(function (c) { return '<a class="chip" href="#" data-cat="' + esc(c) + '">' + esc(c) + '</a>'; }).join('');
+    chips.addEventListener('click', function (ev) {
+      var a = ev.target.closest('[data-cat]');
+      if (!a) return;
+      ev.preventDefault();
+      active = a.getAttribute('data-cat');
+      chips.querySelectorAll('.chip').forEach(function (c) { c.classList.toggle('on', c === a); });
+      render();
+    });
+  }
+
+  /* ---------- cards ---------- */
+  function render() {
+    var shown = LIST.filter(function (e) { return !active || e.cat === active; });
+    host.innerHTML = shown.map(function (e) {
+      var src = '../assets/img/events/' + e.img;
+      return '<a class="event-card" href="' + src + '" target="_blank" rel="noopener">' +
+        '<span class="event-img"><img src="' + src + '" alt="' + esc(e.title) + '" loading="lazy" ' +
+          'onerror="var f=this.parentNode;f.classList.add(\'noimg\');this.remove()"></span>' +
+        '<span class="event-body">' +
+          '<span class="pill pill-blue">' + esc(e.cat) + '</span>' +
+          '<b>' + esc(e.title) + '</b>' +
+          '<span class="when">' + esc(e.when) + '</span>' +
+          (e.text ? '<span class="txt">' + esc(e.text) + '</span>' : '') +
+        '</span></a>';
+    }).join('');
+  }
+  render();
+});
+</script></body>
+</html>

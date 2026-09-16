@@ -254,6 +254,52 @@
   </div>
 </section>
 
+<!-- ============ UGC GUIDELINES ============ -->
+<section class="sec sec-tint" id="ugc">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tagline">Regulatory Framework</span>
+      <h2>UGC Guidelines for B.Voc.</h2>
+      <p class="muted">Vocational degree programmes in India follow the University Grants Commission's
+         guidelines under the National Skills Qualifications Framework. The official documents are
+         linked below, exactly as published by the UGC.</p>
+    </div>
+
+    <!-- NSQF credit ladder -->
+    <div class="table table-wrap" style="margin-bottom:26px">
+      <table>
+        <thead><tr><th>NSQF level</th><th>Award</th><th>Total credits</th><th>Credit split</th></tr></thead>
+        <tbody id="ugc-levels"></tbody>
+      </table>
+    </div>
+
+    <div class="grid g2" id="ugc-docs"></div>
+
+    <!-- NEP 2020, Chapter 16 -->
+    <div class="sec-head" style="margin:44px auto 1.8rem"><span class="tagline">Policy Basis</span>
+      <h2 style="font-size:1.6rem">NEP 2020 · Chapter 16 — Reimagining Vocational Education</h2>
+      <p class="muted">The UGC's vocational and skill-development guidelines follow Chapter 16 of the
+         National Education Policy 2020, and in particular the three paragraphs below.</p></div>
+    <div class="grid g3" id="nep-paras"></div>
+    <p class="tiny muted center" style="margin-top:1rem">Summarised from NEP 2020, Chapter 16.
+       The full text is in the policy document linked above.</p>
+
+    <div id="ugc-video-wrap" class="hide" style="margin-top:32px">
+      <div class="sec-head" style="margin-bottom:1.6rem"><span class="tagline">Watch</span>
+        <h2 style="font-size:1.5rem">Videos on B.Voc. &amp; Skill-Based Education</h2></div>
+      <div class="grid g3" id="ugc-videos"></div>
+    </div>
+
+    <div class="disclaimer" style="margin-top:1.8rem">
+      The documents above are issued and published by the <strong>University Grants Commission</strong> and are
+      linked here for reference only. BGLRGM Institute of Vocational Education Training (OPC) Private Limited is
+      not the UGC and does not itself award degrees; B.Voc., M.Voc. and other degrees are awarded solely by the
+      respective legally authorised university or institution, as set out in the
+      <a href="legal/recognition-disclosure.html">Recognition &amp; Certification Disclosure</a>.
+    </div>
+  </div>
+</section>
+
 <!-- ============ B.VOC / M.VOC ============ -->
 <section class="sec">
   <div class="wrap">
@@ -390,7 +436,7 @@
         <li>Industry interaction and placement assistance</li>
         <li>Entrepreneurship guidance</li>
       </ul>
-      <a class="btn btn-outline" href="pages/career.html">Career &amp; Placements</a>
+      <a class="btn btn-outline" href="pages/career.html">Placements</a>
       <p class="asterisk-note" style="margin-top:.8rem">Placement assistance does not constitute a guarantee of employment.</p>
     </div>
   </div>
@@ -455,7 +501,7 @@
     <div class="sec-head">
       <span class="tagline">Our Network</span>
       <h2>Our Branches</h2>
-      <p class="muted">Registered office in Chennai, corporate office in Bengaluru and training centres
+      <p class="muted">Registered office in Bengaluru, corporate office in Chennai and training centres
          across northern Tamil Nadu.</p>
     </div>
     <div class="grid g3" id="branch-cards"></div>
@@ -575,6 +621,55 @@ document.addEventListener('DOMContentLoaded', function () {
   if (call) call.href = 'tel:' + SITE.phone.replace(/\s/g, '');
   var wa = document.getElementById('cta-wa');
   if (wa) wa.href = 'https://wa.me/' + SITE.whatsapp;
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  /* --- NSQF credit ladder --- */
+  var lv = document.getElementById('ugc-levels');
+  if (lv && typeof UGC_LEVELS !== 'undefined')
+    lv.innerHTML = UGC_LEVELS.map(function (r) {
+      return '<tr><td><b>' + esc(r.level) + '</b></td><td>' + esc(r.award) + '</td>' +
+             '<td>' + esc(r.credits) + '</td><td class="small muted">' + esc(r.split) + '</td></tr>';
+    }).join('');
+
+  /* --- official documents --- */
+  var dh = document.getElementById('ugc-docs');
+  if (dh && typeof UGC_DOCS !== 'undefined')
+    dh.innerHTML = UGC_DOCS.map(function (d) {
+      var href = d.file ? 'assets/docs/ugc/' + d.file : d.url;
+      var host = d.file ? 'bglrgm.com' : 'ugc.gov.in';
+      return '<a class="card doc-card" href="' + href + '" target="_blank" rel="noopener">' +
+        '<div class="doc-ico">PDF</div>' +
+        '<div><h3>' + esc(d.title) + '</h3>' +
+        '<p>' + esc(d.note) + '</p>' +
+        '<span class="more">Open the document</span>' +
+        '<span class="tiny muted" style="display:block;margin-top:.35rem">' +
+          esc(d.year) + ' · opens on ' + host + '</span></div></a>';
+    }).join('');
+
+  /* --- NEP 2020 paragraphs --- */
+  var np = document.getElementById('nep-paras');
+  if (np && typeof NEP_PARAS !== 'undefined')
+    np.innerHTML = NEP_PARAS.map(function (n) {
+      return '<div class="card"><span class="pill pill-blue">' + esc(n.no) + '</span>' +
+        '<h3 style="margin-top:.7rem">' + esc(n.head) + '</h3>' +
+        '<p style="margin:0">' + esc(n.text) + '</p></div>';
+    }).join('');
+
+  /* --- videos (only if any are listed) --- */
+  var vw = document.getElementById('ugc-video-wrap');
+  var vh = document.getElementById('ugc-videos');
+  if (vh && typeof UGC_VIDEOS !== 'undefined' && UGC_VIDEOS.length) {
+    vw.classList.remove('hide');
+    vh.innerHTML = UGC_VIDEOS.map(function (v) {
+      return '<a class="video-card" href="https://www.youtube.com/watch?v=' + encodeURIComponent(v.id) + '" ' +
+        'target="_blank" rel="noopener">' +
+        '<span class="thumb"><img src="https://i.ytimg.com/vi/' + encodeURIComponent(v.id) + '/hqdefault.jpg" ' +
+          'alt="' + esc(v.title) + '" loading="lazy"><span class="play">▶</span></span>' +
+        '<b>' + esc(v.title) + '</b></a>';
+    }).join('');
+  }
 });
 </script>
 </body>

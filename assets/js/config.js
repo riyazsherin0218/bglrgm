@@ -34,8 +34,8 @@ const SITE = {
   phone:       "+91 95003 22006",
   phoneAlt:    "+91 97900 77618",
   whatsapp:    "919500322006",    // digits only, with country code
-  email:       "director.bglrgm@gmail.com",
-  admissionEmail: "admissions.bglrgm@gmail.com",
+  email:       "admissions@bglrgm.com",
+  admissionEmail: "admissions@bglrgm.com",
 
   /* ---------- Offices ---------- */
   registeredOffice: {
@@ -56,11 +56,16 @@ const SITE = {
   },
 
   /* ---------- Social ---------- */
+  /* ---------- Social ----------
+     Put the full address of each page. A channel or page address is better
+     than a single video, because it never goes out of date.
+     Leave a line as "" and that button simply does not appear.          */
   social: {
-    facebook:  "#",
-    instagram: "#",
-    youtube:   "#",
-    linkedin:  "#"
+    youtube:   "https://www.youtube.com/live/yv9H_095se8",
+    facebook:  "",
+    instagram: "",
+    linkedin:  "",
+    x:         ""
   },
 
   /* ---------- Form submission ----------
@@ -69,7 +74,7 @@ const SITE = {
   forms: {
     mode: "both",
     whatsappNumber: "919500322006",
-    mailTo: "director.bglrgm@gmail.com",
+    mailTo: "admissions@bglrgm.com",
     successText: "Thank you. Your details have been prepared — choose WhatsApp or Email to send them to our admission team."
   },
 

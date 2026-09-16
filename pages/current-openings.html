@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Current Openings | BGLRGM Vocational College</title>
+<meta name="description" content="Current job openings at BGLRGM Institute of Vocational Education &amp; Training — trainer, placement, admission and centre operations vacancies across Tamil Nadu and Karnataka.">
+<link rel="icon" href="../assets/img/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#0b3c8c">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="pagebanner">
+  <div class="wrap">
+    <div class="crumbs"><a href="../index.html">Home</a><span>›</span><a href="career.html">Career</a><span>›</span>Current Openings</div>
+    <h1>Current Openings</h1>
+    <p>Join our team. Faculty, trainer and administrative positions across our Tamil Nadu and Karnataka centres are posted here as they open. All positions require a Bachelor's or Master's degree in the relevant discipline.</p>
+  </div>
+</section>
+
+<section class="sec"><div class="wrap">
+
+  <div class="notice" style="margin:0 0 22px;border-radius:var(--radius)"><div class="wrap" style="flex-wrap:wrap;padding-left:18px;padding-right:18px">
+    <span class="pill pill-gold">Eligibility</span>
+    <span class="small">All advertised positions are at degree or postgraduate level. Applications are considered only where the minimum qualification is a Bachelor's or Master's degree in the relevant discipline.</span>
+  </div></div>
+
+  <div class="finder" style="margin-bottom:26px">
+    <div class="finder-grid">
+      <div class="field"><label>Location</label><select id="op-f-loc"></select></div>
+      <div class="field"><label>Department</label><select id="op-f-dept"></select></div>
+      <div class="field"><label>Employment type</label><select id="op-f-type"></select></div>
+      <div class="field"><label>Search</label><input id="op-f-text" placeholder="Role or keyword"></div>
+    </div>
+    <div class="small muted" id="op-count" style="margin-top:.4rem"></div>
+  </div>
+
+  <div id="op-list"></div>
+
+</div></section>
+
+<section class="sec sec-tint"><div class="wrap split" id="apply">
+  <div>
+    <div class="sec-head left" style="margin-bottom:1.2rem"><span class="tagline">How to Apply</span><h2>Applying for a Role</h2></div>
+    <ul class="ticklist">
+      <li>Choose the position in the form and fill in your details</li>
+      <li>Send it by WhatsApp or email — whichever is easier for you</li>
+      <li>Attach your resume to the same WhatsApp chat or email thread</li>
+      <li>Shortlisted candidates are contacted for an interview at the centre</li>
+      <li>Not seeing a role that fits? Choose <b>General Application</b> and we will keep your profile on file</li>
+    </ul>
+    <div class="card" style="margin-top:1.4rem">
+      <h3 style="font-size:1rem;margin-bottom:.5rem">Send your resume directly</h3>
+      <p class="small muted" style="margin-bottom:.6rem">Mention the role name in the subject line.</p>
+      <a href="#" id="op-mail" class="btn btn-outline btn-sm">✉ <span data-site-email></span></a>
+      <a href="#" id="op-wa" class="btn btn-primary btn-sm" target="_blank" rel="noopener">💬 WhatsApp</a>
+    </div>
+  </div>
+
+  <div class="form-box">
+    <h3>Job Application</h3>
+    <form data-form="Job Application">
+      <div class="field"><label>Position Applied For <span class="req">*</span></label>
+        <select name="position" id="op-role" required></select></div>
+      <div class="field"><label>Full Name <span class="req">*</span></label><input name="name" required></div>
+      <div class="form-grid">
+        <div class="field"><label>Mobile <span class="req">*</span></label><input type="tel" name="mobile" required></div>
+        <div class="field"><label>Email</label><input type="email" name="email"></div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label>Highest Qualification</label><input name="qualification"></div>
+        <div class="field"><label>Total Experience</label><input name="experience" placeholder="e.g. 3 years"></div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label>Current / Last Employer</label><input name="employer"></div>
+        <div class="field"><label>Preferred Location</label><select name="preferred" id="op-loc"></select></div>
+      </div>
+      <div class="field"><label>Notice Period / Availability</label>
+        <select name="notice"><option>Immediate</option><option>Within 15 days</option><option>Within 30 days</option><option>More than 30 days</option></select></div>
+      <div class="field"><label>Brief profile / why you are a good fit</label><textarea name="profile"></textarea></div>
+      <div class="field"><label>Resume link (Google Drive / LinkedIn, optional)</label><input name="resume" placeholder="https://"></div>
+      <p class="form-note tiny muted">Please attach your resume to the WhatsApp chat or email that opens after you send this form.</p>
+      <div class="form-actions" style="display:flex;gap:.6rem;flex-wrap:wrap"></div>
+      <div class="formmsg"></div>
+    </form>
+  </div>
+</div></section>
+
+<div id="site-footer"></div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/demo-data.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var JOBS = (typeof OPENINGS !== 'undefined') ? OPENINGS : [];
+  var list  = document.getElementById('op-list');
+  var count = document.getElementById('op-count');
+
+  /* ---------- direct contact buttons ---------- */
+  var m = document.getElementById('op-mail');
+  if (m) m.href = 'mailto:' + SITE.email + '?subject=' + encodeURIComponent('Job Application — ' + SITE.name);
+  var w = document.getElementById('op-wa');
+  if (w) w.href = 'https://wa.me/' + SITE.forms.whatsappNumber +
+    '?text=' + encodeURIComponent('Hello, I would like to apply for a position at ' + SITE.name + '.');
+
+  /* ---------- filters ---------- */
+  function uniq(key) {
+    var out = [];
+    JOBS.forEach(function (j) { if (j[key] && out.indexOf(j[key]) < 0) out.push(j[key]); });
+    return out;
+  }
+  function fill(id, arr, all) {
+    var s = document.getElementById(id);
+    if (!s) return;
+    s.innerHTML = '<option value="">' + all + '</option>' +
+      arr.map(function (v) { return '<option>' + esc(v) + '</option>'; }).join('');
+  }
+  fill('op-f-loc',  uniq('location'), 'All locations');
+  fill('op-f-dept', uniq('dept'),     'All departments');
+  fill('op-f-type', uniq('type'),     'All types');
+
+  /* ---------- position dropdown on the application form ---------- */
+  var role = document.getElementById('op-role');
+  if (role) role.innerHTML =
+    JOBS.filter(function (j) { return j.status !== 'closed'; })
+        .map(function (j) { return '<option>' + esc(j.role) + ' — ' + esc(j.location) + '</option>'; }).join('') +
+    '<option>General Application — no specific role</option>';
+
+  var pref = document.getElementById('op-loc');
+  if (pref && typeof BRANCHES !== 'undefined')
+    pref.innerHTML = '<option value="">Any location</option>' +
+      BRANCHES.map(function (b) { return '<option>' + esc(b.name) + '</option>'; }).join('');
+
+  /* ---------- render ---------- */
+  function li(arr) {
+    return (arr || []).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('');
+  }
+  function row(label, value) {
+    return value ? '<dt>' + esc(label) + '</dt><dd>' + esc(value) + '</dd>' : '';
+  }
+  function card(j, i) {
+    var closed = j.status === 'closed';
+    return '' +
+    '<div class="acc">' +
+      '<button type="button">' +
+        '<span>' +
+          '<b>' + esc(j.role) + '</b>' +
+          '<span class="chips" style="margin-top:.45rem">' +
+            '<span class="pill ' + (closed ? 'pill-red' : 'pill-green') + '">' + (closed ? 'Closed' : 'Open') + '</span>' +
+            (j.location ? '<span class="pill pill-blue">📍 ' + esc(j.location) + '</span>' : '') +
+            (j.type ? '<span class="pill pill-gold">' + esc(j.type) + '</span>' : '') +
+            (j.positions ? '<span class="pill pill-blue">' + esc(j.positions) + ' post' + (j.positions > 1 ? 's' : '') + '</span>' : '') +
+          '</span>' +
+        '</span>' +
+        '<span class="chev">▾</span>' +
+      '</button>' +
+      '<div class="accbody">' +
+        (j.summary ? '<p style="margin:.9rem 0 1rem">' + esc(j.summary) + '</p>' : '') +
+        '<dl class="kv" style="margin-bottom:1rem">' +
+          row('Department', j.dept) +
+          row('Location', j.location) +
+          row('Employment type', j.type) +
+          row('Vacancies', j.positions) +
+          row('Experience', j.experience) +
+          row('Qualification', j.qualification) +
+          row('Remuneration', j.salary) +
+          row('Posted on', j.posted) +
+          row('Apply before', j.lastDate) +
+        '</dl>' +
+        (j.duties && j.duties.length ?
+          '<h4 style="font-size:.95rem;margin-bottom:.5rem">Responsibilities</h4><ul class="ticklist" style="margin-bottom:1rem">' + li(j.duties) + '</ul>' : '') +
+        (j.requirements && j.requirements.length ?
+          '<h4 style="font-size:.95rem;margin-bottom:.5rem">What we are looking for</h4><ul class="ticklist" style="margin-bottom:1.1rem">' + li(j.requirements) + '</ul>' : '') +
+        (closed ? '<p class="small muted">Applications for this position are closed.</p>'
+                : '<a class="btn btn-primary btn-sm" href="#apply" data-apply="' + i + '">Apply for this role</a>') +
+      '</div>' +
+    '</div>';
+  }
+
+  function render() {
+    if (!list) return;
+    var fl = (document.getElementById('op-f-loc')  || {}).value || '';
+    var fd = (document.getElementById('op-f-dept') || {}).value || '';
+    var ft = (document.getElementById('op-f-type') || {}).value || '';
+    var fx = ((document.getElementById('op-f-text') || {}).value || '').toLowerCase().trim();
+
+    var shown = JOBS.filter(function (j) {
+      if (fl && j.location !== fl) return false;
+      if (fd && j.dept !== fd) return false;
+      if (ft && j.type !== ft) return false;
+      if (fx && (j.role + ' ' + j.dept + ' ' + j.summary + ' ' + (j.requirements || []).join(' ')).toLowerCase().indexOf(fx) < 0) return false;
+      return true;
+    });
+
+    if (!JOBS.length) {
+      list.innerHTML = '<div class="card center"><h3 style="font-size:1.05rem">No vacancies at the moment</h3>' +
+        '<p class="small muted" style="margin:.5rem 0 1rem">New openings are posted on this page. You are welcome to send us your profile — we will contact you when a suitable role opens.</p>' +
+        '<a class="btn btn-primary btn-sm" href="#apply">Send a general application</a></div>';
+      if (count) count.textContent = '';
+      return;
+    }
+
+    if (!shown.length) {
+      list.innerHTML = '<div class="card center"><p class="small muted" style="margin:0">No openings match this filter. Clear the filters to see all positions.</p></div>';
+    } else {
+      list.innerHTML = shown.map(function (j) { return card(j, JOBS.indexOf(j)); }).join('');
+    }
+
+    var open = JOBS.filter(function (j) { return j.status !== 'closed'; }).length;
+    if (count) count.textContent = 'Showing ' + shown.length + ' of ' + JOBS.length +
+      ' position' + (JOBS.length > 1 ? 's' : '') + ' · ' + open + ' currently open';
+
+    /* accordions and apply buttons are wired here because these cards are
+       built after main.js has already run */
+    list.querySelectorAll('.acc > button').forEach(function (b) {
+      b.addEventListener('click', function () { b.parentElement.classList.toggle('open'); });
+    });
+    list.querySelectorAll('[data-apply]').forEach(function (a) {
+      a.addEventListener('click', function () {
+        var j = JOBS[+a.getAttribute('data-apply')];
+        if (role && j) {
+          var want = j.role + ' — ' + j.location;
+          Array.prototype.slice.call(role.options).forEach(function (o) {
+            if (o.text === want) role.value = o.value || o.text;
+          });
+        }
+      });
+    });
+  }
+
+  ['op-f-loc', 'op-f-dept', 'op-f-type'].forEach(function (id) {
+    var e = document.getElementById(id);
+    if (e) e.addEventListener('change', render);
+  });
+  var tx = document.getElementById('op-f-text');
+  if (tx) tx.addEventListener('input', render);
+
+  render();
+
+  /* deep link: current-openings.html?dept=Academics%20%2F%20Faculty (Career menu) */
+  var qd = param('dept');
+  if (qd) {
+    var sel = document.getElementById('op-f-dept');
+    if (sel) {
+      var match = Array.prototype.slice.call(sel.options).filter(function (o) {
+        return o.value && o.value.toLowerCase().indexOf(qd.toLowerCase()) > -1;
+      })[0];
+      if (match) { sel.value = match.value; render(); }
+    }
+  }
+
+  /* deep link: current-openings.html?role=Placement%20Officer */
+  var q = param('role');
+  if (q) {
+    var hit = JOBS.filter(function (j) { return j.role.toLowerCase().indexOf(q.toLowerCase()) > -1; })[0];
+    if (hit) {
+      var idx = JOBS.indexOf(hit);
+      var btn = list.querySelector('[data-apply="' + idx + '"]');
+      if (btn) btn.closest('.acc').classList.add('open');
+    }
+  }
+});
+</script></body>
+</html>

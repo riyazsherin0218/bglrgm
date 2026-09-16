@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Our Branches | Chennai, Chengalpattu, Cheyyar, Villupuram, Tindivanam & Bengaluru</title>
-<meta name="description" content="BGLRGM branches and offices — Chennai head office, Bengaluru corporate office and training centres at Chengalpattu, Cheyyar, Villupuram and Tindivanam.">
+<meta name="description" content="BGLRGM branches and offices — registered office in Bengaluru, corporate office in Chennai and training centres at Chengalpattu, Cheyyar, Villupuram and Tindivanam.">
 <link rel="icon" href="../assets/img/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
@@ -19,7 +19,7 @@
   <div class="wrap">
     <div class="crumbs"><a href="../index.html">Home</a><span>›</span>Branches</div>
     <h1>Our Branches</h1>
-    <p>Registered office in Chennai, corporate office in Bengaluru and training centres across northern Tamil Nadu.</p>
+    <p>Registered office in Bengaluru, corporate office in Chennai and training centres across northern Tamil Nadu.</p>
   </div>
 </section>
 
@@ -68,16 +68,38 @@
 <script src="../assets/js/main.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded',function(){
+  /* right-hand panel: centre in-charge photo, designation, qualification, contact */
+  var incharge=function(x){
+    var i=x.incharge;
+    if(!i || !i.name) return '';
+    var photo = i.photo ? '../assets/img/staff/'+i.photo : '../assets/img/staff-placeholder.svg';
+    return '<aside class="branch-incharge">'+
+      '<div class="ic-head">Centre In-charge</div>'+
+      '<img src="'+photo+'" alt="'+esc(i.name)+'" loading="lazy" '+
+        'onerror="this.onerror=null;this.src=\'../assets/img/staff-placeholder.svg\'">'+
+      '<b>'+esc(i.name)+'</b>'+
+      (i.designation ? '<span class="role">'+esc(i.designation)+'</span>' : '')+
+      (i.qualification ? '<span class="qual">'+esc(i.qualification)+'</span>' : '')+
+      (i.phone ? '<a href="tel:'+i.phone.replace(/\s/g,'')+'">☎ '+esc(i.phone)+'</a>' : '')+
+      (i.email ? '<a href="mailto:'+i.email+'">✉ '+esc(i.email)+'</a>' : '')+
+    '</aside>';
+  };
+
   var b=function(list,host){
     var el=document.getElementById(host); if(!el) return;
     el.innerHTML=list.map(function(x){
-      return '<div class="branch"><span class="type">'+x.type+' · '+x.state+'</span>'+
-      '<h4>'+x.name+'</h4><p class="small muted" style="margin:.1rem 0 .5rem">'+x.unit+'</p>'+
-      '<address>'+x.address+'</address>'+
-      '<div class="ph">☎ <a href="tel:'+x.phone.replace(/\s/g,'')+'">'+x.phone+'</a></div>'+
-      '<p class="small muted" style="margin:.6rem 0 .8rem"><b>Programmes:</b> '+x.programmes+'</p>'+
-      '<a class="btn btn-sm btn-outline" href="contact.html">Enquire</a> '+
-      '<a class="btn btn-sm btn-primary" href="apply.html">Apply</a></div>';
+      return '<div class="branch"><span class="type">'+esc(x.type)+' · '+esc(x.state)+'</span>'+
+      '<h4>'+esc(x.name)+'</h4><p class="small muted" style="margin:.1rem 0 .9rem">'+esc(x.unit)+'</p>'+
+      '<div class="branch-split">'+
+        '<div class="b-left">'+
+          '<address>'+esc(x.address)+'</address>'+
+          '<div class="ph">☎ <a href="tel:'+x.phone.replace(/\s/g,'')+'">'+esc(x.phone)+'</a></div>'+
+          '<p class="small muted" style="margin:.6rem 0 .9rem"><b>Programmes:</b> '+esc(x.programmes)+'</p>'+
+          '<a class="btn btn-sm btn-outline" href="contact.html">Enquire</a> '+
+          '<a class="btn btn-sm btn-primary" href="apply.html">Apply</a>'+
+        '</div>'+
+        incharge(x)+
+      '</div></div>';
     }).join('');
   };
   b(BRANCHES,'pane-all');

@@ -14,7 +14,7 @@ const DEMO_LOGINS = {
   industry: { user: "ITP0093",    pass: "industry123", name: "Sree Multispeciality Hospital", extra: "Industry Training Partner — Healthcare" },
   branch:   { user: "BR006",      pass: "branch123",   name: "Tindivanam Branch", extra: "Branch / Centre Administrator" },
   employer: { user: "EMP0451",    pass: "employer123", name: "Southline Logistics Pvt Ltd", extra: "Registered Employer" },
-  admin:    { user: "ADMIN01",    pass: "admin123",    name: "System Administrator", extra: "Head Office — Bengaluru" }
+  admin:    { user: "ADMIN01",    pass: "admin123",    name: "System Administrator", extra: "Registered Office — Bengaluru" }
 };
 
 const ROLE_LABELS = {
@@ -28,7 +28,7 @@ const DEMO_STUDENT = {
   enrollment:"BG2026001", name:"Priya Raman", dob:"2004-06-14",
   programme:"Diploma in Medical Laboratory Technology",
   level:"Diploma", sector:"Paramedical", duration:"2 Years",
-  centre:"Chennai — Head Office", session:"2026–27", semester:"Semester 3",
+  centre:"Chennai — Corporate Office", session:"2026–27", semester:"Semester 3",
   admissionDate:"12 June 2026", status:"Active", attendance:"91%",
   ewyl:true, ojt:"Sree Multispeciality Hospital — Laboratory Department",
   subjects:[
@@ -74,7 +74,7 @@ const DEMO_CERTIFICATES = [
     issued:"14 May 2026", status:"Valid" },
   { cert:"BG/CERT/2026/000452", enrollment:"BG2025097", name:"Vignesh Kumar M",
     programme:"Diploma in Hotel Management", level:"Diploma",
-    centre:"Chennai — Head Office", year:"2026", result:"PASS — Distinction",
+    centre:"Chennai — Corporate Office", year:"2026", result:"PASS — Distinction",
     issued:"02 June 2026", status:"Valid" }
 ];
 
@@ -90,7 +90,7 @@ const DEMO_EXPERIENCE = [
 /* ---------- Admissions ---------- */
 const DEMO_ADMISSIONS = [
   { app:"APP/2026/004417", name:"Priya Raman", programme:"Diploma in Medical Laboratory Technology",
-    centre:"Chennai — Head Office", applied:"02 June 2026", stage:"Admission Confirmed",
+    centre:"Chennai — Corporate Office", applied:"02 June 2026", stage:"Admission Confirmed",
     enrollment:"BG2026001", status:"Confirmed" },
   { app:"APP/2026/005190", name:"Sathish Kumar R", programme:"Certificate in Electrical Technician",
     centre:"Tindivanam Branch", applied:"18 August 2026", stage:"Document Verification",
@@ -110,7 +110,7 @@ const DEMO_PAYMENTS = [
 /* ---------- Staff / members / partners ---------- */
 const DEMO_STAFF = [
   { id:"STF1042", name:"R. Karthikeyan", designation:"Senior Faculty — Paramedical Sciences",
-    centre:"Chennai — Head Office", since:"June 2025", status:"Active" },
+    centre:"Chennai — Corporate Office", since:"June 2025", status:"Active" },
   { id:"STF1108", name:"J. Meenakshi", designation:"Training Coordinator — Hospitality",
     centre:"Villupuram Branch", since:"January 2026", status:"Active" }
 ];
