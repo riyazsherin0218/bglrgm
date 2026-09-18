@@ -504,3 +504,123 @@ const NEP_PARAS = [
 
 /* Leave empty to hide the "Watch" block. Example: { id:"dQw4w9WgXcQ", title:"What is B.Voc.?" } */
 const UGC_VIDEOS = [];
+
+
+/* ==========================================================================
+   COLLABORATIONS & PARTNERS  —  pages/collaborations.html
+   --------------------------------------------------------------------------
+   EVERYTHING ON THE PARTNERS PAGE IS EDITED HERE. Nothing is hard-coded into
+   the page itself — the logo strip at the top, the nine category cards and
+   every partner section are all built from the two lists below. Edit this
+   file, save, refresh the page. No other file needs changing.
+
+     TO ADD A PARTNER      copy a block in PARTNERS, change the details,
+                           set cat to one of the COLLAB_CATS ids.
+     TO REMOVE A PARTNER   delete its block (or the whole line).
+     TO REORDER            move the blocks — they appear in this order.
+     TO ADD A LOGO         put the image in assets/img/partners/ and put the
+                           file name in logo:. Square or wide, PNG or SVG,
+                           transparent background works best.
+     TO ADD A CATEGORY     add an entry to COLLAB_CATS. A card and a matching
+                           section are created automatically.
+     TO RENAME A CATEGORY  change its title/text in COLLAB_CATS. Do NOT change
+                           an existing id — the partners' cat values point to
+                           it, and so does the card's link.
+   --------------------------------------------------------------------------
+   COLLAB_CATS  the nine cards at the top of the page. Each one links down to
+                a section with the same id. Do not change an id without
+                changing the matching section id in collaborations.html.
+   PARTNERS     every published partner. ONE entry per organisation.
+       cat      which section it appears in — use an id from COLLAB_CATS
+       name     the organisation exactly as it should be printed
+       logo     a file in assets/img/partners/ (e.g. "rg-academy.png").
+                Leave "" and the card shows the organisation's initials
+                instead of a broken image.
+       location city / state
+       scope    what the arrangement covers
+       url      optional — the partner's own website. When set, the logo and
+                the name become links that open that site in a new tab.
+       since    optional — the year the arrangement began
+       note     optional — one extra line, e.g. an approval reference
+   A category with no entries shows a short "published once active" line
+   rather than an empty gap, so the page never looks broken.
+   ONLY list an organisation here once the arrangement is active and the
+   partner has agreed to be named.
+   ========================================================================== */
+
+const COLLAB_CATS = [
+  { id:"academic",      ico:"🎓", title:"Academic Collaborations",
+    text:"Arrangements with academic institutions for curriculum, delivery, assessment or certification of specified programmes." },
+  { id:"university",    ico:"🏛️", title:"University Collaborations",
+    text:"Arrangements under which a legally authorised university admits, examines and awards a degree, with BGLRGM in a defined supporting role." },
+  { id:"national",      ico:"🇮🇳", title:"National Collaborations",
+    text:"Collaborations with organisations and skill bodies operating across India for curriculum, assessment or training delivery." },
+  { id:"international", ico:"🌐", title:"International Collaborations",
+    text:"Cross-border arrangements for curriculum, faculty exchange, certification or placement, where established." },
+  { id:"industry",      ico:"🏭", title:"Industry Collaborations",
+    text:"Employer arrangements for training, internship, OJT, Earn While You Learn and recruitment." },
+  { id:"vtp",           ico:"🏫", title:"Vocational Training Partners",
+    text:"Approved institutions and centres delivering BGLRGM programmes in their own locality." },
+  { id:"ojt",           ico:"🏥", title:"Internship / OJT Partners",
+    text:"Organisations providing supervised workplace training places to our learners." },
+  { id:"placement",     ico:"💼", title:"Placement Partners",
+    text:"Employers who recruit from BGLRGM programmes." }
+];
+
+const PARTNERS = [
+  /* ---------- Academic skill partners ---------- */
+  { cat:"academic", name:"Sikkim Sardar Patel University", logo:"",
+    url:"https://www.spusikkim.edu.in/",
+    location:"Namchi, South Sikkim",
+    scope:"Academic skill partner",
+    since:"", note:"" },
+
+  { cat:"academic", name:"Swaminarayan University — Faculty of Skill & Vocational", logo:"",
+    url:"https://skill.swaminarayanuniversity.org/",
+    location:"Kalol, Gujarat",
+    scope:"Academic skill partner",
+    since:"", note:"" },
+
+  /* Vocational training partners — the Dr. RG Academy centre network.
+     Addresses are kept in the BRANCHES array above; keep the two in step. */
+  { cat:"vtp", name:"Dr. RG Academy — Chennai", logo:"", url:"",
+    location:"West Tambaram, Chennai, Tamil Nadu",
+    scope:"All Certificate, Diploma, Advanced Diploma, Skill Development, B.Voc.* & M.Voc.* programmes",
+    since:"", note:"BGLRGM Study & Training Centre" },
+
+  { cat:"vtp", name:"Dr. RG Academy — Chengalpattu", logo:"", url:"",
+    location:"Anna Nagar, Chengalpattu, Tamil Nadu",
+    scope:"Healthcare, paramedical, hospitality, IT and skill development programmes",
+    since:"", note:"" },
+
+  { cat:"vtp", name:"Dr. RG Academy — Cheyyar", logo:"", url:"",
+    location:"Mandi Street, Cheyyar, Tamil Nadu",
+    scope:"Certificate, diploma and short-term vocational programmes",
+    since:"", note:"" },
+
+  { cat:"vtp", name:"Dr. RG Academy — Villupuram", logo:"", url:"",
+    location:"Raja Rajeshwari Nagar, Villupuram, Tamil Nadu",
+    scope:"Healthcare, hospital administration, retail and computer applications",
+    since:"", note:"" },
+
+  { cat:"vtp", name:"Dr. RG Academy — Tindivanam", logo:"", url:"",
+    location:"Perumal Kovil Street, Tindivanam, Tamil Nadu",
+    scope:"Certificate, diploma, skill development and Earn While You Learn programmes",
+    since:"", note:"" }
+
+  /* Add academic, university, national, international, industry, OJT and
+     placement partners here as each arrangement goes live, for example:
+
+  ,{ cat:"university", name:"Example State University", logo:"example-university.png",
+     url:"https://www.example-university.ac.in",
+     location:"Chennai, Tamil Nadu",
+     scope:"Awards the degree; admits, examines and certifies learners",
+     since:"2026", note:"" }
+
+  ,{ cat:"industry", name:"Example Hospital Pvt Ltd", logo:"example-hospital.png",
+     url:"https://www.example-hospital.com",
+     location:"Chennai, Tamil Nadu",
+     scope:"Internship, OJT and Earn While You Learn — Healthcare",
+     since:"2026", note:"" }
+  */
+];

@@ -23,6 +23,20 @@
   </div>
 </section>
 
+<!-- ===== PARTNER / COLLABORATION LOGO STRIP — first thing on the page ===== -->
+<!-- Built from PARTNERS in assets/js/data.js. A partner with a url is clickable. -->
+<section class="sec" id="network"><div class="wrap">
+  <div class="sec-head"><span class="tagline">Our Network</span>
+    <h2>Partners &amp; Collaborations</h2>
+    <p class="muted">Institutions, universities and employers we work with. Select a name to open that
+       organisation's own website.</p></div>
+  <div class="orgwall" id="org-wall"></div>
+  <p class="center small muted" id="org-wall-note" style="margin-top:1.4rem"></p>
+  <p class="center tiny muted" style="margin-top:.6rem">We work with
+    <span id="sector-list"></span>.</p>
+</div></section>
+
+
 <section class="sec"><div class="wrap">
   <div class="disclaimer" style="margin-top:0"><strong>How we describe a collaboration.</strong> Each relevant
     academic programme page identifies the awarding institution, the certification authority, the nature of
@@ -30,17 +44,9 @@
     applicable. Claims are programme-specific and supported by current documentation, which prospective
     learners may ask to see before paying a fee.</div>
 
-  <div class="grid g3" style="margin-top:2rem">
-    <div id="academic"><div class="card"><div class="card-ico">🎓</div><h3>Academic Collaborations</h3><p style="margin:0">Arrangements with academic institutions for curriculum, delivery, assessment or certification of specified programmes.</p></div></div>
-    <div class="card"><div class="card-ico">🏛️</div><h3>University Collaborations</h3><p style="margin:0">Arrangements under which a legally authorised university admits, examines and awards a degree, with BGLRGM in a defined supporting role.</p></div>
-    <div id="national"><div class="card"><div class="card-ico">🇮🇳</div><h3>National Collaborations</h3><p style="margin:0">Collaborations with organisations and skill bodies operating across India for curriculum, assessment or training delivery.</p></div></div>
-    <div id="international"><div class="card"><div class="card-ico">🌐</div><h3>International Collaborations</h3><p style="margin:0">Cross-border arrangements for curriculum, faculty exchange, certification or placement, where established.</p></div></div>
-    <div class="card"><div class="card-ico">🏭</div><h3>Industry Collaborations</h3><p style="margin:0">Employer arrangements for training, internship, OJT, Earn While You Learn and recruitment.</p></div>
-    <div class="card"><div class="card-ico">🏫</div><h3>Vocational Training Partners</h3><p style="margin:0">Approved institutions and centres delivering BGLRGM programmes in their own locality.</p></div>
-    <div id="ojt"><div class="card"><div class="card-ico">🏥</div><h3>Internship / OJT Partners</h3><p style="margin:0">Organisations providing supervised workplace training places to our learners.</p></div></div>
-    <div id="placement"><div class="card"><div class="card-ico">💼</div><h3>Placement Partners</h3><p style="margin:0">Employers who recruit from BGLRGM programmes.</p></div></div>
-    <div class="card"><div class="card-ico">🤝</div><h3>Become a Partner</h3><p style="margin:0">Institutions and employers can apply to join the network at any time.</p></div>
-  </div>
+  <!-- The nine cards are built from COLLAB_CATS in assets/js/data.js and each
+       one links to its section further down this page. -->
+  <div class="grid g3" style="margin-top:2rem" id="collab-cards"></div>
 
   <div class="center" style="margin-top:2.4rem">
     <a class="btn btn-primary" href="become-partner.html">Become a Training Partner</a>
@@ -65,12 +71,10 @@
      <a href="../legal/recognition-disclosure.html">Recognition &amp; Certification Disclosure</a>.</p>
 </div></section>
 
-<section class="sec"><div class="wrap">
-  <div class="sec-head"><span class="tagline">Our Network</span><h2>Partner Categories</h2></div>
-  <div class="logos" id="logo-wall"></div>
-  <p class="center small muted" style="margin-top:1rem">Partner names and logos are published with the
-     partner's consent once the arrangement is active.</p>
-</div></section>
+
+<!-- ===================== PARTNER LISTS, ONE PER CATEGORY ===================== -->
+<!-- Each section is filled from the PARTNERS array in assets/js/data.js. -->
+<div id="collab-sections"></div>
 
 <div id="site-footer"></div>
 
@@ -79,5 +83,91 @@
 <script src="../assets/js/demo-data.js"></script>
 <script src="../assets/js/layout.js"></script>
 <script src="../assets/js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  if (typeof COLLAB_CATS === 'undefined' || typeof PARTNERS === 'undefined') return;
+
+  function initials(name) {
+    return name.replace(/[^A-Za-z ]/g, ' ').trim().split(/\s+/)
+               .slice(0, 2).map(function (w) { return w.charAt(0).toUpperCase(); }).join('');
+  }
+
+
+  /* --- the logo strip at the top of the page --- */
+  var wall = document.getElementById('org-wall');
+  if (wall) {
+    var published = PARTNERS.filter(function (p) { return p.name; });
+    wall.innerHTML = published.map(function (p) {
+      var inner = (p.logo
+          ? '<img src="../assets/img/partners/' + esc(p.logo) + '" alt="' + esc(p.name) + '" loading="lazy" ' +
+            'onerror="this.onerror=null;this.parentNode.classList.add(\'noimg\');this.parentNode.textContent=\'' + esc(initials(p.name)) + '\'">'
+          : esc(initials(p.name)));
+      var ring = '<span class="org-ring' + (p.logo ? '' : ' noimg') + '">' + inner + '</span>';
+      var body = ring + '<b>' + esc(p.name) + '</b>';
+      return p.url
+        ? '<a class="org" href="' + esc(p.url) + '" target="_blank" rel="noopener">' + body +
+          '<span class="tiny muted">Visit website</span></a>'
+        : '<div class="org">' + body + '</div>';
+    }).join('');
+    var note = document.getElementById('org-wall-note');
+    if (note) note.textContent = published.length
+      ? 'Partner names and logos are published with the partner\'s consent once the arrangement is active.'
+      : 'Partner names and logos are published here with the partner\'s consent once an arrangement is active.';
+  }
+  var sect = document.getElementById('sector-list');
+  if (sect && typeof PARTNER_TYPES !== 'undefined') sect.textContent = PARTNER_TYPES.join(' · ');
+
+  /* --- the nine category cards --- */
+  var cards = document.getElementById('collab-cards');
+  if (cards) {
+    cards.innerHTML = COLLAB_CATS.map(function (c) {
+      var n = PARTNERS.filter(function (p) { return p.cat === c.id; }).length;
+      return '<a class="card collab-card" href="#sec-' + c.id + '">' +
+        '<div class="card-ico">' + c.ico + '</div>' +
+        '<h3>' + esc(c.title) + '</h3>' +
+        '<p>' + esc(c.text) + '</p>' +
+        '<span class="more">' + (n ? n + (n === 1 ? ' partner listed' : ' partners listed') : 'View section') + '</span>' +
+        '</a>';
+    }).join('') +
+    '<a class="card collab-card" href="become-partner.html">' +
+      '<div class="card-ico">\uD83E\uDD1D</div><h3>Become a Partner</h3>' +
+      '<p>Institutions and employers can apply to join the network at any time.</p>' +
+      '<span class="more">Apply to partner</span></a>';
+  }
+
+  /* --- one section per category --- */
+
+  function partnerCard(p) {
+    var badge = p.logo
+      ? '<span class="p-logo"><img src="../assets/img/partners/' + esc(p.logo) + '" alt="' + esc(p.name) + '" loading="lazy" ' +
+        'onerror="this.onerror=null;this.parentNode.classList.add(\'noimg\');this.parentNode.textContent=\'' + esc(initials(p.name)) + '\'"></span>'
+      : '<span class="p-logo noimg">' + esc(initials(p.name)) + '</span>';
+    return '<div class="card partner-card">' + badge +
+      '<div><h3>' + esc(p.name) + '</h3>' +
+      (p.location ? '<span class="role">' + esc(p.location) + '</span>' : '') +
+      (p.scope ? '<p class="small">' + esc(p.scope) + '</p>' : '') +
+      (p.since ? '<p class="tiny muted" style="margin:0">Partner since ' + esc(p.since) + '</p>' : '') +
+      (p.note ? '<p class="tiny muted" style="margin:0">' + esc(p.note) + '</p>' : '') +
+      '</div></div>';
+  }
+
+  var host = document.getElementById('collab-sections');
+  if (!host) return;
+  host.innerHTML = COLLAB_CATS.map(function (c, i) {
+    var list = PARTNERS.filter(function (p) { return p.cat === c.id; });
+    var body = list.length
+      ? '<div class="grid g3">' + list.map(partnerCard).join('') + '</div>'
+      : '<p class="center muted" style="margin:0">No organisation is published in this category yet. ' +
+        'Partner names and logos appear here once the arrangement is active and the partner has ' +
+        'agreed to be named. <a href="become-partner.html">Apply to partner</a>.</p>';
+    return '<section class="sec' + (i % 2 ? ' sec-tint' : '') + '" id="sec-' + c.id + '"><div class="wrap">' +
+      '<div class="sec-head"><span class="tagline">' + c.ico + ' Partner Network</span>' +
+      '<h2 style="font-size:1.6rem">' + esc(c.title) + '</h2>' +
+      '<p class="muted">' + esc(c.text) + '</p></div>' + body +
+      '</div></section>';
+  }).join('');
+});
+</script>
+
 </body>
 </html>
