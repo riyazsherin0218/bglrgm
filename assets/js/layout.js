@@ -143,7 +143,9 @@ const NAV = [
     { l: "Admin Login", h: "pages/login.html?role=admin" }
   ]},
 
-  { label: "Branches", href: "pages/branches.html" },
+  /* The Branches menu builds itself from the BRANCHES list in data.js, then
+     adds Our Team at the bottom. Add a centre there and it appears here too. */
+  { label: "Branches", href: "pages/branches.html", subFrom: "branches" },
   { label: "Events", href: "pages/events.html" },
   { label: "Gallery", href: "pages/gallery.html" },
   { label: "Contact", href: "pages/contact.html" }
@@ -192,6 +194,21 @@ function renderHeader() {
 
   var navHtml = NAV.map(function (item) {
     var subs = '';
+
+    /* Branches: one line per centre, then Our Team */
+    if (item.subFrom === 'branches') {
+      var list = [{ head: 'Our centres' }, { l: 'All Branches & Centres', h: 'pages/branches.html' }];
+      if (typeof BRANCHES !== 'undefined') {
+        BRANCHES.forEach(function (b) {
+          list.push({ l: b.name, h: 'pages/branches.html' });
+        });
+      }
+      list.push({ head: 'People' });
+      list.push({ l: 'Our Team', h: 'pages/our-team.html' });
+      list.push({ l: 'Leadership & Governance', h: 'pages/leadership.html' });
+      item = { label: item.label, href: item.href, sub: list };
+    }
+
     if (item.sub) {
       subs = '<ul class="subnav">' + item.sub.map(function (s) {
         return s.head ? '<li class="sub-head">' + s.head + '</li>'
@@ -331,6 +348,7 @@ function renderFooter() {
         '<a href="' + P('pages/about.html') + '">About BGLRGM</a>' +
         '<a href="' + P('pages/leadership.html') + '">Leadership</a>' +
         '<a href="' + P('pages/branches.html') + '">Our Branches</a>' +
+        '<a href="' + P('pages/our-team.html') + '">Our Team</a>' +
         '<a href="' + P('pages/gallery.html') + '">Gallery</a>' +
         '<a href="' + P('pages/events.html') + '">Events</a>' +
         '<a href="' + P('pages/news.html') + '">News & Events</a>' +

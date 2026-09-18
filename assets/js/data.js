@@ -22,8 +22,8 @@ const BRANCHES = [
     phone:"+91 95003 22006",
     map:"https://www.google.com/maps?q=West+Tambaram+Mudichur+Road+Chennai+600045&output=embed",
     programmes:"All Certificate, Diploma, Advanced Diploma, Skill Development, B.Voc.* & M.Voc.* programmes" ,
-    incharge:{ name:"Ms. Charumathi P", designation:"Nursing Tutor", qualification:"B.Sc. (Nursing)",
-               phone:"+91 82202 88985", email:"", photo:"chennai.jpg" }},
+    incharge:{ name:"Ms. Sharumathi", designation:"Chennai Head", qualification:"",
+               phone:"+91 82202 88985", email:"sharumathi@bglrgm.com", photo:"chennai.jpg" }},
 
   { name:"Bengaluru — Registered Office", state:"Karnataka", type:"Registered Office",
     unit:"BGLRGM Institute of Vocational Education & Training",
@@ -32,7 +32,7 @@ const BRANCHES = [
     map:"https://www.google.com/maps?q=Padmanabhanagar+Bengaluru+560070&output=embed",
     programmes:"Administration, partner coordination, examinations and certification" ,
     incharge:{ name:"Mr. Manoj", designation:"Centre Coordinator", qualification:"",
-               phone:"+91 73380 17339", email:"", photo:"bengaluru.jpg" }},
+               phone:"+91 73380 17339", email:"manoj@bglrgm.com", photo:"bengaluru.jpg" }},
 
   { name:"Chengalpattu Branch", state:"Tamil Nadu", type:"Branch / Training Centre",
     unit:"Dr. RG Academy",
@@ -41,7 +41,7 @@ const BRANCHES = [
     map:"https://www.google.com/maps?q=Anna+Nagar+Chengalpattu+603001&output=embed",
     programmes:"Healthcare, paramedical, hospitality, IT and skill development programmes" ,
     incharge:{ name:"Ms. Sowmiya", designation:"Centre Coordinator", qualification:"",
-               phone:"+91 90030 68930", email:"", photo:"chengalpattu.jpg" }},
+               phone:"+91 90030 68930", email:"sowmiya@bglrgm.com", photo:"chengalpattu.jpg" }},
 
   { name:"Cheyyar Branch", state:"Tamil Nadu", type:"Branch / Training Centre",
     unit:"Dr. RG Academy",
@@ -50,7 +50,7 @@ const BRANCHES = [
     map:"https://www.google.com/maps?q=Mandi+Street+Cheyyar+604407&output=embed",
     programmes:"Certificate, diploma and short-term vocational programmes" ,
     incharge:{ name:"Mrs. Thilagavathi", designation:"Centre Coordinator", qualification:"",
-               phone:"+91 95001 46585", email:"", photo:"cheyyar.jpg" }},
+               phone:"+91 95001 46585", email:"thilagavathi@bglrgm.com", photo:"cheyyar.jpg" }},
 
   { name:"Villupuram Branch", state:"Tamil Nadu", type:"Branch / Training Centre",
     unit:"Dr. RG Academy",
@@ -59,7 +59,7 @@ const BRANCHES = [
     map:"https://www.google.com/maps?q=Raja+Rajeshwari+Nagar+Villupuram+605602&output=embed",
     programmes:"Healthcare, hospital administration, retail and computer applications" ,
     incharge:{ name:"Mr. Pushparaj", designation:"Centre Coordinator", qualification:"",
-               phone:"+91 90035 59761", email:"", photo:"villupuram.jpg" }},
+               phone:"+91 90035 59761", email:"pushparaj@bglrgm.com", photo:"villupuram.jpg" }},
 
   { name:"Tindivanam Branch", state:"Tamil Nadu", type:"Branch / Training Centre",
     unit:"Dr. RG Academy",
@@ -68,7 +68,7 @@ const BRANCHES = [
     map:"https://www.google.com/maps?q=Perumal+Kovil+Street+Tindivanam+604001&output=embed",
     programmes:"Certificate, diploma, skill development and Earn While You Learn programmes" ,
     incharge:{ name:"Mrs. Shobana", designation:"Centre Coordinator", qualification:"",
-               phone:"+91 73975 06070", email:"", photo:"tindivanam.jpg" }}
+               phone:"+91 73975 06070", email:"shobana@bglrgm.com", photo:"tindivanam.jpg" }}
 ];
 
 /* ---------- Programme categories ---------- */
@@ -623,4 +623,79 @@ const PARTNERS = [
      scope:"Internship, OJT and Earn While You Learn — Healthcare",
      since:"2026", note:"" }
   */
+];
+
+/* ==========================================================================
+   OUR TEAM  —  pages/our-team.html
+   --------------------------------------------------------------------------
+   One entry per staff member, shown in the order listed here.
+       name           printed as-is, e.g. "Ms. Charumathi P"
+       designation    their role, e.g. "Nursing Tutor"
+       qualification  e.g. "B.Sc. (Nursing)"
+       branch         optional — the centre they are based at, e.g.
+                      "Villupuram Branch". Shown as a small line on the card.
+       email          optional — shown as a clickable link on the card.
+                      House style is firstname@bglrgm.com.
+       photo          a file in assets/img/staff/  (square, 600x600 or larger).
+                      Leave "" and the card shows the neutral placeholder.
+   A slot with an empty name shows a "To be updated" card, so the page keeps
+   its full layout while you fill the details in.
+   TO ADD SOMEONE     copy a block and put it where they should appear.
+   TO REMOVE SOMEONE  delete their block.
+   ========================================================================== */
+
+const STAFF = [
+  /* Leadership and head office — the same people as pages/leadership.html.
+     Keep the two in step if a role changes. */
+  { name:"Prof. (Dr.) Govindh Ramasamy", designation:"Founder cum Foreign Affairs", qualification:"",
+    branch:"Institution", email:"govindh@bglrgm.com", photo:"founder.jpg" },
+  { name:"Mr. Nareen Ramasamy G", designation:"Chief Executive Officer", qualification:"",
+    branch:"Institution", email:"nareen@bglrgm.com", photo:"ceo.jpg" },
+  { name:"Dr. Latha Govindh", designation:"Director", qualification:"",
+    branch:"Institution", email:"latha@bglrgm.com", photo:"director.jpg" },
+  { name:"Mr. Venkatesan", designation:"Chief Administrative Officer", qualification:"",
+    branch:"Chennai Head Office", email:"venkatesan@bglrgm.com", photo:"admin.jpg" },
+  { name:"Mr. Vignesh E", designation:"Admissions Coordinator", qualification:"",
+    branch:"Chennai Head Office", email:"vignesh@bglrgm.com", photo:"admissions.jpg" },
+  { name:"Mr. Rakshith", designation:"Examination Controller", qualification:"",
+    branch:"Chennai Head Office", email:"rakshith@bglrgm.com", photo:"exam.jpg" },
+
+  { name:"Mrs. Bhuvaneswari A", designation:"Assistant Professor", qualification:"",
+    branch:"Villupuram Branch", email:"bhuvaneswari@bglrgm.com", photo:"bhuvaneswari-a.jpg" },
+  { name:"Ms. Sharumathi", designation:"Chennai Head", qualification:"",
+    branch:"Chennai Head Office", email:"sharumathi@bglrgm.com", photo:"chennai.jpg" },
+  { name:"Ms. Karthika S", designation:"Assistant Professor", qualification:"B.Sc. (Nursing)",
+    branch:"Chengalpattu Branch", email:"karthika@bglrgm.com", photo:"karthika-s.jpg" },
+  { name:"Ms. Fathima S", designation:"Assistant Professor", qualification:"B.Sc. (Nursing), MBA, CPC",
+    branch:"Chennai Branch", email:"fathima@bglrgm.com", photo:"fathima-s.jpg" },
+
+  /* Centre coordinators — the same people as the in-charge panels on
+     pages/branches.html. Keep the two in step if a coordinator changes. */
+  { name:"Mr. Manoj", designation:"Centre Coordinator", qualification:"",
+    branch:"Bengaluru — Registered Office", email:"manoj@bglrgm.com", photo:"bengaluru.jpg" },
+  { name:"Ms. Sowmiya", designation:"Centre Coordinator", qualification:"",
+    branch:"Chengalpattu Branch", email:"sowmiya@bglrgm.com", photo:"chengalpattu.jpg" },
+  { name:"Mrs. Thilagavathi", designation:"Centre Coordinator", qualification:"",
+    branch:"Cheyyar Branch", email:"thilagavathi@bglrgm.com", photo:"cheyyar.jpg" },
+  { name:"Mr. Pushparaj", designation:"Centre Coordinator", qualification:"",
+    branch:"Villupuram Branch", email:"pushparaj@bglrgm.com", photo:"villupuram.jpg" },
+  { name:"Mrs. Shobana", designation:"Centre Coordinator", qualification:"",
+    branch:"Tindivanam Branch", email:"shobana@bglrgm.com", photo:"tindivanam.jpg" },
+  { name:"Ms. Shruthi R", designation:"Assistant Professor", qualification:"",
+    branch:"Bengaluru — Registered Office", email:"shruthi@bglrgm.com", photo:"shruthi-r.jpg" },
+  { name:"Ms. Anitha R", designation:"Assistant Professor", qualification:"",
+    branch:"Bengaluru — Registered Office", email:"anitha@bglrgm.com", photo:"anitha-r.jpg" },
+  { name:"Ms. Keerthana R", designation:"Assistant Professor", qualification:"",
+    branch:"Bengaluru — Registered Office", email:"keerthana@bglrgm.com", photo:"keerthana-r.jpg" },
+  { name:"Mrs. S. Savithiri", designation:"Assistant Professor", qualification:"D.T.Ed., B.A., M.Ed. (English)",
+    branch:"Cheyyar Branch", email:"savithiri@bglrgm.com", photo:"savithiri-s.jpg" },
+  { name:"Mrs. S. Kalaiselvi", designation:"Assistant Professor", qualification:"B.Sc., B.Ed. (Mathematics)",
+    branch:"Cheyyar Branch", email:"kalaiselvi@bglrgm.com", photo:"kalaiselvi-s.jpg" },
+  { name:"Ms. Vennila", designation:"Assistant Professor", qualification:"",
+    branch:"Tindivanam Branch", email:"vennila@bglrgm.com", photo:"vennila.jpg" },
+  { name:"Mrs. G. Kavitha", designation:"Assistant Professor", qualification:"B.A., B.Ed.",
+    branch:"Villupuram Branch", email:"kavitha@bglrgm.com", photo:"kavitha-g.jpg" },
+  { name:"Mr. Naveen B", designation:"Education Counsellor", qualification:"BBA",
+    branch:"Villupuram Branch", email:"naveen@bglrgm.com", photo:"naveen-b.jpg" },
+  { name:"", designation:"Assistant Professor", qualification:"", branch:"", email:"", photo:"" }
 ];

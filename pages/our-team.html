@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Our Team | Faculty, Trainers &amp; Administration | BGLRGM</title>
+<meta name="description" content="The faculty, trainers, coordinators and administrative staff of BGLRGM Institute of Vocational Education &amp; Training.">
+<link rel="icon" href="../assets/img/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#0b3c8c">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="pagebanner">
+  <div class="wrap">
+    <div class="crumbs"><a href="../index.html">Home</a><span>&rsaquo;</span>Our Team</div>
+    <h1>Our Team</h1>
+    <p>The faculty, trainers, coordinators and administrative staff behind every programme.</p>
+  </div>
+</section>
+
+<section class="sec"><div class="wrap">
+  <div class="sec-head"><span class="tagline">Faculty &amp; Staff</span>
+    <h2>The People at BGLRGM</h2>
+    <p class="muted">Our programmes are delivered by trainers and coordinators with practical
+       experience in their field, supported by an administrative team across our centres.</p></div>
+
+  <!-- Built from the STAFF list in assets/js/data.js -->
+  <div class="grid g4" id="staff-grid"></div>
+</div></section>
+
+<section class="sec sec-tint"><div class="wrap">
+  <div class="sec-head"><span class="tagline">Join Us</span>
+    <h2 style="font-size:1.6rem">Work With BGLRGM</h2>
+    <p class="muted">We publish degree and postgraduate level vacancies for academic and
+       administrative roles as they open.</p></div>
+  <div class="center">
+    <a class="btn btn-primary" href="current-openings.html">Current Openings</a>
+    <a class="btn btn-outline" href="leadership.html" style="margin-left:.5rem">Leadership &amp; Governance</a>
+    <a class="btn btn-outline" href="branches.html" style="margin-left:.5rem">Our Branches</a>
+  </div>
+</div></section>
+
+<div id="site-footer"></div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/demo-data.js"></script>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var host = document.getElementById('staff-grid');
+  if (!host || typeof STAFF === 'undefined') return;
+
+  host.innerHTML = STAFF.map(function (m) {
+    var named = m.name && m.name.trim();
+    var photo = m.photo ? '../assets/img/staff/' + m.photo
+                        : '../assets/img/staff-placeholder.svg';
+    return '<div class="leader' + (named ? '' : ' leader-empty') + '">' +
+      '<img src="' + photo + '" alt="' + esc(named ? m.name : 'Staff member') + '" loading="lazy" ' +
+        'onerror="this.onerror=null;this.src=\'../assets/img/staff-placeholder.svg\'">' +
+      '<h3>' + esc(named ? m.name : 'To be updated') + '</h3>' +
+      (m.designation ? '<span class="role">' + esc(m.designation) + '</span>' : '') +
+      (m.qualification ? '<p>' + esc(m.qualification) + '</p>' : '') +
+      (m.branch ? '<p class="tiny muted" style="margin:.35rem 0 0">' + esc(m.branch) + '</p>' : '') +
+      (m.email ? '<a class="staff-mail" href="mailto:' + esc(m.email) + '">' + esc(m.email) + '</a>' : '') +
+      '</div>';
+  }).join('');
+});
+</script>
+</body>
+</html>
