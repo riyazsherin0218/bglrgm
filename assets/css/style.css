@@ -93,8 +93,8 @@ table{border-collapse:collapse;width:100%}
    The whole header — utility bar, logo bar and menu — stays at the top of the
    window while the page scrolls. Once the reader scrolls past the first
    90px it shrinks to a slim bar so it does not eat the screen. */
-html{scroll-padding-top:128px}   /* so #anchors do not hide under the sticky header */
-[id]{scroll-margin-top:128px}
+html{scroll-padding-top:252px}   /* so #anchors do not hide under the sticky header */
+[id]{scroll-margin-top:252px}   /* 239px full-size sticky header + breathing room */
 #site-header{position:sticky;top:0;z-index:700;background:#fff}
 #site-header .topbar,
 #site-header .logobar .wrap,
@@ -607,8 +607,8 @@ a.leader:hover h3,a.card:hover h3{color:var(--blue-700)}
   .brand-text span{font-size:.8rem}
 }
 @media (max-width:860px){
-  html{scroll-padding-top:150px}
-  [id]{scroll-margin-top:150px}
+  html{scroll-padding-top:120px}   /* small screens keep the shrinking header */
+  [id]{scroll-margin-top:120px}
   #site-header.compact .brand-logo{height:44px}
   #site-header.compact .brand-text b{font-size:1.06rem}
   #site-header.compact .brand-text span{display:none}
@@ -814,3 +814,77 @@ a.org:hover .org-ring{box-shadow:var(--shadow-md);transform:translateY(-4px);bor
 @media (max-width:860px){  .orgwall{grid-template-columns:repeat(3,1fr)} }
 @media (max-width:520px){  .orgwall{grid-template-columns:repeat(2,1fr);gap:22px 12px}
   .org-ring{width:86px;height:86px} }
+
+/* ==========================================================================
+   HEADER BRAND — make "BGLRGM Vocational College" read first (added Sep 2026)
+   The name is set heavier and slightly larger, and the two lines under it are
+   toned down, so the eye lands on the college name before anything else.
+   ========================================================================== */
+.brand-text b{
+  font-family:var(--font);
+  font-weight:900;
+  font-size:2.78rem;
+  letter-spacing:-.005em;
+  color:var(--brand-red);
+}
+.brand-text span{font-weight:600;color:var(--blue-800);opacity:.92}
+.brand-text em{opacity:.9}
+
+#site-header.compact .brand-text b{font-size:1.46rem;font-weight:900}
+
+.footer .fbrand-text b,.footer .brand-text b{font-weight:800}
+
+@media (max-width:980px){ .brand-text b{font-size:2rem} }
+@media (max-width:620px){ .brand-text b{font-size:1.5rem} }
+
+/* ==========================================================================
+   TOP UTILITY BAR STAYS VISIBLE WHILE SCROLLING          (added Sep 2026)
+   The sticky header used to collapse the blue login/contact bar once the page
+   scrolled. It now stays put, so Student Login, Exams, Results, Certificate
+   Verification, the phone number and the email are reachable from anywhere on
+   the page. The rest of the header still shrinks, so the bar costs little.
+   TO GO BACK: delete this block.
+   ========================================================================== */
+#site-header.compact .topbar{
+  max-height:120px;
+  opacity:1;
+  overflow:visible;
+}
+#site-header.compact .topbar .wrap{padding-top:.3rem;padding-bottom:.3rem}
+#site-header.compact .topbar{font-size:.75rem}
+
+/* ==========================================================================
+   WHOLE HEADER STAYS AT FULL SIZE WHILE SCROLLING        (added Sep 2026)
+   The sticky header used to shrink once the page scrolled ("compact" mode):
+   the blue utility bar collapsed, the crest shrank, and the LEARN·GROW·SUCCEED
+   line and helpline numbers disappeared. On a normal desktop or laptop screen
+   (1200px and wider) the header now stays exactly as it looks at the top of
+   the page — utility bar, crest, college name, tagline, helpline numbers,
+   Apply Now and the menu, all at full size, 239px tall.
+
+   BELOW 1200px the header still shrinks on scroll, on purpose. At full size it
+   runs to 340-376px on narrow laptops and phones because the helpline block
+   and menu wrap onto extra lines — close to half the screen, leaving almost
+   nothing to read. Those screens keep the slim scrolled header.
+   TO GO BACK TO THE SHRINKING HEADER EVERYWHERE: delete this block.
+   ========================================================================== */
+@media (min-width:1200px){
+  #site-header.compact .topbar{max-height:120px;opacity:1;overflow:visible;font-size:.78rem}
+  #site-header.compact .topbar .wrap{padding-top:.45rem;padding-bottom:.45rem}
+  #site-header.compact .logobar .wrap{padding-top:.75rem;padding-bottom:.75rem}
+  #site-header.compact .brand-logo{height:124px}
+  #site-header.compact .brand-text b{font-size:2.78rem}
+  #site-header.compact .brand-text span{font-size:1.12rem}
+  #site-header.compact .brand-text em{display:block}
+  #site-header.compact .helpline-item{display:block}
+  #site-header.compact .helpline .btn{padding:.8rem 1.6rem;font-size:.92rem}
+}
+
+/* the drop shadow is the only thing that still marks "scrolled" */
+#site-header.compact{box-shadow:0 6px 24px rgba(6,42,99,.16)}
+
+/* anchor offsets, matched to the header each screen actually gets */
+@media (max-width:1199px){
+  html{scroll-padding-top:150px}
+  [id]{scroll-margin-top:150px}
+}
