@@ -236,6 +236,15 @@ function renderHeader() {
   '</div></nav>';
 }
 
+/* the footer map shows the registered office (Bengaluru) */
+function footerMap() {
+  if (typeof BRANCHES === 'undefined' || !BRANCHES.length) return '';
+  var reg = BRANCHES.filter(function (b) {
+    return (b.type || '').toLowerCase().indexOf('registered') > -1;
+  })[0];
+  return (reg || BRANCHES[0]).map;
+}
+
 /* ---------- Footer ---------- */
 function renderFooter() {
   var col = function (title, links) {
@@ -259,10 +268,10 @@ function renderFooter() {
             '<span>' + SITE.subName + '</span>' +
           '</span>' +
         '</a>' +
-        '<address><b class="office-label">' + SITE.corporateOffice.label + '</b>' +
-          SITE.corporateOffice.lines.join('<br>') + '</address>' +
         '<address><b class="office-label">' + SITE.registeredOffice.label + '</b>' +
           SITE.registeredOffice.lines.join('<br>') + '</address>' +
+        '<address><b class="office-label">' + SITE.corporateOffice.label + '</b>' +
+          SITE.corporateOffice.lines.join('<br>') + '</address>' +
         '<a href="tel:' + SITE.phone.replace(/\s/g, '') + '">☎ ' + SITE.phone + '</a>' +
         '<a href="mailto:' + SITE.email + '">✉ ' + SITE.email + '</a>' +
         socialLinks('socials') +
@@ -328,7 +337,7 @@ function renderFooter() {
         '<a href="' + P('pages/downloads.html') + '">Downloads</a>' +
         '<a href="' + P('pages/contact.html') + '">Contact Us</a>' +
         '<div style="margin-top:1rem;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.15)">' +
-          '<iframe title="Location map" src="' + BRANCHES[0].map + '" width="100%" height="130" ' +
+          '<iframe title="Registered office location" src="' + footerMap() + '" width="100%" height="130" ' +
           'style="border:0;display:block" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>' +
         '</div>' +
       '</div>' +
@@ -406,6 +415,25 @@ document.addEventListener('DOMContentLoaded', function () {
       a.parentElement.classList.add('active');
     }
   });
+
+  /* sticky header: shrink it once the page is scrolled */
+  var hdr = document.getElementById('site-header');
+  if (hdr) {
+    var compact = false;
+    var onScroll = function () {
+      var want = window.pageYOffset > 90;
+      if (want !== compact) { compact = want; hdr.classList.toggle('compact', want); }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    /* the header is added after the page loads, so re-run an #anchor jump
+       once it is in place — otherwise the target sits under the header */
+    if (location.hash) {
+      var target = document.getElementById(location.hash.slice(1));
+      if (target) setTimeout(function () { target.scrollIntoView(); }, 30);
+    }
+  }
 
   var top = document.getElementById('backtotop');
   if (top) top.addEventListener('click', function (e) {

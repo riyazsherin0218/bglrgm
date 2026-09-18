@@ -37,25 +37,25 @@ const SITE = {
   email:       "admissions@bglrgm.com",
   admissionEmail: "admissions@bglrgm.com",
 
-  /* ---------- Offices ---------- */
+  /* ---------- Offices ----------
+     Registered office = Bengaluru (Karnataka)
+     Corporate office  = Chennai (Tamil Nadu)
+     Always print the full address, exactly as below.                     */
   registeredOffice: {
-    label: "Registered Office — Tamil Nadu",
-    lines: ["No. 130 B, BBR Towers, 2nd Floor,",
-            "IOB Bank Upstairs, Mudichur Road,",
-            "West Tambaram, Chennai – 600 045,",
-            "Tamil Nadu, India."],
+    label: "Registered Office — Karnataka",
+    lines: ["No. 21, 3rd Floor, 9th Main, 6th Cross,",
+            "RK Layout – 2nd Stage, Padmanabha Nagar,",
+            "Bengaluru – 560070, Karnataka, India."],
     phone: "+91 95003 22006"
   },
   corporateOffice: {
-    label: "Corporate Office — Karnataka",
-    lines: ["No. 21, 2nd / 3rd Floor, 9th Main, 6th Cross,",
-            "RK Layout 2nd Stage, Padmanabhanagar,",
-            "Bangalore South, Bengaluru – 560 070,",
-            "Karnataka, India."],
+    label: "Corporate Office — Tamil Nadu",
+    lines: ["No. 130, BBR Towers, 2nd Floor, IOB Bank Upstairs,",
+            "Mudichur Road, West Tambaram,",
+            "Chennai – 600045, Tamil Nadu, India."],
     phone: "+91 95003 22006"
   },
 
-  /* ---------- Social ---------- */
   /* ---------- Social ----------
      Put the full address of each page. A channel or page address is better
      than a single video, because it never goes out of date.

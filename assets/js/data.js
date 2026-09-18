@@ -22,8 +22,8 @@ const BRANCHES = [
     phone:"+91 95003 22006",
     map:"https://www.google.com/maps?q=West+Tambaram+Mudichur+Road+Chennai+600045&output=embed",
     programmes:"All Certificate, Diploma, Advanced Diploma, Skill Development, B.Voc.* & M.Voc.* programmes" ,
-    incharge:{ name:"Name to be updated", designation:"Corporate Office In-charge", qualification:"Qualification to be updated",
-               phone:"+91 95003 22006", email:"", photo:"" }},
+    incharge:{ name:"Ms. Charumathi P", designation:"Nursing Tutor", qualification:"B.Sc. (Nursing)",
+               phone:"+91 82202 88985", email:"", photo:"chennai.jpg" }},
 
   { name:"Bengaluru — Registered Office", state:"Karnataka", type:"Registered Office",
     unit:"BGLRGM Institute of Vocational Education & Training",
@@ -31,8 +31,8 @@ const BRANCHES = [
     phone:"+91 95003 22006",
     map:"https://www.google.com/maps?q=Padmanabhanagar+Bengaluru+560070&output=embed",
     programmes:"Administration, partner coordination, examinations and certification" ,
-    incharge:{ name:"Name to be updated", designation:"Corporate Office In-charge", qualification:"Qualification to be updated",
-               phone:"+91 95003 22006", email:"", photo:"" }},
+    incharge:{ name:"Mr. Manoj", designation:"Centre Coordinator", qualification:"",
+               phone:"+91 73380 17339", email:"", photo:"bengaluru.jpg" }},
 
   { name:"Chengalpattu Branch", state:"Tamil Nadu", type:"Branch / Training Centre",
     unit:"Dr. RG Academy",
@@ -428,3 +428,79 @@ const EVENTS = [
     text:"Best wishes from BGLRGM Institute of Vocational Education Training to all our learners, staff, partners and their families.",
     upcoming:false }
 ];
+
+
+/* ==========================================================================
+   UGC GUIDELINES SECTION  —  shown on the home page (index.html #ugc)
+   --------------------------------------------------------------------------
+   UGC_LEVELS  — the NSQF credit ladder table
+   UGC_DOCS    — the official document cards
+                   file: "name.pdf"  → the PDF must sit in assets/docs/ugc/
+                   url : "https://…" → opens the document on the official site
+                 Use ONE of file OR url per card, not both.
+   NEP_PARAS   — the three NEP 2020, Chapter 16 paragraph cards
+   UGC_VIDEOS  — optional YouTube videos. Leave the array empty to hide the
+                 whole "Watch" block. id = the part after  watch?v=
+   TO ADD A NEW DOCUMENT: drop the PDF in assets/docs/ugc/ and copy a block
+   below, or just add a url entry — nothing else needs changing.
+   ========================================================================== */
+
+/* Source: UGC Guidelines for B.Voc., Table 1 (Awards) and Table 3 (Credits) */
+const UGC_LEVELS = [
+  { level:"Level 5", award:"Diploma",           credits:"60 credits · 1 year (two semesters)",
+    split:"36 skill component + 24 general education" },
+  { level:"Level 6", award:"Advanced Diploma",  credits:"120 credits · 2 years (four semesters)",
+    split:"72 skill component + 48 general education" },
+  { level:"Level 7", award:"B.Voc. Degree",     credits:"180 credits · 3 years (six semesters)",
+    split:"108 skill component + 72 general education" }
+];
+
+const UGC_DOCS = [
+  { title:"UGC Guidelines for B.Voc.",
+    note:"Guidelines for introduction of the Bachelor of Vocation (B.Voc.) programme in universities and colleges under the National Skills Qualifications Framework — objectives, levels of awards, curriculum, credit calculation, examination, infrastructure and faculty.",
+    year:"University Grants Commission",
+    file:"ugc-guidelines-b-voc.pdf" },
+
+  { title:"Guidelines for Skill-Based Education under NSQF",
+    note:"UGC guidelines for providing skill-based education under the National Skills Qualifications Framework in universities and colleges.",
+    year:"University Grants Commission",
+    url:"https://www.ugc.gov.in/pdfnews/6556003_Guidelines-for-providing-Skill-Based-Education-under-NSQF.pdf" },
+
+  { title:"NSQF — Revised Guidelines",
+    note:"The revised National Skills Qualifications Framework guidelines, covering level descriptors, credit framework and alignment of qualifications.",
+    year:"University Grants Commission",
+    url:"https://www.ugc.gov.in/pdfnews/2237047_NSQF-Revised-Guidelines.pdf" },
+
+  { title:"National Higher Education Qualifications Framework (NHEQF)",
+    note:"The qualifications framework for higher education in India, setting out levels, credits and learning outcomes for degrees including vocational degrees.",
+    year:"University Grants Commission",
+    url:"https://www.ugc.gov.in/pdfnews/2990035_Final-NHEQF.pdf" },
+
+  { title:"National Education Policy 2020",
+    note:"The full policy document. Chapter 16, Reimagining Vocational Education, is the policy basis for vocational degree programmes.",
+    year:"Ministry of Education, Government of India",
+    url:"https://dsel.education.gov.in/sites/default/files/NEP_Final_English.pdf" },
+
+  { title:"UGC NSQF Portal",
+    note:"The UGC's NSQF portal, where the vocational and skill-development guidelines and circulars are published.",
+    year:"University Grants Commission",
+    url:"https://nsqf.ugc.ac.in/Home/Guideline" }
+];
+
+/* Summarised from NEP 2020, Chapter 16 — Reimagining Vocational Education */
+const NEP_PARAS = [
+  { no:"16.4",
+    head:"50% exposure to vocational education by 2025",
+    text:"The policy aims to overcome the social status hierarchy attached to vocational education. By 2025, at least 50% of learners through the school and higher education system are to have exposure to vocational education, with vocational education integrated into mainstream education in a phased manner over the next decade." },
+
+  { no:"16.5",
+    head:"Institutions working with industry and ITIs",
+    text:"Schools, ITIs, polytechnics, local industry and skill centres are to collaborate so that learners get hands-on vocational exposure, and Lok Vidya — vocational knowledge developed in India — is made accessible to students through the vocational education stream." },
+
+  { no:"16.6",
+    head:"Vocational education inside higher education",
+    text:"Higher education institutions are to offer vocational education either on their own or in partnership with industry and NGOs. B.Voc. degrees introduced in 2013 continue, and vocational courses are also to be available to all other students as part of multidisciplinary degree programmes." }
+];
+
+/* Leave empty to hide the "Watch" block. Example: { id:"dQw4w9WgXcQ", title:"What is B.Voc.?" } */
+const UGC_VIDEOS = [];

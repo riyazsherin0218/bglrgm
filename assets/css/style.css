@@ -34,7 +34,7 @@
 
   --radius:10px;
   --radius-lg:16px;
-  --wrap:1200px;
+  --wrap:1440px;   /* content width — was 1200px, widened Sep 2026 */
   --font:"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   --font-head:"Segoe UI Semibold","Segoe UI",Roboto,Arial,sans-serif;
 }
@@ -60,8 +60,8 @@ hr{border:0;border-top:1px solid var(--line);margin:2rem 0}
 table{border-collapse:collapse;width:100%}
 :focus-visible{outline:3px solid var(--gold-500);outline-offset:2px}
 
-.wrap{max-width:var(--wrap);margin:0 auto;padding:0 20px}
-.wrap-narrow{max-width:900px;margin:0 auto;padding:0 20px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 28px}
+.wrap-narrow{max-width:960px;margin:0 auto;padding:0 28px}
 .center{text-align:center}
 .muted{color:var(--ink-500)}
 .small{font-size:.875rem}
@@ -89,6 +89,33 @@ table{border-collapse:collapse;width:100%}
 .btn-sm{padding:.45rem 1rem;font-size:.82rem}
 .btn-block{width:100%}
 
+/* ---------- Sticky header ----------
+   The whole header — utility bar, logo bar and menu — stays at the top of the
+   window while the page scrolls. Once the reader scrolls past the first
+   90px it shrinks to a slim bar so it does not eat the screen. */
+html{scroll-padding-top:128px}   /* so #anchors do not hide under the sticky header */
+[id]{scroll-margin-top:128px}
+#site-header{position:sticky;top:0;z-index:700;background:#fff}
+#site-header .topbar,
+#site-header .logobar .wrap,
+#site-header .brand-logo,
+#site-header .brand-text b,
+#site-header .brand-text span{transition:all .22s ease}
+#site-header.compact{box-shadow:0 6px 24px rgba(6,42,99,.16)}
+#site-header.compact .topbar{max-height:0;opacity:0;overflow:hidden;border:0}
+#site-header.compact .logobar .wrap{padding-top:.35rem;padding-bottom:.35rem}
+#site-header.compact .brand-logo{height:54px}
+#site-header.compact .brand-text b{font-size:1.32rem}
+#site-header.compact .brand-text span{font-size:.76rem}
+#site-header.compact .brand-text em{display:none}
+#site-header.compact .helpline-item{display:none}
+#site-header.compact .helpline .btn{padding:.5rem 1.1rem;font-size:.8rem}
+.topbar{max-height:120px;opacity:1}
+@media (prefers-reduced-motion:reduce){
+  #site-header .topbar,#site-header .logobar .wrap,#site-header .brand-logo,
+  #site-header .brand-text b,#site-header .brand-text span{transition:none}
+}
+
 /* ---------- Top utility bar ---------- */
 .topbar{background:var(--blue-900);color:#cddcf3;font-size:.78rem}
 .topbar a{color:#cddcf3}
@@ -108,19 +135,19 @@ table{border-collapse:collapse;width:100%}
   font-family:var(--font-head);font-weight:800;font-size:1rem;letter-spacing:.5px;
   box-shadow:var(--shadow-sm);text-align:center;line-height:1}
 .brand-logo{height:124px;width:auto;flex:0 0 auto}
-.footer-logo{height:88px;width:auto;background:#fff;padding:8px 12px;border-radius:12px}
+.footer-logo{height:74px;width:auto;background:#fff;padding:7px 10px;border-radius:12px}
 .login-logo{height:78px;width:auto;margin:0 auto .9rem}
 .panel-logo{height:44px;width:auto}
-.brand-text b{display:block;font-family:var(--font-head);font-size:2.45rem;color:var(--brand-red);line-height:1.12;letter-spacing:.01em}
-.brand-text span{display:block;font-size:1.08rem;color:var(--blue-800);font-weight:600;letter-spacing:.03em;margin-top:4px}
+.brand-text b{display:block;font-family:var(--font-head);font-size:2.6rem;color:var(--brand-red);line-height:1.12;letter-spacing:.01em}
+.brand-text span{display:block;font-size:1.12rem;color:var(--blue-800);font-weight:600;letter-spacing:.03em;margin-top:4px}
 .brand-text em{display:block;font-style:normal;font-size:.85rem;color:var(--gold-600);font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-top:5px}
-.helpline{display:flex;gap:1.4rem;align-items:center}
+.helpline{display:flex;gap:1rem;align-items:center}
 .helpline-item{text-align:right;line-height:1.25}
-.helpline-item small{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:.09em;color:var(--ink-300)}
-.helpline-item b{font-size:1.02rem;color:var(--blue-800);font-family:var(--font-head)}
+.helpline-item small{display:block;font-size:.64rem;text-transform:uppercase;letter-spacing:.09em;color:var(--ink-300)}
+.helpline-item b{font-size:.98rem;color:var(--blue-800);font-family:var(--font-head);white-space:nowrap}
 
 /* ---------- Main navigation ---------- */
-.mainnav{background:var(--blue-800);position:sticky;top:0;z-index:600;box-shadow:var(--shadow-sm);
+.mainnav{background:var(--blue-800);position:relative;z-index:600;box-shadow:var(--shadow-sm);
   overflow-x:clip}  /* keeps a right-hand dropdown from widening the page */
 .mainnav .wrap{display:flex;align-items:center;justify-content:space-between}
 .navlist{list-style:none;display:flex;flex-wrap:wrap;margin:0;padding:0}
@@ -151,7 +178,7 @@ table{border-collapse:collapse;width:100%}
 .slide.on{opacity:1}
 .slide::before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(6,42,99,.94) 8%,rgba(11,60,140,.82) 48%,rgba(21,101,192,.55) 100%)}
 .slide-bg{position:absolute;inset:0;background-size:cover;background-position:center}
-.slide-inner{position:relative;z-index:2;max-width:var(--wrap);margin:0 auto;padding:0 20px;color:#fff;width:100%}
+.slide-inner{position:relative;z-index:2;max-width:var(--wrap);margin:0 auto;padding:0 28px;color:#fff;width:100%}
 .slide-inner .kicker{display:inline-block;background:rgba(240,180,41,.16);border:1px solid rgba(240,180,41,.55);color:var(--gold-500);
   padding:.3rem .95rem;border-radius:40px;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:1rem}
 .slide-inner h1{color:#fff;font-size:2.9rem;max-width:820px;margin-bottom:.5rem;text-shadow:0 2px 14px rgba(0,0,0,.25)}
@@ -179,7 +206,7 @@ section{position:relative}
 .sec-blue{background:linear-gradient(135deg,var(--blue-900),var(--blue-700));color:#e7eefb}
 .sec-blue h2,.sec-blue h3,.sec-blue h4{color:#fff}
 .sec-gold{background:linear-gradient(135deg,#fff8e6,#fdf3dc)}
-.sec-head{max-width:760px;margin:0 auto 2.4rem;text-align:center}
+.sec-head{max-width:840px;margin:0 auto 2.4rem;text-align:center}
 .sec-head .tagline{display:inline-block;color:var(--gold-600);font-weight:800;letter-spacing:.16em;
   text-transform:uppercase;font-size:.72rem;margin-bottom:.55rem}
 .sec-head h2{margin-bottom:.5rem}
@@ -408,7 +435,7 @@ a.card.doc-card{display:flex;gap:1rem;align-items:flex-start;text-decoration:non
 /* leadership profile page — pages/leadership.html */
 .leader-photo{text-align:center}
 .leader-photo img{width:100%;max-width:330px;aspect-ratio:1/1;object-fit:cover;object-position:center top;
-  border-radius:var(--radius-lg);background:var(--blue-050);box-shadow:var(--shadow-md);border:6px solid #fff}
+  border-radius:var(--radius-lg);background:var(--blue-050);box-shadow:var(--shadow-md);border:6px solid #fff;margin:0 auto}
 .leader-row{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
 .leader-row img{width:84px;height:84px;flex:0 0 84px;border-radius:50%;object-fit:cover;object-position:center top;
   background:var(--blue-050);border:3px solid #fff;box-shadow:var(--shadow-sm)}
@@ -426,7 +453,8 @@ a.leader:hover h3,a.card:hover h3{color:var(--blue-700)}
   padding:28px 22px;text-align:center;box-shadow:var(--shadow-sm);height:100%;
   border-top:4px solid var(--gold-500)}
 .leader img{width:136px;height:136px;border-radius:50%;object-fit:cover;object-position:center top;
-  background:var(--blue-050);border:4px solid #fff;box-shadow:var(--shadow-md);margin-bottom:1rem}
+  background:var(--blue-050);border:4px solid #fff;box-shadow:var(--shadow-md);
+  margin:0 auto 1rem}   /* auto keeps the portrait centred — img is display:block */
 .leader h3{font-size:1.06rem;margin-bottom:.2rem;line-height:1.25}
 .leader .role{display:block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
   color:var(--gold-600);font-weight:800;margin-bottom:.6rem}
@@ -440,7 +468,7 @@ a.leader:hover h3,a.card:hover h3{color:var(--blue-700)}
 .branch-incharge .ic-head{font-size:.64rem;letter-spacing:.11em;text-transform:uppercase;
   color:var(--ink-300);font-weight:800;margin-bottom:.7rem}
 .branch-incharge img{width:98px;height:98px;border-radius:50%;object-fit:cover;background:#fff;
-  border:3px solid #fff;box-shadow:var(--shadow-sm);margin-bottom:.65rem}
+  border:3px solid #fff;box-shadow:var(--shadow-sm);margin:0 auto .65rem}
 .branch-incharge b{display:block;font-family:var(--font-head);font-size:.95rem;color:var(--ink-900);line-height:1.25}
 .branch-incharge .role{display:block;font-size:.66rem;letter-spacing:.09em;text-transform:uppercase;
   color:var(--gold-600);font-weight:800;margin:.3rem 0 .4rem}
@@ -501,10 +529,18 @@ a.leader:hover h3,a.card:hover h3{color:var(--blue-700)}
 .footer h5{color:#fff;font-size:.82rem;letter-spacing:.13em;text-transform:uppercase;margin-bottom:1rem;font-family:var(--font-head)}
 .footer a{color:#a9bfe0;display:block;padding:.16rem 0;font-size:.84rem}
 .footer a:hover{color:var(--gold-500)}
-.footer .fcols{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr 1.2fr;gap:26px}
+.footer .fcols{display:grid;grid-template-columns:2.1fr 1fr 1fr 1fr 1.1fr 1.1fr;gap:26px}
 .footer .brand-text b{color:#fff}
 .footer .brand-text span,.footer .brand-text em{color:#a9bfe0}
-.footer address{font-style:normal;line-height:1.6;margin-bottom:.8rem;font-size:.84rem}
+.footer address{font-style:normal;line-height:1.6;margin-bottom:.9rem;font-size:.84rem}
+.footer .office-label{display:block;color:#fff;font-family:var(--font-head);font-size:.74rem;
+  letter-spacing:.09em;text-transform:uppercase;margin-bottom:.25rem}
+.footer a.fbrand{display:flex;align-items:center;gap:.85rem;padding:0 0 1rem;text-decoration:none}
+.footer a.fbrand:hover .fbrand-text b{color:var(--gold-500)}
+.fbrand .footer-logo{flex:0 0 auto}
+.fbrand-text{display:block;min-width:0}
+.fbrand-text b{display:block;font-family:var(--font-head);font-size:1.12rem;color:#fff;line-height:1.2}
+.fbrand-text span{display:block;font-size:.76rem;color:#a9bfe0;line-height:1.45;margin-top:4px}
 .footer-strip{border-top:1px solid rgba(255,255,255,.12);margin-top:36px;padding:16px 0;font-size:.78rem;
   display:flex;flex-wrap:wrap;gap:.6rem 1.2rem;justify-content:space-between;align-items:center}
 .footer-strip a{display:inline}
@@ -571,6 +607,11 @@ a.leader:hover h3,a.card:hover h3{color:var(--blue-700)}
   .brand-text span{font-size:.8rem}
 }
 @media (max-width:860px){
+  html{scroll-padding-top:150px}
+  [id]{scroll-margin-top:150px}
+  #site-header.compact .brand-logo{height:44px}
+  #site-header.compact .brand-text b{font-size:1.06rem}
+  #site-header.compact .brand-text span{display:none}
   .navtoggle{display:block}
   .mainnav .wrap{flex-direction:column;align-items:stretch;padding:0 20px}
   .mainnav .navbar-top{display:flex !important;justify-content:space-between;align-items:center;padding:.4rem 0}
@@ -604,6 +645,7 @@ a.leader:hover h3,a.card:hover h3{color:var(--blue-700)}
   .course-row{grid-template-columns:1fr}
 }
 @media (max-width:560px){
+  .wrap,.wrap-narrow,.slide-inner{padding:0 18px}
   .g2,.g3,.g4,.g5,.g6,.logos,.finder-grid,.steps,.counters{grid-template-columns:1fr}
   .quick{grid-template-columns:repeat(2,1fr)}
   .footer .fcols{grid-template-columns:1fr}
@@ -620,4 +662,110 @@ a.leader:hover h3,a.card:hover h3{color:var(--blue-700)}
 
 @media print{
   .topbar,.mainnav,.fab,.footer-strip,.hero-dots,.hero-arrow{display:none}
+}
+
+/* ==========================================================================
+   SITE-WIDE TEXT JUSTIFICATION                               (added Sep 2026)
+   --------------------------------------------------------------------------
+   All running body copy — paragraphs, list items, accordion bodies, card
+   text, disclaimers — is justified so both edges line up. Only lines that
+   actually wrap are affected; a short one-line paragraph or bullet looks
+   exactly as before, and the last line of any block is never stretched.
+   Hyphenation is on so justified narrow columns do not open up word gaps.
+
+   Anything deliberately centred or right-aligned (section headings, stat
+   and programme cards, counters, leadership cards, branch in-charge boxes,
+   logo boxes, the helpline block) is put back below.
+   TO TURN JUSTIFICATION OFF: delete this whole block.
+   ========================================================================== */
+p, li,
+.lead, .disclaimer, .note,
+.card p, .card li,
+.acc-body, .acc-body p, .acc-body li,
+blockquote{
+  text-align:justify;
+  text-justify:inter-word;
+  -webkit-hyphens:auto; -ms-hyphens:auto; hyphens:auto;
+}
+
+/* --- blocks that must stay centred --- */
+.center, .center p, .center li,
+.sec-head p, .sec-head li,
+.prog-card p, .prog-card li,
+.counters p, .counter p,
+.leader p, .leader li,
+.branch-incharge p, .branch-incharge li,
+.logo-box p,
+.news-thumb .date p,
+.tiny.center, .small.center, .muted.center{
+  text-align:center;
+  -webkit-hyphens:manual; hyphens:manual;
+}
+
+/* --- blocks that must stay right-aligned --- */
+.helpline-item, .helpline-item p{
+  text-align:right;
+  -webkit-hyphens:manual; hyphens:manual;
+}
+
+/* --- never justify tables, key/value panels, forms or nav --- */
+.table td, .table th, .table td p, .table li,
+.kv dt, .kv dd, .kv p,
+address, address p,
+nav p, nav li, .mainnav p, .mainnav li, .topbar p, .topbar li,
+.crumbs, .crumbs p,
+label, label p, .btn, .chip, .pill, .tag,
+.footer p, .footer li, .footer address{
+  text-align:left;
+  -webkit-hyphens:manual; hyphens:manual;
+}
+
+/* ==========================================================================
+   VERIFICATION PAGE — centred lookup panels                  (added Sep 2026)
+   --------------------------------------------------------------------------
+   pages/verification.html used the 1/3 + 2/3 split shared with the other
+   form pages, but its right-hand column stays empty until a record is found,
+   so each lookup box sat stranded in the left corner. On this page only
+   (scoped to #ver-panes) the box is centred in a single column and the
+   result panel opens underneath it. Every other page keeps the split.
+   ========================================================================== */
+.tabs[data-panes="ver-panes"]{justify-content:center}
+
+#ver-panes .split-3070{
+  display:block;
+  max-width:760px;
+  margin:0 auto;
+}
+
+/* a more defined card: real border, deeper shadow, roomier padding */
+#ver-panes .form-box{
+  border:1px solid var(--line);
+  border-top:4px solid var(--gold-500);
+  box-shadow:var(--shadow-lg);
+  padding:36px 36px 30px;
+}
+#ver-panes .form-box h3{
+  text-align:center;
+  font-size:1.2rem;
+  margin-bottom:1.5rem;
+  padding-bottom:1rem;
+  border-bottom:1px solid var(--line);
+}
+#ver-panes .field label{font-size:.82rem}
+#ver-panes .field input,
+#ver-panes .field select{padding:.8rem .95rem;font-size:.97rem}
+#ver-panes .btn-block{padding:.85rem 1rem;font-size:1rem;margin-top:.4rem}
+#ver-panes .form-note{
+  text-align:center;
+  margin-top:1.1rem;
+  padding-top:.9rem;
+  border-top:1px dashed var(--line);
+}
+
+/* the result panel opens under the box, full width of the centred column */
+#ver-panes .out:not(:empty){margin-top:26px}
+
+@media (max-width:760px){
+  #ver-panes .form-box{padding:26px 20px 24px}
+  .tabs[data-panes="ver-panes"]{justify-content:flex-start}
 }

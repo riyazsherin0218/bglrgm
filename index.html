@@ -638,7 +638,11 @@ document.addEventListener('DOMContentLoaded', function () {
   if (dh && typeof UGC_DOCS !== 'undefined')
     dh.innerHTML = UGC_DOCS.map(function (d) {
       var href = d.file ? 'assets/docs/ugc/' + d.file : d.url;
-      var host = d.file ? 'bglrgm.com' : 'ugc.gov.in';
+      var host = 'bglrgm.com';
+      if (!d.file && d.url) {
+        var m = d.url.match(/^https?:\/\/([^\/]+)/);
+        if (m) host = m[1].replace(/^www\./, '');
+      }
       return '<a class="card doc-card" href="' + href + '" target="_blank" rel="noopener">' +
         '<div class="doc-ico">PDF</div>' +
         '<div><h3>' + esc(d.title) + '</h3>' +
